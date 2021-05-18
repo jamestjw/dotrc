@@ -84,6 +84,9 @@ Plug 'junegunn/fzf.vim'
 " remap envoke key
 nnoremap <silent> <C-z> :FZF<CR>
 
+" RG search shortcut f + w (find word)
+nnoremap fw :Rg<CR>
+
 Plug 'Keithbsmiley/swift.vim'
 
 " Perl
@@ -242,6 +245,11 @@ Plug 'tpope/vim-fugitive'
 Plug 'rust-lang/rust.vim'
 let g:rustfmt_autosave = 1
 
+" For assembly syntax
+Plug 'shirk/vim-gas'
+" For TOML syntax
+Plug 'cespare/vim-toml' 
+
 call plug#end()
 
 " Remove highlighting from search on return
@@ -260,3 +268,39 @@ augroup commenting_blocks_of_code
 augroup END
 noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
+
+
+" Detect .h files as c type
+autocmd BufRead,BufNewFile *.h,*.c set filetype=c
+" C indentation
+autocmd FileType c,h setlocal expandtab shiftwidth=2 tabstop=2
+autocmd FileType asm setlocal expandtab shiftwidth=2 tabstop=2
+
+" Toggle between c and h files
+function! HeaderToggle() " bang for overwrite when saving vimrc
+let file_path = expand("%")
+let file_name = expand("%<")
+let extension = split(file_path, '\.')[-1] " '\.' is how you really split on dot
+let err_msg = "There is no file "
+
+if extension == "c"
+    let next_file = join([file_name, ".h"], "")
+
+    if filereadable(next_file)
+    :e %<.h
+    else
+        echo join([err_msg, next_file], "")
+    endif
+elseif extension == "h"
+    let next_file = join([file_name, ".c"], "")
+
+    if filereadable(next_file)
+        :e %<.c
+    else
+        echo join([err_msg, next_file], "")
+    endif
+endif
+endfunction
+
+nnoremap <Leader>h :call HeaderToggle()<CR>
+
