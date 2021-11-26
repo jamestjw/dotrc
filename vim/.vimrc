@@ -239,7 +239,6 @@ nnoremap <silent> <space>p :<C-u>CocListResume<CR>
 " Coc config end
 
 Plug 'vim-airline/vim-airline'
-Plug 'tpope/vim-fugitive'
 
 " Rust
 Plug 'rust-lang/rust.vim'
@@ -250,6 +249,10 @@ Plug 'shirk/vim-gas'
 " For TOML syntax
 Plug 'cespare/vim-toml' 
 
+Plug 'will133/vim-dirdiff'
+
+Plug 'vim-scripts/indentpython.vim'
+
 call plug#end()
 
 " Remove highlighting from search on return
@@ -259,7 +262,7 @@ nnoremap <silent> <CR> :nohlsearch<CR><CR>
 " Commenting blocks of code.
 augroup commenting_blocks_of_code
   autocmd!
-  autocmd FileType c,cpp,java,scala,rust let b:comment_leader = '// '
+  autocmd FileType c,cpp,java,scala,rs let b:comment_leader = '// '
   autocmd FileType sh,ruby,python   let b:comment_leader = '# '
   autocmd FileType conf,fstab       let b:comment_leader = '# '
   autocmd FileType tex              let b:comment_leader = '% '
@@ -304,3 +307,4 @@ endfunction
 
 nnoremap <Leader>h :call HeaderToggle()<CR>
 
+set mouse=a
