@@ -79,6 +79,7 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
 
 set rtp+=/usr/local/opt/fzf
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " remap envoke key
