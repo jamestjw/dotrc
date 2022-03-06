@@ -1,8 +1,6 @@
 
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
 ## Load aliases
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
@@ -13,7 +11,8 @@ if [ -f ~/.bash_keys ]; then
 fi
 
 ## JAVA
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+## export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+export JAVA_HOME=$(/usr/libexec/java_home)
 
 ## Remove vim warnings
 export LC_ALL=en_US.UTF-8
@@ -49,3 +48,28 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 # Circle CI Git approval tool
 export CI_CONFIG_PATH=~/.ci_config
+
+# Add path to Rust binaries (executables from my projects)
+export PATH=$PATH:/Users/`whoami`/rust/binaries
+
+##
+# Your previous /Users/jamestjw/.bash_profile file was backed up as /Users/jamestjw/.bash_profile.macports-saved_2020-11-19_at_22:22:11
+##
+
+# MacPorts Installer addition on 2020-11-19_at_22:22:11: adding an appropriate PATH variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+# MacPorts Installer addition on 2020-11-19_at_22:22:11: adding an appropriate MANPATH variable for use with MacPorts.
+export MANPATH="/opt/local/share/man:$MANPATH"
+# Finished adapting your MANPATH environment variable for use with MacPorts.
+
+# Add postgres to path
+export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
+
+# Add SML to path
+export PATH="$PATH:/usr/local/smlnj/bin"
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+

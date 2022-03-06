@@ -2,15 +2,17 @@
 alias ll='ls -ahlF'
 alias ..='cd ..'
 alias ...='cd ../../'
+alias ....='cd ../../../'
 alias ggp="git reflog | ggrep -Pio '(?<=moving from ).+(?= to)' | uniq | head -n10"
 alias cdd="cd ~/Documents"
 alias cr='git st | awk '\''{for (i=0; i<=NF; i++) {if ($i == "branch") { printf $(i+1);exit}}}'\'' | pbcopy && echo `pbpaste`'
 alias pwd='pwd | perl -ple "s/[\r\n]//g" | pbcopy && echo `pbpaste`'
 
 # Git aliases
-alias gitm='git checkout master'
+alias gitm='git checkout $(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')'
 alias gdh='git diff HEAD'
 alias gitpsetup='git push --set-upstream origin $(git branch --show-current)'
+alias gitaa='git add . && git commit --amend'
 
 # Rails Aliases
 alias be='bundle exec'
@@ -18,9 +20,6 @@ alias railsc='cd ~/Documents/Kaodim/ada && bundle exec rails c'
 alias srspec='bundle exec spring rspec'
 # alias rspecst="srspec `git status | ggrep -Pio '(?<=modified:)\s+(spec/)(?!factories).*' | tr '\n' ' '` "
 # alias rspecall="srspec `git diff master...HEAD | ggrep -Po '(?<=\+\+\+ b/)(spec/)(?!factories).*' | tr '\n' ' '`"
-
-# Python aliases
-alias python=/usr/local/bin/python3
 
 # Kaodim Aliases
 alias cda='cd ~/Documents/Kaodim/ada'
@@ -52,3 +51,12 @@ function pkill() {
 sourceenv () {
 	source $1/bin/activate
 }
+
+# CCLS
+alias cpccls='cp /Users/jamestjw/.default_ccls .ccls'
+
+# Run ada CI
+alias cia='echo "Sleeping 5secs..." && sleep 5 && ci_manager approve $(cr)'
+
+# CD google drive
+alias cdg='cd /Volumes/GoogleDrive/Mon\ Drive'
