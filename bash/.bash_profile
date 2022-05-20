@@ -1,4 +1,3 @@
-
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
 
 ## Load aliases
@@ -72,4 +71,5 @@ export PATH="$PATH:/usr/local/smlnj/bin"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
-
+# opam configuration
+test -r /Users/jamestjw/.opam/opam-init/init.sh && . /Users/jamestjw/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true

@@ -9,7 +9,7 @@ alias cr='git st | awk '\''{for (i=0; i<=NF; i++) {if ($i == "branch") { printf 
 alias pwd='pwd | perl -ple "s/[\r\n]//g" | pbcopy && echo `pbpaste`'
 
 # Git aliases
-alias gitm='git checkout $(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')'
+alias gitm='git checkout main'
 alias gdh='git diff HEAD'
 alias gitpsetup='git push --set-upstream origin $(git branch --show-current)'
 alias gitaa='git add . && git commit --amend'
@@ -60,3 +60,17 @@ alias cia='echo "Sleeping 5secs..." && sleep 5 && ci_manager approve $(cr)'
 
 # CD google drive
 alias cdg='cd /Volumes/GoogleDrive/Mon\ Drive'
+
+avg_time_alt() {
+    local -i n=$1
+    local foo real sys user
+    shift
+    (($# > 0)) || return;
+    { read foo real; read foo user; read foo sys ;} < <(
+        { time -p for((;n--;)){ "$@" &>/dev/null ;} ;} 2>&1
+    )
+    printf "real: %.5f\nuser: %.5f\nsys : %.5f\n" $(
+        bc -l <<<"$real/$n;$user/$n;$sys/$n;" )
+}
+
+alias g++='g++-11'
