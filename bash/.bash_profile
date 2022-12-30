@@ -23,12 +23,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/jamestjw/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/Users/jamestjw/Downloads/google-cloud-sdk/path.bash.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/jamestjw/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/jamestjw/Downloads/google-cloud-sdk/completion.bash.inc'; fi
-
 # Google Creds
 export GOOGLE_APPLICATION_CREDENTIALS=~/.gcloud/keyfile.json
 
@@ -73,3 +67,17 @@ export PATH="$PATH:/usr/local/smlnj/bin"
 
 # opam configuration
 test -r /Users/jamestjw/.opam/opam-init/init.sh && . /Users/jamestjw/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/jamestjw/google-cloud-sdk/path.bash.inc' ]; then . '/Users/jamestjw/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/jamestjw/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/jamestjw/google-cloud-sdk/completion.bash.inc'; fi
+
+# Add gcloud tools to path
+export PATH="$HOME/google-cloud-sdk/bin/:$PATH"
+
+# Add python3.8 installations to path
+export PATH="$HOME/Library/Python/3.8/bin:$PATH"
+
+export GPG_TTY=$(tty)

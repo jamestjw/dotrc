@@ -5,6 +5,7 @@ alias ...='cd ../../'
 alias ....='cd ../../../'
 alias ggp="git reflog | ggrep -Pio '(?<=moving from ).+(?= to)' | uniq | head -n10"
 alias cdd="cd ~/Documents"
+alias cdmp="cd ~/Documents/myprojects"
 alias cr='git st | awk '\''{for (i=0; i<=NF; i++) {if ($i == "branch") { printf $(i+1);exit}}}'\'' | pbcopy && echo `pbpaste`'
 alias pwd='pwd | perl -ple "s/[\r\n]//g" | pbcopy && echo `pbpaste`'
 
@@ -20,10 +21,6 @@ alias railsc='cd ~/Documents/Kaodim/ada && bundle exec rails c'
 alias srspec='bundle exec spring rspec'
 # alias rspecst="srspec `git status | ggrep -Pio '(?<=modified:)\s+(spec/)(?!factories).*' | tr '\n' ' '` "
 # alias rspecall="srspec `git diff master...HEAD | ggrep -Po '(?<=\+\+\+ b/)(spec/)(?!factories).*' | tr '\n' ' '`"
-
-# Kaodim Aliases
-alias cda='cd ~/Documents/Kaodim/ada'
-alias cdk='cd ~/Documents/Kaodim'
 
 # Functions
 mkcdir ()
@@ -59,7 +56,7 @@ alias cpccls='cp /Users/jamestjw/.default_ccls .ccls'
 alias cia='echo "Sleeping 5secs..." && sleep 5 && ci_manager approve $(cr)'
 
 # CD google drive
-alias cdg='cd /Volumes/GoogleDrive/Mon\ Drive'
+alias cdg='cd "/Users/jamestjw/Library/CloudStorage/GoogleDrive-youknowjamest@gmail.com/Mon Drive"'
 
 avg_time_alt() {
     local -i n=$1
@@ -73,4 +70,7 @@ avg_time_alt() {
         bc -l <<<"$real/$n;$user/$n;$sys/$n;" )
 }
 
-alias g++='g++-11'
+alias cdcs="open \"/Volumes/GoogleDrive/Mon Drive/Books/Computer Science\""
+
+# nvim
+alias nv="nvim"

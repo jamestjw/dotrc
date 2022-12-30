@@ -9,3 +9,5 @@ source /Users/jamestjw/perl5/perlbrew/etc/bashrc
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+[ -f "/Users/jamestjw/.ghcup/env" ] && source "/Users/jamestjw/.ghcup/env" # ghcup-env

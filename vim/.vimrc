@@ -254,6 +254,11 @@ Plug 'will133/vim-dirdiff'
 
 Plug 'vim-scripts/indentpython.vim'
 
+" plenary.nvim https://github.com/nvim-lua/plenary.nvim
+Plug 'nvim-lua/plenary.nvim'
+
+Plug 'scalameta/nvim-metals'
+
 call plug#end()
 
 " Remove highlighting from search on return
@@ -357,3 +362,20 @@ for tool in s:opam_packages
   endif
 endfor
 " ## end of OPAM user-setup addition for vim / base ## keep this line
+
+" Haskell
+autocmd FileType haskell setlocal expandtab shiftwidth=2 tabstop=2
+
+"OCaml
+"let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+"execute "set rtp+=" . g:opamshare . "/merlin/vim"
+set omnifunc=syntaxcomplete#Complete
+
+" ## added by OPAM user-setup for vim / ocp-indent ## 3ef4be19aef6c4105fa35cb691754d48 ## you can edit, but keep this line
+if count(s:opam_available_tools,"ocp-indent") == 0
+  source "/Users/jamestjw/.opam/default/share/ocp-indent/vim/indent/ocaml.vim"
+endif
+" ## end of OPAM user-setup addition for vim / ocp-indent ## keep this line
+
+" Markdown and text
+autocmd FileType markdown,text setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
