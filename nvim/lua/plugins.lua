@@ -75,6 +75,12 @@ require("packer").startup(function(use)
       }
     end
   }
+
+  -- Comments
+  use { "preservim/nerdcommenter"}
+
+  -- Idris
+  use { "idris-hackers/idris-vim" }
 end)
 
 ----------------------------------

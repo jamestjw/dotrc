@@ -74,3 +74,5 @@ alias cdcs="open \"/Volumes/GoogleDrive/Mon Drive/Books/Computer Science\""
 
 # nvim
 alias nv="nvim"
+alias vi="vim"
+alias vim="nv"

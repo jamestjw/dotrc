@@ -14,3 +14,7 @@ cmd [[autocmd FileType scheme setlocal expandtab shiftwidth=2 tabstop=2 softtabs
 
 -- Display diagnostics
 vim.keymap.set('n', "<leader>dd", vim.diagnostic.open_float, bufopts)
+
+cmd [[syntax on]]
+cmd [[filetype on]]
+cmd [[filetype plugin indent on]]
