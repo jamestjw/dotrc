@@ -81,3 +81,6 @@ export PATH="$HOME/google-cloud-sdk/bin/:$PATH"
 export PATH="$HOME/Library/Python/3.8/bin:$PATH"
 
 export GPG_TTY=$(tty)
+
+# Add gambit scheme to path (10 Jan 2023)
+export PATH="$HOME/g4/bin:$PATH"

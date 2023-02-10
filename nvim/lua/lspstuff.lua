@@ -158,5 +158,24 @@ lspconfig.pyright.setup{
 lspconfig.racket_langserver.setup{
     on_attach = on_attach,
     flags = lsp_flags,
+    filetypes = {".rkt"}
 }
+
+lspconfig.ocamllsp.setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+}
+
+lspconfig.clojure_lsp.setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+}
+
+lspconfig.hls.setup{
+  on_attach = on_attach,
+  flags = lsp_flags,
+  filetypes = { 'haskell', 'lhaskell', 'cabal' },
+  cmd = { 'haskell-language-server-wrapper', '--lsp' },
+}
+
 -- LSP config END
