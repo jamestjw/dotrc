@@ -1,0 +1,15 @@
+theme = "sonokai_espresso"
+
+[editor]
+line-number = "relative"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[keys.select]
+";" = ["collapse_selection", "normal_mode"]
+
+[keys.normal]
+a = ["append_mode", "collapse_selection"]

@@ -83,4 +83,31 @@ export PATH="$HOME/Library/Python/3.8/bin:$PATH"
 export GPG_TTY=$(tty)
 
 # Add gambit scheme to path (10 Jan 2023)
-export PATH="$HOME/g4/bin:$PATH"
+export PATH="$HOME/g4.9.4/bin:$PATH"
+
+# Guile (14 Fev 2023)
+export GUILE_LOAD_PATH="$(brew --prefix)/share/guile/site/3.0"
+export GUILE_LOAD_COMPILED_PATH="$(brew --prefix)/lib/guile/3.0/site-ccache"
+export GUILE_SYSTEM_EXTENSIONS_PATH="$(brew --prefix)/lib/guile/3.0/extensions"
+
+export GUILE_LOAD_PATH="/Users/jamestjw/Documents/source/scheme-lsp-server/guile:$GUILE_LOAD_PATH"
+export GUILE_LOAD_COMPILED_PATH="/Users/jamestjw/Documents/source/scheme-lsp-server/guile:$GUILE_LOAD_COMPILED_PATH"
+
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/jamestjw/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/jamestjw/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/jamestjw/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/jamestjw/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+

@@ -81,6 +81,12 @@ require("packer").startup(function(use)
 
   -- Idris
   use { "idris-hackers/idris-vim" }
+
+  -- BQN
+  use { "mlochbaum/BQN",
+  	rtp = "editors/vim" }
+
+  use { "https://git.sr.ht/~detegr/nvim-bqn" }
 end)
 
 ----------------------------------

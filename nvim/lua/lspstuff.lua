@@ -49,22 +49,22 @@ map("n", "<leader>ws", function()
     require("metals").hover_worksheet()
 end)
 
-  -- all workspace diagnostics
+-- all workspace diagnostics
 map("n", "<leader>aa", function()
   vim.diagnostic.setqflist()
 end)
 
-  -- all workspace errors
+-- all workspace errors
 map("n", "<leader>ae", function()
   vim.diagnostic.setqflist({ severity = "E" })
 end)
 
-  -- all workspace warnings
+-- all workspace warnings
 map("n", "<leader>aw", function()
   vim.diagnostic.setqflist({ severity = "W" })
 end)
 
-  -- buffer diagnostics only
+-- buffer diagnostics only
 map("n", "<leader>d", function()
   vim.diagnostic.setloclist()
 end)
@@ -77,8 +77,8 @@ map("n", "]c", function()
   vim.diagnostic.goto_next({ wrap = false })
 end)
 
-  -- Example mappings for usage with nvim-dap. If you don't use that, you can
-  -- skip these
+-- Example mappings for usage with nvim-dap. If you don't use that, you can
+-- skip these
 map("n", "<leader>dc", function()
   require("dap").continue()
 end)
@@ -158,7 +158,7 @@ lspconfig.pyright.setup{
 lspconfig.racket_langserver.setup{
     on_attach = on_attach,
     flags = lsp_flags,
-    filetypes = {".rkt"}
+    filetypes = {".rkt" , ".scm"}
 }
 
 lspconfig.ocamllsp.setup{
@@ -177,5 +177,12 @@ lspconfig.hls.setup{
   filetypes = { 'haskell', 'lhaskell', 'cabal' },
   cmd = { 'haskell-language-server-wrapper', '--lsp' },
 }
+
+--[[lspconfig.scheme_langserver.setup{]]
+  --[[on_attach = on_attach,]]
+  --[[flags = lsp_flags,]]
+  --[[filetypes = { 'scheme' },]]
+  --[[cmd = { 'guile', '/Users/jamestjw/Documents/source/scheme-lsp-server/guile/lsp-server/main.scm' },]]
+--[[}]]
 
 -- LSP config END

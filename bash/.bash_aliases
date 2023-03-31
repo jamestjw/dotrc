@@ -77,3 +77,4 @@ alias nv="nvim"
 alias vi="vim"
 alias vim="nv"
 alias nvconf="nvim ~/.config/nvim"
+

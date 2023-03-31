@@ -1,0 +1,50 @@
+[[language]]
+name = "python"
+roots = ["pyrightconfig.json", "pyproject.toml", "."]
+file-types = ["py"]
+auto-format = false
+formatter = { command = "black", args = ["--quiet", "-"] }
+diagnostic-severity = "Hint"
+
+[language.language-server]
+command = "pyright-langserver"
+args = ["--stdio"]
+
+[language.config.analysis]
+autoSearchPaths = true
+diagnosticMode = "workspace"
+useLibraryCodeForTypes = true
+
+[[language]]
+name = "rust"
+
+[language.language-server]
+command = "rustup"
+args = ["run", "stable", "rust-analyzer"]
+
+[[language]]
+name = "common-lisp"
+language-server = { command = "~/.roswell/bin/cl-lsp", args = [ "stdio" ] }
+
+[[language]]
+name = "clojure"
+
+[language.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'"' = '"'
+'`' = '`'
+'<' = '>'
+
+[[language]]
+name = "scheme"
+file-types = ["ss", "scm"]
+
+[language.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'"' = '"'
+'`' = '`'
+'<' = '>'

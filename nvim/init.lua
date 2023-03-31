@@ -18,3 +18,7 @@ vim.keymap.set('n', "<leader>dd", vim.diagnostic.open_float, bufopts)
 cmd [[syntax on]]
 cmd [[filetype on]]
 cmd [[filetype plugin indent on]]
+
+-- BQN stuff
+cmd [[au! BufRead,BufNewFile *.bqn setf bqn]]
+cmd [[au! BufRead,BufNewFile * if getline(1) =~ '^#!.*bqn$' | setf bqn | endif]]
