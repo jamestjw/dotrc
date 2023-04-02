@@ -13,12 +13,12 @@ alias pwd='pwd | perl -ple "s/[\r\n]//g" | pbcopy && echo `pbpaste`'
 alias gitm='git checkout main'
 alias gdh='git diff HEAD'
 alias gitpsetup='git push --set-upstream origin $(git branch --show-current)'
-alias gitaa='git add . && git commit --amend'
+alias gitaa='git add -u && git commit --amend'
 
 # Rails Aliases
-alias be='bundle exec'
-alias railsc='cd ~/Documents/Kaodim/ada && bundle exec rails c'
-alias srspec='bundle exec spring rspec'
+# alias be='bundle exec'
+# alias railsc='cd ~/Documents/Kaodim/ada && bundle exec rails c'
+# alias srspec='bundle exec spring rspec'
 # alias rspecst="srspec `git status | ggrep -Pio '(?<=modified:)\s+(spec/)(?!factories).*' | tr '\n' ' '` "
 # alias rspecall="srspec `git diff master...HEAD | ggrep -Po '(?<=\+\+\+ b/)(spec/)(?!factories).*' | tr '\n' ' '`"
 
@@ -53,7 +53,7 @@ sourceenv () {
 alias cpccls='cp /Users/jamestjw/.default_ccls .ccls'
 
 # Run ada CI
-alias cia='echo "Sleeping 5secs..." && sleep 5 && ci_manager approve $(cr)'
+# alias cia='echo "Sleeping 5secs..." && sleep 5 && ci_manager approve $(cr)'
 
 # CD google drive
 alias cdg='cd "/Users/jamestjw/Library/CloudStorage/GoogleDrive-youknowjamest@gmail.com/Mon Drive"'
