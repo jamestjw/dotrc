@@ -77,7 +77,7 @@ require("packer").startup(function(use)
   }
 
   -- Comments
-  use { "preservim/nerdcommenter"}
+  use { "preservim/nerdcommenter" }
 
   -- Idris
   use { "idris-hackers/idris-vim" }
@@ -87,6 +87,13 @@ require("packer").startup(function(use)
   	rtp = "editors/vim" }
 
   use { "https://git.sr.ht/~detegr/nvim-bqn" }
+
+  -- Agda mode
+  use { "kana/vim-textobj-user" }
+  use { "neovimhaskell/nvim-hs.vim" }
+  use { "isovector/cornelis" }
+
+  use { "tpope/vim-surround" }
 end)
 
 ----------------------------------

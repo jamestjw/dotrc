@@ -111,3 +111,8 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# Cabal installations
+export PATH=~/.cabal/bin:$PATH
+
+# Emacs doom
+export PATH=~/.emacs.doom/bin:$PATH
