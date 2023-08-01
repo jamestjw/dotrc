@@ -48,3 +48,19 @@ file-types = ["ss", "scm"]
 '"' = '"'
 '`' = '`'
 '<' = '>'
+
+[[language]]
+name = "emacs-lisp"
+scope = "source.el"
+roots = []
+file-types = ["el"]
+shebangs = []
+comment-token = ";;"
+indent = { tab-width = 2, unit = "  " }
+grammar = "scheme"
+
+[language.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'"' = '"'

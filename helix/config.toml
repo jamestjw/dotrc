@@ -13,3 +13,6 @@ select = "underline"
 
 [keys.normal]
 a = ["append_mode", "collapse_selection"]
+
+"ç" = "copy_selection_on_prev_line"
+"ß" = "split_selection_on_newline"
