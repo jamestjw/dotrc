@@ -96,6 +96,11 @@
 (add-hook 'typer-mode-hook
           (lambda () (set-input-method "Agda")))
 
-;; (load-file (file-name-directory "pbcopy.el"))
 (load-library "~/.config/doom/pbcopy.el")
 (require 'pbcopy)
+
+;; Add projectile mode (fuzzy search for files)
+;; https://github.com/bbatsov/projectile
+(projectile-mode +1)
+;; Recommended keymap prefix on macOS
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
