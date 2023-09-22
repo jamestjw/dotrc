@@ -56,3 +56,12 @@
 
 (package! evil-surround
   :recipe (:host github :repo "emacs-evil/evil-surround"))
+
+(package! lean4-mode :recipe
+  (:host github
+   :repo "leanprover/lean4-mode"
+   :files ("*.el" "data")))
+
+; Haskell mode and LSP support
+(package! haskell-mode)
+(package! lsp-haskell)

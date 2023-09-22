@@ -78,3 +78,5 @@ alias vi="vim"
 alias vim="nv"
 alias nvconf="nvim ~/.config/nvim"
 
+# Emacs
+alias dr="doom run"
