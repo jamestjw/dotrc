@@ -121,3 +121,7 @@
 ;; Hook to start Haskell LSP
 (add-hook 'haskell-mode-hook #'lsp)
 (add-hook 'haskell-literate-mode-hook #'lsp)
+
+;; Relative line numbers
+(setq display-line-numbers-type 'relative)
+
