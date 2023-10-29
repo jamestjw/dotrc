@@ -1,3 +1,20 @@
+[language-server.pyright-langserver]
+command = "pyright-langserver"
+args = ["--stdio"]
+
+[language-server.pyright-langserver.config.analysis]
+autoSearchPaths = true
+diagnosticMode = "workspace"
+useLibraryCodeForTypes = true
+
+[language-server.rustup]
+command = "rustup"
+args = ["run", "stable", "rust-analyzer"]
+
+[language-server.cl-lsp]
+command = "~/.roswell/bin/cl-lsp"
+args = [ "stdio" ]
+
 [[language]]
 name = "python"
 roots = ["pyrightconfig.json", "pyproject.toml", "."]
@@ -5,26 +22,15 @@ file-types = ["py"]
 auto-format = false
 formatter = { command = "black", args = ["--quiet", "-"] }
 diagnostic-severity = "Hint"
-
-[language.language-server]
-command = "pyright-langserver"
-args = ["--stdio"]
-
-[language.config.analysis]
-autoSearchPaths = true
-diagnosticMode = "workspace"
-useLibraryCodeForTypes = true
+language-servers = [ { name = "pyright-langserver"} ]
 
 [[language]]
 name = "rust"
-
-[language.language-server]
-command = "rustup"
-args = ["run", "stable", "rust-analyzer"]
+language-servers = [ { name = "rustup"} ]
 
 [[language]]
 name = "common-lisp"
-language-server = { command = "~/.roswell/bin/cl-lsp", args = [ "stdio" ] }
+language-servers = [ { name = "cl-lsp"} ]
 
 [[language]]
 name = "clojure"
