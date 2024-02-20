@@ -116,3 +116,7 @@ export PATH=~/.cabal/bin:$PATH
 
 # Emacs doom
 export PATH=~/.emacs.doom/bin:$PATH
+
+export PATH="$PATH:/Users/jamestjw/Library/Application Support/Coursier/bin"
+
+export PATH="$PATH:/Users/jamestjw/Documents/source/pypy3.10-v7.3.13-macos_x86_64/bin"

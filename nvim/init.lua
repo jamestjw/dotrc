@@ -22,3 +22,7 @@ cmd [[filetype plugin indent on]]
 -- BQN stuff
 cmd [[au! BufRead,BufNewFile *.bqn setf bqn]]
 cmd [[au! BufRead,BufNewFile * if getline(1) =~ '^#!.*bqn$' | setf bqn | endif]]
+
+-- make < > shifts keep selection
+cmd [[ vnoremap < <gv ]]
+cmd [[ vnoremap > >gv ]]

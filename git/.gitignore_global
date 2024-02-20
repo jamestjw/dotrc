@@ -1,0 +1,114 @@
+# Compiled sources
+## Python
+*.pyo
+*.pyc
+## Java
+*.class
+# OS generated files
+.DS_Store
+.DS_Store?
+ehthumbs.db
+Thumbs.db
+.AppleDouble
+.LSOverride
+# Icon must end with two \r
+Icon
+# Thumbnails
+._*
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+# Packages
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+# Logs and databases
+*.log
+*.sqlite
+# JetBrains git ignore
+# User-specific stuff:
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries
+.idea/vcs.xml
+.idea/jsLibraryMappings.xml
+# Sensitive or high-churn files:
+.idea/dataSources.ids
+.idea/dataSources.xml
+.idea/dataSources.local.xml
+.idea/sqlDataSources.xml
+.idea/dynamic.xml
+.idea/uiDesigner.xml
+# Gradle:
+.idea/gradle.xml
+.idea/libraries
+# Mongo Explorer plugin:
+.idea/mongoSettings.xml
+## File-based project format:
+*.iws
+## Plugin-specific files:
+# IntelliJ
+/out/
+# mpeltonen/sbt-idea plugin
+.idea_modules/
+# JIRA plugin
+atlassian-ide-plugin.xml
+# Crashlytics plugin (for Android Studio and IntelliJ)
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+# Temp files created by vim
+*~
+
+*.puml
+tmp.rake
+http-client.env.json
+*.log
+log/capistrano.log
+
+#node_modules
+node_modules
+
+# ccls vim
+.ccls
+.idea
+.vscode-ctags
+.vscode
+
+.php-cs-fixer.cache
+
+tmp/
+
+.ipynb_checkpoints
+.vscode-ctags.next
+
+# Scala
+.bsp
+.scala-build
+.metals
+
+# Ocaml
+.ocamlformat
+_build
+*.native
+
+# Clojure
+.clj-kondo/
+.lsp/
