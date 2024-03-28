@@ -125,4 +125,6 @@
 ;; Relative line numbers
 (setq display-line-numbers-type 'relative)
 
+;; Beluga mode
 (load-file "/Users/jamestjw/Documents/source/Beluga/tools/beluga-mode.el")
+

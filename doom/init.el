@@ -26,6 +26,37 @@
 ;; (setq exec-path (append exec-path '("/Applications/Coq-Platform~8.15~2022.04.app/Contents/Resources/b
 ;; in")))
 
+;; Disable use of arrow keys in Evil mode :)
+
+(define-minor-mode my-override-mode
+  "Overrides all major and minor mode keys" t)
+
+(defvar my-override-map (make-sparse-keymap "my-override-map")
+  "Override all major and minor mode keys")
+
+(add-to-list 'emulation-mode-map-alists
+  `((my-override-mode . ,my-override-map)))
+
+(define-key my-override-map (kbd "<left>")
+  (lambda ()
+    (interactive)
+    (message "Use Vim keys: h for Left")))
+
+(define-key my-override-map (kbd "<right>")
+  (lambda ()
+    (interactive)
+    (message "Use Vim keys: l for Right")))
+
+(define-key my-override-map (kbd "<up>")
+  (lambda ()
+    (interactive)
+    (message "Use Vim keys: k for Up")))
+
+(define-key my-override-map (kbd "<down>")
+  (lambda ()
+    (interactive)
+    (message "Use Vim keys: j for Down")))
+
 (doom! :input
        ;;bidi              ; (tfel ot) thgir etirw uoy gnipleh
        ;;chinese
