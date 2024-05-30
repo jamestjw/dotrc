@@ -94,6 +94,23 @@ require("packer").startup(function(use)
   use { "isovector/cornelis" }
 
   use { "tpope/vim-surround" }
+
+  use { "williamboman/mason.nvim" }
+
+  use { "williamboman/mason-lspconfig.nvim" }
+
+  use {
+    "jay-babu/mason-null-ls.nvim",
+    requires = {
+      { "williamboman/mason.nvim" },
+      { "nvimtools/none-ls.nvim" },
+    },
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("config.mason-null-ls")
+    end
+  }
+
 end)
 
 ----------------------------------
@@ -108,3 +125,4 @@ map("n", "tr", ":NERDTreeToggle<CR>")
 -- FZF
 map("n", "ff", ":FZF<CR>")
 map("n", "fw", ":Rg<CR>")
+
