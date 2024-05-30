@@ -3,117 +3,6 @@ local cmd = vim.cmd
 local map = vim.keymap.set
 
 ----------------------------------
--- PLUGINS -----------------------
-----------------------------------
-cmd([[packadd packer.nvim]])
-require("packer").startup(function(use)
-  use({ "wbthomason/packer.nvim", opt = true })
-
-  -- Scala
-  use({
-    "scalameta/nvim-metals",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "mfussenegger/nvim-dap",
-    },
-    config = function()
-      require("config.metals")
-    end
-  })
-
-  use({ "preservim/nerdtree" })
-
-  vim.opt.runtimepath:append(',/usr/local/opt/fzf')
-  use({ "junegunn/fzf" })
-  use({ "junegunn/fzf.vim" })
-
-  -- Color theme
-  use({ "joshdick/onedark.vim" })
-
-  -- Bar at the bottom
-  use({ "vim-airline/vim-airline" })
-
-  -- Configurations for Nvim LSP
-  use 'neovim/nvim-lspconfig'
-
-  -- Treesitter
-  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-  use {'nvim-treesitter/nvim-treesitter-textobjects'}
-
-  -- Autocomplete parentheses
-  -- use 'tmsvg/pear-tree'
-  use {
-    "windwp/nvim-autopairs",
-    wants = "nvim-treesitter",
-    module = { "nvim-autopairs.completion.cmp", "nvim-autopairs" },
-    config = function()
-      require("config.autopairs").setup()
-    end,
-  }
-
-  use({
-    "hrsh7th/nvim-cmp",
-    requires = {
-      { "hrsh7th/cmp-nvim-lsp" },
-      { "hrsh7th/cmp-vsnip" },
-      { "hrsh7th/vim-vsnip" },
-    },
-    config = function()
-      require("config.cmp")
-    end
-  })
-
-  use {
-    "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("config.trouble")
-      require("trouble").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
-    end
-  }
-
-  -- Comments
-  use { "preservim/nerdcommenter" }
-
-  -- Idris
-  use { "idris-hackers/idris-vim" }
-
-  -- BQN
-  use { "mlochbaum/BQN",
-  	rtp = "editors/vim" }
-
-  use { "https://git.sr.ht/~detegr/nvim-bqn" }
-
-  -- Agda mode
-  use { "kana/vim-textobj-user" }
-  use { "neovimhaskell/nvim-hs.vim" }
-  use { "isovector/cornelis" }
-
-  use { "tpope/vim-surround" }
-
-  use { "williamboman/mason.nvim" }
-
-  use { "williamboman/mason-lspconfig.nvim" }
-
-  use {
-    "jay-babu/mason-null-ls.nvim",
-    requires = {
-      { "williamboman/mason.nvim" },
-      { "nvimtools/none-ls.nvim" },
-    },
-    event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      require("config.mason-null-ls")
-    end
-  }
-
-end)
-
-----------------------------------
 -- OPTIONS -----------------------
 ----------------------------------
 -- global
@@ -126,3 +15,134 @@ map("n", "tr", ":NERDTreeToggle<CR>")
 map("n", "ff", ":FZF<CR>")
 map("n", "fw", ":Rg<CR>")
 
+
+----------------------------------
+-- PLUGINS -----------------------
+----------------------------------
+
+return {
+  { "folke/lazy.nvim", version = false },
+  {
+    "LazyVim/LazyVim",
+    version = false,
+    opts = {
+      colorscheme = "catppuccin-mocha",
+    }
+  },
+
+  "folke/neodev.nvim",
+
+  "folke/which-key.nvim",
+
+  { "folke/neoconf.nvim", cmd = "Neoconf" },
+
+  {
+    "scalameta/nvim-metals",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    ft = { "scala", "sbt", "java" },
+    opts = function()
+      local metals_config = require("metals").bare_config()
+      metals_config.settings = {
+        showImplicitArguments = true,
+        excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
+      }
+      metals_config.on_attach = function(client, bufnr)
+        -- your on_attach function
+      end
+      metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
+  
+      return metals_config
+    end,
+    config = function(self, metals_config)
+      local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = self.ft,
+        callback = function()
+  	require("metals").initialize_or_attach(metals_config)
+        end,
+        group = nvim_metals_group,
+      })
+    end
+  },
+
+  "preservim/nerdtree",
+
+  {
+    "junegunn/fzf.vim",
+     dependencies = { "junegunn/fzf" },
+     config = function(self, plugin)
+       vim.opt.rtp:append("/usr/local/opt/fzf")
+     end
+  },
+
+  -- Bar at the bottom
+  "vim-airline/vim-airline",
+
+  -- Configurations for Nvim LSP
+  "neovim/nvim-lspconfig",
+
+  -- Treesitter
+  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
+  "nvim-treesitter/nvim-treesitter-textobjects",
+
+  -- Autocomplete parentheses
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = true,
+    opts = function ()
+      require("config.autopairs").setup()
+    end,
+  },
+
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-vsnip",
+      "hrsh7th/vim-vsnip",
+    },
+    opts = function()
+      require("config.cmp")
+    end,
+  },
+
+  {
+    "folke/trouble.nvim",
+    keys = require("config.trouble").keys,
+    opts = {}, -- for default options, refer to the configuration section for custom setup.
+  },
+
+  -- Comments
+  "preservim/nerdcommenter",
+
+  -- Idris
+  "idris-hackers/idris-vim",
+
+  -- BQN stuff
+  {
+    "mlochbaum/BQN",
+    config = function(plugin)
+      vim.opt.rtp:append(plugin.dir .. "/editors/vim")
+    end
+  },
+
+  "https://git.sr.ht/~detegr/nvim-bqn",
+
+
+  -- Agda mode
+  "kana/vim-textobj-user", 
+  "neovimhaskell/nvim-hs.vim",
+  {
+    "isovector/cornelis",
+    build = "stack build",
+    init = function()
+      require("config.cornelis")
+    end,
+  },
+  
+  -- Surround
+  "tpope/vim-surround",
+}
