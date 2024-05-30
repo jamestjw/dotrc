@@ -84,7 +84,10 @@ return {
   "neovim/nvim-lspconfig",
 
   -- Treesitter
-  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+  },
   "nvim-treesitter/nvim-treesitter-textobjects",
 
   -- Autocomplete parentheses
@@ -116,7 +119,13 @@ return {
   },
 
   -- Comments
-  "preservim/nerdcommenter",
+  {
+    "preservim/nerdcommenter",
+    config = function(plugin)
+      vim.g.NERDSpaceDelims = 1
+      vim.g.NERDCommentEmptyLines = 1
+    end
+  },
 
   -- Idris
   "idris-hackers/idris-vim",
