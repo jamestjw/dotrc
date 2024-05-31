@@ -3,19 +3,17 @@ local cmd = vim.cmd
 require('plugins') -- lua/plugins.lua
 require('lspstuff') -- lua/lspstuff.lua
 
--- Enable line number
-cmd([[ set number ]])
-
--- Enable color theme
--- cmd([[ colorscheme onedark ]])
+-- Relative line number
+vim.wo.relativenumber = true
+-- Normal line number
 
 -- Tab widths
 cmd [[set autoindent expandtab tabstop=2 shiftwidth=2]] -- Global
 cmd [[autocmd FileType scheme setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2]]
 cmd [[autocmd FileType ocaml setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2]]
 
--- Display diagnostics
-vim.keymap.set('n', "<leader>dd", vim.diagnostic.open_float, bufopts)
+-- Display diagnostics (Don't need this since I'm using `trouble` now)
+-- vim.keymap.set('n', "<leader>dd", vim.diagnostic.open_float, bufopts)
 
 cmd [[syntax on]]
 cmd [[filetype on]]
@@ -29,6 +27,8 @@ cmd [[au! BufRead,BufNewFile * if getline(1) =~ '^#!.*bqn$' | setf bqn | endif]]
 cmd [[ vnoremap < <gv ]]
 cmd [[ vnoremap > >gv ]]
 
+-- Ocaml indent
+-- TODO: Does this actually work?
 vim.opt.rtp:append("/Users/jamestjw/.opam/default/share/ocp-indent/vim")
 
 -- Install lazy package manager
