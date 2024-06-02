@@ -12,8 +12,8 @@ vim.opt_global.completeopt = { "menuone", "noinsert", "noselect" }
 map("n", "tr", ":NERDTreeToggle<CR>")
 
 -- FZF
-map("n", "ff", ":FZF<CR>")
-map("n", "fw", ":Rg<CR>")
+map("n", "ff", ":FZF<CR>") -- Search for file
+map("n", "fw", ":Rg<CR>")  -- Search for word
 
 
 ----------------------------------
@@ -30,9 +30,36 @@ return {
     }
   },
 
-  "folke/neodev.nvim",
+  -- Autocomplete for neovim config files
+  {
+    "folke/lazydev.nvim",
+    ft = "lua", -- only load on lua files
+    opts = {
+      library = {
+        -- Library items can be absolute paths
+        -- "~/projects/my-awesome-lib",
+        -- Or relative, which means they will be resolved as a plugin
+        -- "LazyVim",
+        -- When relative, you can also provide a path to the library in the plugin dir
+        "luvit-meta/library", -- see below
+      },
+    },
+  },
+  { "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
 
-  "folke/which-key.nvim",
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    init = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+    end,
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
+  },
 
   { "folke/neoconf.nvim", cmd = "Neoconf" },
 
@@ -67,7 +94,10 @@ return {
     end
   },
 
-  "preservim/nerdtree",
+  {
+    "preservim/nerdtree",
+    cmd = { "NERDTreeToggle" },
+  },
 
   {
     "junegunn/fzf.vim",
@@ -128,25 +158,34 @@ return {
   },
 
   -- Idris
-  "idris-hackers/idris-vim",
+  {
+    "idris-hackers/idris-vim",
+    ft = { "idris" },
+  },
 
   -- BQN stuff
   {
     "mlochbaum/BQN",
+    ft = { "bqn" },
     config = function(plugin)
       vim.opt.rtp:append(plugin.dir .. "/editors/vim")
     end
   },
-
-  "https://git.sr.ht/~detegr/nvim-bqn",
+  {
+    "https://git.sr.ht/~detegr/nvim-bqn",
+    ft = { "bqn" },
+  },
 
 
   -- Agda mode
-  "kana/vim-textobj-user", 
-  "neovimhaskell/nvim-hs.vim",
   {
     "isovector/cornelis",
+    ft = { "agda" },
     build = "stack build",
+    dependencies = {
+      "kana/vim-textobj-user",
+      "neovimhaskell/nvim-hs.vim",
+    },
     init = function()
       require("config.cornelis")
     end,
