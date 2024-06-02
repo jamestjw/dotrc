@@ -1,5 +1,9 @@
 local cmd = vim.cmd
 
+-- disable netrw since we are using nvim-tree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 require('plugins') -- lua/plugins.lua
 require('lspstuff') -- lua/lspstuff.lua
 

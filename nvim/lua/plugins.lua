@@ -8,8 +8,8 @@ local map = vim.keymap.set
 -- global
 vim.opt_global.completeopt = { "menuone", "noinsert", "noselect" }
 
--- Toggle NERDTree
-map("n", "tr", ":NERDTreeToggle<CR>")
+-- Toggle file tree
+map("n", "tr", ":NvimTreeToggle<CR>")
 
 -- FZF
 map("n", "ff", ":FZF<CR>") -- Search for file
@@ -94,9 +94,17 @@ return {
     end
   },
 
+  -- File tree
   {
-    "preservim/nerdtree",
-    cmd = { "NERDTreeToggle" },
+    "nvim-tree/nvim-tree.lua",
+    version = "*",
+    lazy = false,
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function()
+      require("nvim-tree").setup {}
+    end,
   },
 
   {
