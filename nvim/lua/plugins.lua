@@ -22,13 +22,6 @@ map("n", "fw", ":Rg<CR>")  -- Search for word
 
 return {
   { "folke/lazy.nvim", version = false },
-  {
-    "LazyVim/LazyVim",
-    version = false,
-    opts = {
-      colorscheme = "catppuccin-mocha",
-    }
-  },
 
   -- Autocomplete for neovim config files
   {
@@ -119,14 +112,20 @@ return {
   "vim-airline/vim-airline",
 
   -- Configurations for Nvim LSP
-  "neovim/nvim-lspconfig",
+  {
+    "neovim/nvim-lspconfig",
+    event = { "BufNewFile", "BufReadPost" },
+  },
 
   -- Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
+    event = { "BufNewFile", "BufReadPost" },
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+    },
     build = ":TSUpdate",
   },
-  "nvim-treesitter/nvim-treesitter-textobjects",
 
   -- Autocomplete parentheses
   {
@@ -140,6 +139,7 @@ return {
 
   {
     "hrsh7th/nvim-cmp",
+    event = { "InsertEnter" },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
     },

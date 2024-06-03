@@ -1,7 +1,3 @@
--- vim.keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>",
---   {silent = true, noremap = true}
--- )
-
 local opts = {}
 
 opts.keys = {
@@ -35,11 +31,12 @@ opts.keys = {
     "<cmd>Trouble qflist toggle<cr>",
     desc = "Quickfix List (Trouble)",
   },
-  {
-    "gR",
-    "<cmd>Trouble lsp<cr>",
-    desc = "List references of symbol",
-  }
+  -- NOTE: `gr` already does the job
+  -- {
+    -- "gR",
+    -- "<cmd>Trouble lsp<cr>",
+    -- desc = "List references of symbol",
+  -- }
 }
 
 return opts
