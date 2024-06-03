@@ -4,18 +4,23 @@ local map = vim.keymap.set
 
 local cmp = require("cmp")
 cmp.setup({
-  sources = {
-    { name = "nvim_lsp" },
-    { name = "vsnip" },
-    {
-      name = "lazydev",
-      group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+  sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
     },
-  },
+    {
+      { name = 'buffer' }
+    },
+    {
+      {
+        name = "lazydev",
+        group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+      }
+  }),
+
   snippet = {
     expand = function(args)
-      -- Comes from vsnip
-      vim.fn["vsnip#anonymous"](args.body)
+      -- vim.fn["vsnip#anonymous"](args.body) -- Comes from vsnip
+      vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
     end,
   },
   mapping = cmp.mapping.preset.insert({
