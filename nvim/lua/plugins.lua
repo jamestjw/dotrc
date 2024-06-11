@@ -102,12 +102,12 @@ return {
 			require("fzf-lua").setup({ "fzf-vim" })
 
 			-- Search for file
-			map("n", "ff", ":Files<CR>")
+			-- ctrl+g disables `.gitignore`
+			map("n", "ff", ":Files<CR><C-g>")
 
 			-- Search for word
-			-- Using `Rg` instead of `RG` since it defaults to fuzzy search.
-			-- Note: This requires two enters whereas `RG` would require only 1.
-			map("n", "fw", ":Rg<CR><CR>")
+			-- ctrl+g enables fuzzy search
+			map("n", "fw", ":RG<CR><C-g>")
 
 			-- Search for buffer
 			map("n", "fb", ":Buffers<CR>")
