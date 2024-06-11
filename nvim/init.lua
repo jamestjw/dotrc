@@ -1,4 +1,5 @@
 local cmd = vim.cmd
+local opt = vim.opt
 
 -- disable netrw since we are using nvim-tree
 vim.g.loaded_netrw = 1
@@ -9,7 +10,6 @@ require('lspstuff') -- lua/lspstuff.lua
 
 -- Relative line number
 vim.wo.relativenumber = true
--- Normal line number
 
 -- Tab widths
 cmd [[set autoindent expandtab tabstop=2 shiftwidth=2]] -- Global
@@ -33,7 +33,7 @@ cmd [[ vnoremap > >gv ]]
 
 -- Ocaml indent
 -- TODO: Does this actually work?
-vim.opt.rtp:append("/Users/jamestjw/.opam/default/share/ocp-indent/vim")
+opt.rtp:append("/Users/jamestjw/.opam/default/share/ocp-indent/vim")
 
 -- Install lazy package manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -47,6 +47,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     lazypath,
   })
 end
-vim.opt.rtp:prepend(lazypath)
+opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")

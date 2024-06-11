@@ -1,88 +1,5 @@
 local map = vim.keymap.set
 
--- LSP mappings
-map("n", "gD", function()
-  vim.lsp.buf.definition()
-end)
-
-map("n", "K", function()
-  vim.lsp.buf.hover()
-end)
-
-map("n", "gi", function()
-  vim.lsp.buf.implementation()
-end)
-
-map("n", "gr", function()
-  vim.lsp.buf.references()
-end)
-
--- map("n", "gds", function()
---   vim.lsp.buf.document_symbol()
--- end)
-
-map("n", "gws", function()
-  vim.lsp.buf.workspace_symbol()
-end)
-
-map("n", "<leader>cl", function()
-  vim.lsp.codelens.run()
-end)
-
-map("n", "<leader>sh", function()
-  vim.lsp.buf.signature_help()
-end)
-
-map("n", "<leader>rn", function()
-  vim.lsp.buf.rename()
-end)
-
-map("n", "<leader>f", function()
-  vim.lsp.buf.format({
-      async = true,
-      -- Only request null-ls for formatting
-      filter = function(client)
-          return client.name == "null-ls"
-      end,
-  })
-end)
-
-map("n", "<leader>ca", function()
-  vim.lsp.buf.code_action()
-end)
-
-map("n", "<leader>ws", function()
-    require("metals").hover_worksheet()
-end)
-
--- all workspace diagnostics
-map("n", "<leader>aa", function()
-  vim.diagnostic.setqflist()
-end)
-
--- all workspace errors
-map("n", "<leader>ae", function()
-  vim.diagnostic.setqflist({ severity = "E" })
-end)
-
--- all workspace warnings
-map("n", "<leader>aw", function()
-  vim.diagnostic.setqflist({ severity = "W" })
-end)
-
--- buffer diagnostics only
-map("n", "<leader>d", function()
-  vim.diagnostic.setloclist()
-end)
-
-map("n", "[c", function()
-  vim.diagnostic.goto_prev({ wrap = false })
-end)
-
-map("n", "]c", function()
-  vim.diagnostic.goto_next({ wrap = false })
-end)
-
 -- Example mappings for usage with nvim-dap. If you don't use that, you can
 -- skip these
 map("n", "<leader>dc", function()
@@ -114,23 +31,13 @@ map("n", "<leader>dl", function()
 end)
 
 -- Lsp config
--- Mappings.
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local opts = { noremap=true, silent=true }
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
-  -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
+local on_attach = function(_, buffer)
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  local bufopts = { noremap=true, silent=true, buffer=buffer }
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
@@ -142,17 +49,9 @@ local on_attach = function(client, bufnr)
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, bufopts)
   vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<space>f',
-	        function()
-            vim.lsp.buf.format {
-              async = true,
-              filter = function(client)
-                return client.name == "null-ls"
-              end}
-          end, bufopts)
 end
 
 local lsp_flags = {
@@ -161,41 +60,57 @@ local lsp_flags = {
 }
 
 local lspconfig = require 'lspconfig'
-local configs = require 'lspconfig.configs'
 
-lspconfig.pyright.setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
-}
+lspconfig.util.default_config.on_attach = on_attach
+lspconfig.util.default_config.flags = lsp_flags
+
+lspconfig.pyright.setup{}
 
 lspconfig.racket_langserver.setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
     filetypes = {".rkt" , ".scm"}
 }
 
-lspconfig.ocamllsp.setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
-}
+lspconfig.ocamllsp.setup{}
 
-lspconfig.clojure_lsp.setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
-}
+lspconfig.clojure_lsp.setup{}
 
 lspconfig.hls.setup{
-  on_attach = on_attach,
-  flags = lsp_flags,
   filetypes = { 'haskell', 'lhaskell', 'cabal' },
   cmd = { 'haskell-language-server-wrapper', '--lsp' },
 }
 
---[[lspconfig.scheme_langserver.setup{]]
-  --[[on_attach = on_attach,]]
-  --[[flags = lsp_flags,]]
-  --[[filetypes = { 'scheme' },]]
-  --[[cmd = { 'guile', '/Users/jamestjw/Documents/source/scheme-lsp-server/guile/lsp-server/main.scm' },]]
---[[}]]
+lspconfig.clangd.setup{}
+
+lspconfig.lua_ls.setup {
+  on_init = function(client)
+    local path = client.workspace_folders[1].name
+    if vim.loop.fs_stat(path..'/.luarc.json') or vim.loop.fs_stat(path..'/.luarc.jsonc') then
+      return
+    end
+
+    client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+      runtime = {
+        -- Tell the language server which version of Lua you're using
+        -- (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT'
+      },
+      -- Make the server aware of Neovim runtime files
+      workspace = {
+        checkThirdParty = false,
+        library = {
+          vim.env.VIMRUNTIME
+          -- Depending on the usage, you might want to add additional paths here.
+          -- "${3rd}/luv/library"
+          -- "${3rd}/busted/library",
+        }
+        -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+        -- library = vim.api.nvim_get_runtime_file("", true)
+      }
+    })
+  end,
+  settings = {
+    Lua = {}
+  }
+}
 
 -- LSP config END
