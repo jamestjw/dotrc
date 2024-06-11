@@ -1,4 +1,4 @@
-vim.cmd [[ 
+vim.cmd([[ 
 au BufRead,BufNewFile *.agda call AgdaFiletype()
 
 function! AgdaFiletype()
@@ -18,6 +18,6 @@ function! AgdaFiletype()
 endfunction
 
 au BufWritePost *.agda execute "normal! :CornelisLoad\<CR>"
-]]
+]])
 
 vim.g.cornelis_split_location = "bottom"
