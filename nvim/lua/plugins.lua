@@ -1,5 +1,3 @@
-local api = vim.api
-local cmd = vim.cmd
 local map = vim.keymap.set
 
 ----------------------------------
@@ -10,10 +8,6 @@ vim.opt_global.completeopt = { "menuone", "noinsert", "noselect" }
 
 -- Toggle file tree
 map("n", "tr", ":NvimTreeToggle<CR>")
-
--- FZF
-map("n", "ff", ":FZF<CR>") -- Search for file
-map("n", "fw", ":Rg<CR>") -- Search for word
 
 ----------------------------------
 -- PLUGINS -----------------------
@@ -100,10 +94,23 @@ return {
 	},
 
 	{
-		"junegunn/fzf.vim",
-		dependencies = { "junegunn/fzf" },
-		config = function(self, plugin)
-			vim.opt.rtp:append("/usr/local/opt/fzf")
+		"ibhagwan/fzf-lua",
+		-- optional for icon support
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			-- calling `setup` is optional for customization
+			require("fzf-lua").setup({ "fzf-vim" })
+
+			-- Search for file
+			map("n", "ff", ":Files<CR>")
+
+			-- Search for word
+			-- Using `Rg` instead of `RG` since it defaults to fuzzy search.
+			-- Note: This requires two enters whereas `RG` would require only 1.
+			map("n", "fw", ":Rg<CR><CR>")
+
+			-- Search for buffer
+			map("n", "fb", ":Buffers<CR>")
 		end,
 	},
 
