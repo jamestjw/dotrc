@@ -2,6 +2,8 @@
 ## Python
 *.pyo
 *.pyc
+.python-version
+
 ## Java
 *.class
 # OS generated files

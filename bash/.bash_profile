@@ -77,8 +77,8 @@ if [ -f '/Users/jamestjw/google-cloud-sdk/completion.bash.inc' ]; then . '/Users
 # Add gcloud tools to path
 export PATH="$HOME/google-cloud-sdk/bin/:$PATH"
 
-# Add python3.8 installations to path
-export PATH="$HOME/Library/Python/3.8/bin:$PATH"
+# Add pyenv installations to path
+export PATH="$HOME/.pyenv/shims:${PATH}"
 
 export GPG_TTY=$(tty)
 

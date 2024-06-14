@@ -204,4 +204,15 @@ return {
 
 	-- Surround
 	"tpope/vim-surround",
+
+	-- Display Git blame
+	{
+		"FabijanZulj/blame.nvim",
+		config = function()
+			require("blame").setup()
+
+			map("n", "<leader>bw", ":BlameToggle window<CR>")
+			map("n", "<leader>bv", ":BlameToggle virtual<CR>")
+		end,
+	},
 }
