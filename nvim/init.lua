@@ -5,6 +5,9 @@ local opt = vim.opt
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- vim.g.mapleader = " "
+-- vim.g.maplocalleader = " "
+
 require("plugins") -- lua/plugins.lua
 require("lspstuff") -- lua/lspstuff.lua
 
@@ -23,6 +26,9 @@ cmd([[syntax on]])
 cmd([[filetype on]])
 cmd([[filetype plugin indent on]])
 
+-- <Esc> to quit terminal mode
+vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]])
+
 -- BQN stuff
 cmd([[au! BufRead,BufNewFile *.bqn setf bqn]])
 cmd([[au! BufRead,BufNewFile * if getline(1) =~ '^#!.*bqn$' | setf bqn | endif]])
@@ -30,6 +36,23 @@ cmd([[au! BufRead,BufNewFile * if getline(1) =~ '^#!.*bqn$' | setf bqn | endif]]
 -- make < > shifts keep selection
 cmd([[ vnoremap < <gv ]])
 cmd([[ vnoremap > >gv ]])
+
+-- Sets how neovim will display certain whitespace characters in the editor.
+vim.opt.list = true
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+
+-- Set highlight on search, but clear on pressing <Esc> in normal mode
+vim.opt.hlsearch = true
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+
+-- Highlight when yanking (copying) text
+vim.api.nvim_create_autocmd("TextYankPost", {
+	desc = "Highlight when yanking (copying) text",
+	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+})
 
 -- Ocaml indent
 -- TODO: Does this actually work?

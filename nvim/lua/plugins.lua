@@ -131,6 +131,20 @@ return {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 		},
 		build = ":TSUpdate",
+		config = function()
+			require("nvim-treesitter.configs").setup({
+				highlight = {
+					enable = true,
+				},
+				ensure_installed = {
+					"vimdoc",
+					"luadoc",
+					"vim",
+					"lua",
+					"markdown",
+				},
+			})
+		end,
 	},
 
 	-- Autocomplete parentheses
@@ -214,5 +228,62 @@ return {
 			map("n", "<leader>bw", ":BlameToggle window<CR>")
 			map("n", "<leader>bv", ":BlameToggle virtual<CR>")
 		end,
+	},
+
+	-- Soft and hard wrapping
+	{
+		"andrewferrier/wrapping.nvim",
+		config = function()
+			require("wrapping").setup({})
+		end,
+	},
+
+	{
+		"lervag/vimtex",
+		ft = "tex", -- only load on lua files
+		-- tag = "v2.15", -- uncomment to pin to a specific release
+		init = function()
+			-- VimTeX configuration goes here, e.g.
+			vim.g.vimtex_view_method = "zathura"
+		end,
+	},
+
+	{
+		"Julian/lean.nvim",
+		event = { "BufReadPre *.lean", "BufNewFile *.lean" },
+
+		dependencies = {
+			"neovim/nvim-lspconfig",
+			"nvim-lua/plenary.nvim",
+			-- you also will likely want nvim-cmp or some completion engine
+		},
+
+		-- see details below for full configuration options
+		opts = {
+			lsp = {
+				-- Use an on_attach function to only map the following keys
+				-- after the language server attaches to the current buffer
+				on_attach = function(_, buffer)
+					-- Mappings.
+					-- See `:help vim.lsp.*` for documentation on any of the below functions
+					local bufopts = { noremap = true, silent = true, buffer = buffer }
+					vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
+					vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+					vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+					vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
+					vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
+					vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
+					vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
+					vim.keymap.set("n", "<space>wl", function()
+						print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+					end, bufopts)
+					vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
+					vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
+					vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
+					vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
+				end,
+			},
+			mappings = true,
+		},
 	},
 }
