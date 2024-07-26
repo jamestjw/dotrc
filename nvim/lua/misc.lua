@@ -50,3 +50,13 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- Quit :terminal mode using <Esc>
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
+
+-- Window resizing:
+-- Make the window taller
+vim.keymap.set("n", "<C-t>", "<C-w>+")
+-- Make the window shorter
+vim.keymap.set("n", "<C-s>", "<C-w>-")
+-- Shift window to the left
+vim.keymap.set("n", "<C-[>", "<C-w><lt>")
+-- Shift window to the right
+vim.keymap.set("n", "<C-]>", "<C-w>>")
