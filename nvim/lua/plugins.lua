@@ -123,30 +123,6 @@ return {
 		event = { "BufNewFile", "BufReadPost" },
 	},
 
-	-- Treesitter
-	{
-		"nvim-treesitter/nvim-treesitter",
-		event = { "BufNewFile", "BufReadPost" },
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter-textobjects",
-		},
-		build = ":TSUpdate",
-		config = function()
-			require("nvim-treesitter.configs").setup({
-				highlight = {
-					enable = true,
-				},
-				ensure_installed = {
-					"vimdoc",
-					"luadoc",
-					"vim",
-					"lua",
-					"markdown",
-				},
-			})
-		end,
-	},
-
 	-- Autocomplete parentheses
 	{
 		"windwp/nvim-autopairs",
