@@ -111,6 +111,9 @@ return {
 
 			-- Search for buffer
 			map("n", "fb", ":Buffers<CR>")
+
+			-- Search helptags
+			map("n", "fh", ":Helptags<CR>")
 		end,
 	},
 
