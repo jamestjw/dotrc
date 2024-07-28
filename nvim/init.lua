@@ -2,7 +2,7 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-require("plugins") -- lua/plugins.lua
+-- require("plugins") -- lua/plugins.lua
 require("lspstuff") -- lua/lspstuff.lua
 require("misc") -- lua/misc.lua
 
@@ -20,4 +20,14 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("plugins")
+require("lazy").setup({
+	spec = {
+		-- import your plugins
+		{ import = "plugins" },
+	},
+	-- Configure any other settings here. See the documentation for more details.
+	-- colorscheme that will be used when installing plugins.
+	install = { colorscheme = { "kanagawa" } },
+	-- automatically check for plugin updates
+	checker = { enabled = true },
+})
