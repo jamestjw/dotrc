@@ -115,4 +115,6 @@ lspconfig.lua_ls.setup({
 
 lspconfig.rust_analyzer.setup({})
 
+lspconfig.gleam.setup({})
+
 -- LSP config END
