@@ -1,8 +1,5 @@
-local api = vim.api
-local cmd = vim.cmd
-local map = vim.keymap.set
-
 local cmp = require("cmp")
+
 cmp.setup({
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },
@@ -13,6 +10,9 @@ cmp.setup({
 			name = "lazydev",
 			group_index = 0, -- set group index to 0 to skip loading LuaLS completions
 		},
+	}, {
+		-- Sourcegraph autocomplete (Cody)
+		{ name = "cody" },
 	}),
 
 	snippet = {

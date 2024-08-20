@@ -4,6 +4,12 @@ return {
 	lazy = false,
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter-textobjects",
+		"windwp/nvim-ts-autotag",
+	},
+	opts = {
+		autotag = {
+			enable = true,
+		},
 	},
 	build = ":TSUpdate",
 	config = function()
@@ -35,6 +41,7 @@ return {
 				"sql",
 				"regex",
 				"python",
+				"vue",
 			},
 		})
 	end,

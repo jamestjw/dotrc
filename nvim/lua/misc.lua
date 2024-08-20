@@ -57,6 +57,6 @@ vim.keymap.set("n", "<C-t>", "<C-w>+")
 -- Make the window shorter
 vim.keymap.set("n", "<C-s>", "<C-w>-")
 -- Shift window to the left
-vim.keymap.set("n", "<C-[>", "<C-w><lt>")
+vim.keymap.set("n", "<C-,>", "<C-w><lt>")
 -- Shift window to the right
-vim.keymap.set("n", "<C-]>", "<C-w>>")
+vim.keymap.set("n", "<C-.>", "<C-w>>")
