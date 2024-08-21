@@ -122,9 +122,28 @@ lspconfig.rescriptls.setup({})
 lspconfig.csharp_ls.setup({})
 
 -- Javascript, Vue
+local node_modules_dir = "/Users/jamestjw/.nvm/versions/node/v22.6.0/lib/node_modules/"
+
+require("lspconfig").tsserver.setup({
+	init_options = {
+		plugins = {
+			{
+				name = "@vue/typescript-plugin",
+				location = node_modules_dir .. "@vue/typescript-plugin/",
+				languages = { "javascript", "typescript", "vue" },
+			},
+		},
+	},
+	filetypes = {
+		"javascript",
+		"typescript",
+		"vue",
+	},
+})
+
 local function get_typescript_server_path(root_dir)
 	local util = require("lspconfig.util")
-	local global_ts = "/Users/jamestjw/.nvm/versions/node/v22.6.0/lib/node_modules/typescript/lib/"
+	local global_ts = node_modules_dir .. "typescript/lib/"
 	-- Alternative location if installed as root:
 	-- local global_ts = '/usr/local/lib/node_modules/typescript/lib'
 	local found_ts = ""
