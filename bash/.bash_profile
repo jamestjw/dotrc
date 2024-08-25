@@ -78,7 +78,12 @@ if [ -f '/Users/jamestjw/google-cloud-sdk/completion.bash.inc' ]; then . '/Users
 export PATH="$HOME/google-cloud-sdk/bin/:$PATH"
 
 # Add pyenv installations to path
-export PATH="$HOME/.pyenv/shims:${PATH}"
+# export PATH="$HOME/.pyenv/shims:${PATH}"
+
+# Pyenv setup
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 export GPG_TTY=$(tty)
 
