@@ -8,7 +8,10 @@ local cmd = vim.cmd
 vim.wo.relativenumber = true
 
 -- Tab widths
-cmd([[set autoindent expandtab tabstop=2 shiftwidth=2]]) -- Global
+vim.opt.autoindent = true
+vim.opt.expandtab = true
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
 -- cmd([[autocmd FileType scheme setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2]])
 -- cmd([[autocmd FileType ocaml setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2]])
 
