@@ -155,14 +155,16 @@ return {
 
 	-- Comments
 	{
-		"preservim/nerdcommenter",
-		config = function(plugin)
-			vim.g.NERDSpaceDelims = 1
-			vim.g.NERDCommentEmptyLines = 1
-			vim.g.NERDCustomDelimiters = {
-				gleam = { left = "//" },
-			}
-		end,
+		"numToStr/Comment.nvim",
+		opts = {
+			-- add any options here
+		},
+	},
+
+	-- Use treesitter to tell which kind of code we dealing with under the cursor
+	-- Useful in filetypes like `vue` where there is HTML and JS
+	{
+		"JoosepAlviste/nvim-ts-context-commentstring",
 	},
 
 	-- Idris
