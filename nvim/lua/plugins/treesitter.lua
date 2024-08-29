@@ -42,6 +42,7 @@ return {
 				"regex",
 				"python",
 				"vue",
+				"elixir",
 			},
 		})
 	end,

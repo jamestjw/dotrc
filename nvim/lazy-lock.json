@@ -6,6 +6,7 @@
   "conform.nvim": { "branch": "master", "commit": "62eba813b7501b39612146cbf29cd07f1d4ac29c" },
   "cornelis": { "branch": "master", "commit": "06d6020eed1a3520bb2887337dd5b27b1755968b" },
   "fzf-lua": { "branch": "main", "commit": "9226c5a2291ef623ef157e0e1ffea034ffc8b8de" },
+  "himalaya-vim": { "branch": "master", "commit": "cea041c927a04a841aea53abcedd4a0d153d4ca8" },
   "idris-vim": { "branch": "master", "commit": "091ed6b267749927777423160eeab520109dd9c1" },
   "lazy.nvim": { "branch": "main", "commit": "077102c5bfc578693f12377846d427f49bc50076" },
   "lazydev.nvim": { "branch": "main", "commit": "491452cf1ca6f029e90ad0d0368848fac717c6d2" },
