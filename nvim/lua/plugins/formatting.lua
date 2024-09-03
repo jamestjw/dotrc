@@ -18,6 +18,7 @@ return {
 				vue = { "prettierd", "prettier", stop_after_first = true },
 				sh = { "shfmt" },
 				sql = { "sqlfluff", "sqlfmt", stop_after_first = true },
+				json = { "jq" },
 			},
 		})
 
