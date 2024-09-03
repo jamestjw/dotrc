@@ -2,11 +2,11 @@
 
 ## Load aliases
 if [ -f ~/.bash_aliases ]; then
-  . ~/.bash_aliases
+	. ~/.bash_aliases
 fi
 
 if [ -f ~/.bash_keys ]; then
-  . ~/.bash_keys
+	. ~/.bash_keys
 fi
 
 ## JAVA
@@ -20,8 +20,8 @@ export LC_ALL=en_US.UTF-8
 export PS1='\[\033[0;32m\]\[\033[0m\033[0;32m\]\u\[\033[0;36m\]@\W\[\033[1;35m\][$(git branch 2>/dev/null | grep "^*" | colrm 1 2)\[\033[0;35m\]]\[\033[0m\033[0;32m\] ✔\[\033[0m\033[0;32m\]\[\033[0m\] '
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 # Google Creds
 export GOOGLE_APPLICATION_CREDENTIALS=~/.gcloud/keyfile.json
@@ -43,7 +43,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export CI_CONFIG_PATH=~/.ci_config
 
 # Add path to Rust binaries (executables from my projects)
-export PATH=$PATH:/Users/`whoami`/rust/binaries
+export PATH=$PATH:/Users/$(whoami)/rust/binaries
 
 ##
 # Your previous /Users/jamestjw/.bash_profile file was backed up as /Users/jamestjw/.bash_profile.macports-saved_2020-11-19_at_22:22:11
@@ -66,7 +66,7 @@ export PATH="$PATH:/usr/local/smlnj/bin"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # opam configuration
-test -r /Users/jamestjw/.opam/opam-init/init.sh && . /Users/jamestjw/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+test -r /Users/jamestjw/.opam/opam-init/init.sh && . /Users/jamestjw/.opam/opam-init/init.sh >/dev/null 2>/dev/null || true
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/jamestjw/google-cloud-sdk/path.bash.inc' ]; then . '/Users/jamestjw/google-cloud-sdk/path.bash.inc'; fi
@@ -80,10 +80,15 @@ export PATH="$HOME/google-cloud-sdk/bin/:$PATH"
 # Add pyenv installations to path
 # export PATH="$HOME/.pyenv/shims:${PATH}"
 
+## PYTHON BEGIN
 # Pyenv setup
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+export PATH="/Users/jamestjw/.local/bin:$PATH"
+
+## PYTHON END
 
 export GPG_TTY=$(tty)
 
@@ -100,18 +105,17 @@ export GUILE_LOAD_COMPILED_PATH="/Users/jamestjw/Documents/source/scheme-lsp-ser
 
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/jamestjw/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/Users/jamestjw/miniconda3/bin/conda' 'shell.bash' 'hook' 2>/dev/null)"
 if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
+	eval "$__conda_setup"
 else
-    if [ -f "/Users/jamestjw/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/jamestjw/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/jamestjw/miniconda3/bin:$PATH"
-    fi
+	if [ -f "/Users/jamestjw/miniconda3/etc/profile.d/conda.sh" ]; then
+		. "/Users/jamestjw/miniconda3/etc/profile.d/conda.sh"
+	else
+		export PATH="/Users/jamestjw/miniconda3/bin:$PATH"
+	fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
