@@ -63,3 +63,12 @@ vim.keymap.set("n", "<C-s>", "<C-w>-")
 vim.keymap.set("n", "<C-,>", "<C-w><lt>")
 -- Shift window to the right
 vim.keymap.set("n", "<C-.>", "<C-w>>")
+
+-- Shortcut for tab navigation
+-- Usage: <leader>1 to switch to tab 1 and so on
+for i = 1, 9 do
+	local key = string.format("<leader>%d", i)
+	local command = string.format(":tabn %d<CR>", i)
+	local desc = string.format("Navigate to tab %d", i)
+	vim.keymap.set("n", key, command, { silent = true, noremap = true, desc = desc })
+end
