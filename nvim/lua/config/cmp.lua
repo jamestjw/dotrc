@@ -21,13 +21,16 @@ cmp.setup({
 			vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
 		end,
 	},
+
 	mapping = cmp.mapping.preset.insert({
 		-- None of this made sense to me when first looking into this since there
 		-- is no vim docs, but you can't have select = true here _unless_ you are
 		-- also using the snippet stuff. So keep in mind that if you remove
 		-- snippets you need to remove this select
-		["<CR>"] = cmp.mapping.confirm({ select = true }),
-		-- I use tabs... some say you should stick to ins-completion but this is just here as an example
+		-- ["<CR>"] = cmp.mapping.confirm({ select = true }),
+
+		-- I use tabs... some say you should stick to ins-completion but this is
+		-- just here as an example
 		["<Tab>"] = function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
@@ -35,6 +38,7 @@ cmp.setup({
 				fallback()
 			end
 		end,
+
 		["<S-Tab>"] = function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
@@ -42,7 +46,15 @@ cmp.setup({
 				fallback()
 			end
 		end,
+
+		["<C-e>"] = cmp.mapping.abort(),
+
+		["<C-Space>"] = cmp.mapping.complete(),
 	}),
+
+	-- Avoid preselecting suggestions, so that pressing <CR> doesn't accidentally
+	-- accept a suggestion.
+	preselect = cmp.PreselectMode.None,
 })
 
 -- Auto pairs

@@ -42,7 +42,9 @@ return {
 				"regex",
 				"python",
 				"vue",
+				-- Elixir and its templating language
 				"elixir",
+				"heex",
 			},
 		})
 	end,

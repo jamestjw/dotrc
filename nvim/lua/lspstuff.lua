@@ -60,6 +60,7 @@ local lsp_flags = {
 }
 
 local lspconfig = require("lspconfig")
+local configs = require("lspconfig.configs")
 
 lspconfig.util.default_config.on_attach = on_attach
 lspconfig.util.default_config.flags = lsp_flags
@@ -164,6 +165,36 @@ lspconfig.volar.setup({
 	on_new_config = function(new_config, new_root_dir)
 		new_config.init_options.typescript.tsdk = get_typescript_server_path(new_root_dir)
 	end,
+})
+
+-- Elixir LSP config
+
+-- Lexical (we use elixirls for now since it has Dialyzer support)
+--[[ local lexical_config = {
+	filetypes = { "elixir", "eelixir", "heex" },
+	cmd = { "/Users/jamestjw/Documents/source/elixir-stuff/lexical/_build/dev/package/lexical/bin/start_lexical.sh" },
+	settings = {},
+}
+
+if not configs.lexical then
+	configs.lexical = {
+		default_config = {
+			filetypes = lexical_config.filetypes,
+			cmd = lexical_config.cmd,
+			root_dir = function(fname)
+				return lspconfig.util.root_pattern("mix.exs", ".git")(fname) or vim.loop.os_homedir()
+			end,
+			-- optional settings
+			settings = lexical_config.settings,
+		},
+	}
+end
+
+lspconfig.lexical.setup({}) ]]
+
+-- elixir-ls
+lspconfig.elixirls.setup({
+	cmd = { "/Users/jamestjw/Documents/source/elixir-stuff/elixir-ls/release/language_server.sh" },
 })
 
 -- LSP config END

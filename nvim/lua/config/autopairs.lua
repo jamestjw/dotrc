@@ -7,7 +7,10 @@ function M.setup()
 		check_ts = true,
 		enable_check_bracket_line = false,
 	})
+
+	-- Automatically insert `end`
 	npairs.add_rules(require("nvim-autopairs.rules.endwise-lua"))
+	npairs.add_rules(require("nvim-autopairs.rules.endwise-elixir"))
 
 	-- remove add single quote on filetype scheme or lisp
 	npairs.get_rule("'")[1].not_filetypes = { "scheme", "lisp" }

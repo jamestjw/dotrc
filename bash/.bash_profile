@@ -84,7 +84,9 @@ export PATH="$HOME/google-cloud-sdk/bin/:$PATH"
 # Pyenv setup
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+[[ -d $PYENV_ROOT/shims ]] && export PATH="$PYENV_ROOT/shims:$PATH"
 eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 export PATH="/Users/jamestjw/.local/bin:$PATH"
 
@@ -133,3 +135,6 @@ export PATH="$PATH:/Users/jamestjw/Documents/source/pypy3.10-v7.3.13-macos_x86_6
 # Prevent brew from automatically updating dependencies when installing new
 # packages
 export HOMEBREW_NO_AUTO_UPDATE=1
+
+# Setup Atuin (CLI history) 5 Sept 2024
+. "$HOME/.atuin/bin/env"

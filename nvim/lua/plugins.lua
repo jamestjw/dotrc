@@ -100,12 +100,21 @@ return {
 		-- optional for icon support
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
+			local actions = require("fzf-lua.actions")
 			-- calling `setup` is optional for customization
-			require("fzf-lua").setup({ "fzf-vim" })
+			require("fzf-lua").setup({
+				"fzf-vim",
+				grep = {
+					actions = {
+						["ctrl-r"] = { actions.toggle_ignore },
+					},
+				},
+			})
 
 			-- Search for file
 			-- ctrl+g disables `.gitignore`
-			map("n", "ff", ":Files<CR><C-g>")
+			map("n", "ff", ":Files<CR>")
+			-- map("n", "ff", ":Files<CR><C-g>")
 
 			-- Search for word
 			-- ctrl+g enables fuzzy search
