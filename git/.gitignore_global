@@ -114,3 +114,6 @@ _build
 # Clojure
 .clj-kondo/
 .lsp/
+
+# Pyright
+pyrightconfig.json
