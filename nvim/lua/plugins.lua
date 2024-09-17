@@ -95,6 +95,8 @@ return {
 		end,
 	},
 
+  { "junegunn/fzf", build = "./install --bin" },
+
 	{
 		"ibhagwan/fzf-lua",
 		-- optional for icon support
@@ -134,7 +136,7 @@ return {
 	-- Configurations for Nvim LSP
 	{
 		"neovim/nvim-lspconfig",
-		event = { "BufNewFile", "BufReadPost" },
+		-- event = { "BufNewFile", "BufReadPost" },
 	},
 
 	-- Autocomplete parentheses

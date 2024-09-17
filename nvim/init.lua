@@ -2,10 +2,6 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- require("plugins") -- lua/plugins.lua
-require("lspstuff") -- lua/lspstuff.lua
-require("misc") -- lua/misc.lua
-
 -- Install lazy package manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -31,3 +27,7 @@ require("lazy").setup({
 	-- automatically check for plugin updates
 	checker = { enabled = false },
 })
+
+require("plugins") -- lua/plugins.lua
+require("lspstuff") -- lua/lspstuff.lua
+require("misc") -- lua/misc.lua
