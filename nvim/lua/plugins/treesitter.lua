@@ -46,6 +46,9 @@ return {
 				"elixir",
 				"heex",
 			},
+			endwise = {
+				enable = true,
+			},
 		})
 	end,
 }

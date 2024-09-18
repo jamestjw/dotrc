@@ -12,7 +12,7 @@ cmp.setup({
 		},
 	}, {
 		-- Sourcegraph autocomplete (Cody)
-		{ name = "cody" },
+		-- { name = "cody" },
 	}),
 
 	snippet = {
