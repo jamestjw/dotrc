@@ -1,0 +1,12 @@
+# ~/.XCompose
+# This file defines custom Compose sequences for Unicode characters
+
+# Import default rules from the system Compose file:
+include "/usr/share/X11/locale/en_US.UTF-8/Compose"
+
+<Multi_key> <e> <e> : "é"
+<Multi_key> <c> <c> : "ç"
+<Multi_key> <i> <e> : "ê"
+<Multi_key> <i> <o> : "ô"
+<Multi_key> <i> <u> : "û"
+<Multi_key> <u> <i> : "ï"
