@@ -117,3 +117,6 @@ _build
 
 # Pyright
 pyrightconfig.json
+
+# Ondir (automatically run commands on directory entry and exit)
+.local_env
