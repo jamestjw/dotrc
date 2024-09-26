@@ -123,7 +123,7 @@ lspconfig.rescriptls.setup({})
 lspconfig.csharp_ls.setup({})
 
 -- Javascript, Vue
-local node_modules_dir = "/Users/jamestjw/.nvm/versions/node/v22.6.0/lib/node_modules/"
+local node_modules_dir = vim.system({"npm", "root", "-g"}):wait().stdout or ""
 
 require("lspconfig").ts_ls.setup({
   init_options = {
