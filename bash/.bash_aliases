@@ -8,7 +8,7 @@ alias cdd="cd ~/Documents"
 alias cdmp="cd ~/Documents/myprojects"
 alias cdp='cd `pbpaste`'
 alias cr='git st | awk '\''{for (i=0; i<=NF; i++) {if ($i == "branch") { printf $(i+1);exit}}}'\'' | pbcopy && echo `pbpaste`'
-alias pwd='pwd | perl -ple "s/[\r\n]//g" | pbcopy && echo `pbpaste`'
+# alias pwd='pwd | perl -ple "s/[\r\n]//g" | pbcopy && echo `pbpaste`'
 
 # Git aliases
 alias gitm='git checkout main'
