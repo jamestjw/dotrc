@@ -15,3 +15,5 @@ export PATH="$PATH:/home/james/.local/bin"
 . "$HOME/.atuin/bin/env"
 
 [[ -s "$HOME/.bashrc" ]] && source "$HOME/.bashrc"
+
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
