@@ -1,0 +1,53 @@
+# This is Git's per-user configuration file.
+[user]
+	name = James Tan
+	email = james_tan97@outlook.com
+
+[alias]
+	co = checkout 
+	ci = commit
+	st = status
+	br = branch
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short -n15
+	a = add .
+	au = add -u
+	pfl = push --force-with-lease	
+	prom = pull --rebase origin main 
+	pro = pull --rebase origin
+	psetup = push --set-upstream origin $(git branch --show-current) 
+	cp = cherry-pick
+	mc = merge --continue --no-edit
+[core]
+	excludesfile = ~/.gitignore_global
+	hooksPath = ~/.githooks/
+	editor = nvim
+[rerere]
+	enabled = true
+[url "https://"]
+	insteadOf = git://
+[init]
+	defaultBranch = main
+
+[push]
+	autoSetupRemote = true
+[diff]
+        tool = difftastic
+
+[difftool]
+        prompt = false
+
+[difftool "difftastic"]
+        cmd = difft "$LOCAL" "$REMOTE"
+
+[pager]
+        difftool = true
+
+# `git dft` is less to type than `git difftool`.
+[alias]
+        dft = difftool
+		dlog = "!f() { GIT_EXTERNAL_DIFF=difft git log -p --ext-diff $@; }; f"
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
