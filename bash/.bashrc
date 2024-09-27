@@ -139,8 +139,8 @@ export PATH="$PATH:$HOME/.local/bin"
 # Initiate zoxide (better `cd`)
 eval "$(zoxide init bash --no-cmd)"
 
-eval "$(atuin init bash --disable-up-arrow)"
-
 eval "$(fzf --bash)"
+
+eval "$(atuin init bash --disable-up-arrow)"
 
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
