@@ -210,7 +210,7 @@ client.background       #FFFFFF
 # Use polybar instead
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-# Set brightness
+# Set screen brightness
 bindsym XF86MonBrightnessUp exec --no-startup-id $HOME/scripts/bright +
 bindsym XF86MonBrightnessDown exec --no-startup-id $HOME/scripts/bright -
 
@@ -230,3 +230,6 @@ bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(d
 bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
 bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
 bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+
+## Random wallpapers
+exec --no-startup-id watch -n 900 feh --randomize --bg-fill ~/Pictures/wallpapers/* 2>&1 > /dev/null &
