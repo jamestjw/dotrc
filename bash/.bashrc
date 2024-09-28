@@ -1,5 +1,10 @@
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
 
+## Load aliases
+if [ -f ~/.bash_aliases ]; then
+	. ~/.bash_aliases
+fi
+
 # Spark path
 export PATH=$PATH:/usr/local/spark/bin
 
@@ -9,11 +14,15 @@ export PATH=$PATH:/usr/local/spark/bin
 export PATH="$PATH:$HOME/.rvm/bin"
 
 [ -f "~/.ghcup/env" ] && source "~/.ghcup/env" # ghcup-env
-[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+
+# Added by Toolbox App
+[[ -d "$HOME/.local/share/JetBrains/Toolbox/scripts" ]] && export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts"
+
+# Add scripts to path
+export PATH="$PATH:$HOME/scripts"
 
 # Add ctags to PATH for scripting. Make sure this is the last PATH variable change.
 alias ctags='/usr/local/bin/ctags'
-
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -128,11 +137,6 @@ export PATH="$PATH:~/Documents/source/pypy3.10-v7.3.13-macos_x86_64/bin"
 # packages
 export HOMEBREW_NO_AUTO_UPDATE=1
 
-## Load aliases
-if [ -f ~/.bash_aliases ]; then
-	. ~/.bash_aliases
-fi
-
 # Created by `pipx` on 2024-09-17 00:45:40
 export PATH="$PATH:$HOME/.local/bin"
 
@@ -141,6 +145,30 @@ eval "$(zoxide init bash --no-cmd)"
 
 eval "$(fzf --bash)"
 
+# Setup atuin (shell history)
+. "$HOME/.atuin/bin/env"
 eval "$(atuin init bash --disable-up-arrow)"
 
-[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+# Setup `ondir` hooks
+if command -v ondir 2>&1 >/dev/null
+then
+  cd()
+  {
+    builtin cd "$@" && eval "`ondir \"$OLDPWD\" \"$PWD\"`"
+  }
+
+  # Define zoxide command (we skipped the creation of this with `--no-cmd`)
+  z() {
+      __zoxide_z "$@" && eval "`ondir \"$OLDPWD\" \"$PWD\"`"
+  }
+
+  pushd()
+  {
+    builtin pushd "$@" && eval "`ondir \"$OLDPWD\" \"$PWD\"`"
+  }
+
+  popd()
+  {
+    builtin popd "$@" && eval "`ondir \"$OLDPWD\" \"$PWD\"`"
+  }
+fi

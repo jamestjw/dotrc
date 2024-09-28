@@ -7,6 +7,7 @@ alias ggp="git reflog | ggrep -Pio '(?<=moving from ).+(?= to)' | uniq | head -n
 alias cdd="cd ~/Documents"
 alias cdmp="cd ~/Documents/myprojects"
 alias cdp='cd `pbpaste`'
+alias cds="cd ~/Documents/sollum"
 alias cr='git st | awk '\''{for (i=0; i<=NF; i++) {if ($i == "branch") { printf $(i+1);exit}}}'\'' | pbcopy && echo `pbpaste`'
 # alias pwd='pwd | perl -ple "s/[\r\n]//g" | pbcopy && echo `pbpaste`'
 
