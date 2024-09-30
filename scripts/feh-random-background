@@ -1,0 +1,30 @@
+#!/bin/sh
+
+# From https://github.com/KoviRobi/feh-random-background/blob/master/feh-random-background
+
+BGDIR=${BGDIR:-$HOME/Pictures/wallpapers}
+BGSTATE=${BGSTATE:-$HOME/.feh-random-background}
+EXTENSIONS=${BGEXTENSIONRE:-"png\|jpg\|jpeg\|gif\|tiff"}
+
+if [ ! -s "$BGSTATE" ]; then
+  find -L "$BGDIR" -type f -iregex ".*\.\($EXTENSIONS\)" -print0 | shuf -z > "$BGSTATE"
+  if [ "$(wc -c < "$BGSTATE")" -eq 0 ]; then
+    echo "No background images to choose from"
+    exit 1
+  fi
+fi
+
+next_background() {
+  # Will complain about the terminating null-character, but it won't affect it
+  BGFILE="$(sed -z '1q' < "$BGSTATE" | sed 's/\x0.*//')"
+  sed -z '1d' -i "$BGSTATE"
+  if [ ! -e "$BGFILE" ]; then
+    return 1
+  else
+    feh "$@" "$BGFILE"
+    return "$?"
+  fi
+}
+
+# Drop non-background files
+while ! next_background "$@"; do :; done
