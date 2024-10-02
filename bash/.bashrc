@@ -23,8 +23,8 @@ export PATH="$PATH:$HOME/scripts"
 alias ctags='/usr/local/bin/ctags'
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 ## Remove vim warnings
 export LC_ALL=en_US.UTF-8
@@ -34,7 +34,7 @@ export PS1='\[\033[0;32m\]\[\033[0m\033[0;32m\]\u\[\033[0;36m\]@\W\[\033[1;35m\]
 
 export NVM_DIR="$HOME/.nvm"
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 export PATH="$PATH:$NVM_BIN"
 
@@ -88,7 +88,7 @@ export PATH="$HOME/google-cloud-sdk/bin/:$PATH"
 ## PYTHON BEGIN
 # Pyenv setup
 export PYENV_ROOT="$HOME/.pyenv"
-export PYTHON_CONFIGURE_OPTS='--enable-optimizations --with-lto' 
+export PYTHON_CONFIGURE_OPTS='--enable-optimizations --with-lto'
 export PYTHON_CFLAGS='-march=native -mtune=native'
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 [[ -d $PYENV_ROOT/shims ]] && export PATH="$PYENV_ROOT/shims:$PATH"
@@ -133,30 +133,26 @@ eval "$(fzf --bash)"
 eval "$(atuin init bash --disable-up-arrow)"
 
 # Setup `ondir` hooks
-if command -v ondir 2>&1 >/dev/null
-then
-  cd()
-  {
-    builtin cd "$@" && eval "`ondir \"$OLDPWD\" \"$PWD\"`"
-  }
+if command -v ondir 2>&1 >/dev/null; then
+	cd() {
+		builtin cd "$@" && eval "$(ondir \"$OLDPWD\" \"$PWD\")"
+	}
 
-  # Define zoxide command (we skipped the creation of this with `--no-cmd`)
-  z() {
-      __zoxide_z "$@" && eval "`ondir \"$OLDPWD\" \"$PWD\"`"
-  }
+	# Define zoxide command (we skipped the creation of this with `--no-cmd`)
+	z() {
+		__zoxide_z "$@" && eval "$(ondir \"$OLDPWD\" \"$PWD\")"
+	}
 
-  pushd()
-  {
-    builtin pushd "$@" && eval "`ondir \"$OLDPWD\" \"$PWD\"`"
-  }
+	pushd() {
+		builtin pushd "$@" && eval "$(ondir \"$OLDPWD\" \"$PWD\")"
+	}
 
-  popd()
-  {
-    builtin popd "$@" && eval "`ondir \"$OLDPWD\" \"$PWD\"`"
-  }
+	popd() {
+		builtin popd "$@" && eval "$(ondir \"$OLDPWD\" \"$PWD\")"
+	}
 else
-  # Define zoxide command (we skipped the creation of this with `--no-cmd`)
-  z() {
-      __zoxide_z "$@"
-  }
+	# Define zoxide command (we skipped the creation of this with `--no-cmd`)
+	z() {
+		__zoxide_z "$@"
+	}
 fi
