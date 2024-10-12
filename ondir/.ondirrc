@@ -1,7 +1,7 @@
 enter ~/Documents/sollum/([^/]+)/([^/]+)
   echo "Entering sollum project dir"
   [[ -d venv ]] && echo "Loading venv" && source venv/bin/activate
-  [[ -f .local_env ]] && echo "Loading local env file" && set -a; source .local_env; set +a
+  [[ -f $PWD/.local_env ]] && echo "Loading local env file" && set -a; source .local_env; set +a
   # export $(grep -v '^#' .local_env | xargs)
 
 leave ~/Documents/sollum/([^/]+)/([^/]+)

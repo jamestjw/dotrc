@@ -99,6 +99,9 @@ export PATH="~/.local/bin:$PATH"
 
 ## PYTHON END
 
+# So that `fc` command correctly uses neovim
+export FCEDIT=nvim
+
 export GPG_TTY=$(tty)
 
 # Add gambit scheme to path (10 Jan 2023)

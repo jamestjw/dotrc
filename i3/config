@@ -215,7 +215,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id $HOME/scripts/bright +
 bindsym XF86MonBrightnessDown exec --no-startup-id $HOME/scripts/bright -
 
 # Set compose key to left windows key
-exec --no-startup-id setxkbmap -option compose:lwin
+exec_always --no-startup-id setxkbmap -option compose:lwin
 
 # Move the current workspace to the next output
 # (effectively toggles when you only have two outputs)
