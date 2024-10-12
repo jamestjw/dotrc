@@ -2,7 +2,7 @@
 
 ## Load aliases
 if [ -f ~/.bash_aliases ]; then
-	. ~/.bash_aliases
+  . ~/.bash_aliases
 fi
 
 # Spark path
@@ -137,25 +137,22 @@ eval "$(atuin init bash --disable-up-arrow)"
 
 # Setup `ondir` hooks
 if command -v ondir 2>&1 >/dev/null; then
-	cd() {
-		builtin cd "$@" && eval "$(ondir \"$OLDPWD\" \"$PWD\")"
-	}
-
-	# Define zoxide command (we skipped the creation of this with `--no-cmd`)
-	z() {
-		__zoxide_z "$@" && eval "$(ondir \"$OLDPWD\" \"$PWD\")"
-	}
-
-	pushd() {
-		builtin pushd "$@" && eval "$(ondir \"$OLDPWD\" \"$PWD\")"
-	}
-
-	popd() {
-		builtin popd "$@" && eval "$(ondir \"$OLDPWD\" \"$PWD\")"
-	}
+  cd() {
+    builtin cd "$@" && eval "`ondir \"$OLDPWD\" \"$PWD\"`"
+  }
+  # Define zoxide command (we skipped the creation of this with `--no-cmd`)
+  z() {
+    __zoxide_z "$@" && eval "`ondir \"$OLDPWD\" \"$PWD\"`"
+  }
+  pushd() {
+    builtin pushd "$@" && eval "`ondir \"$OLDPWD\" \"$PWD\"`"
+  }
+  popd() {
+    builtin popd "$@" && eval "`ondir \"$OLDPWD\" \"$PWD\"`"
+  }
 else
-	# Define zoxide command (we skipped the creation of this with `--no-cmd`)
-	z() {
-		__zoxide_z "$@"
-	}
+  # Define zoxide command (we skipped the creation of this with `--no-cmd`)
+  z() {
+    __zoxide_z "$@"
+  }
 fi
