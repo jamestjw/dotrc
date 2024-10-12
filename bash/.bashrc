@@ -156,3 +156,7 @@ else
     __zoxide_z "$@"
   }
 fi
+
+zi() {
+  __zoxide_zi "$@"
+}
