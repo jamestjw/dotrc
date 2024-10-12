@@ -6,6 +6,11 @@ return {
 	config = function()
 		local conform = require("conform")
 
+		conform.formatters.shfmt = {
+			-- Indent with two spaces
+			prepend_args = { "-i", "2" },
+		}
+
 		conform.setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
