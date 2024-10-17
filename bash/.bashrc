@@ -8,8 +8,23 @@ fi
 # Spark path
 export PATH=$PATH:/usr/local/spark/bin
 
+################################### Ruby START #################################
+
+# So I have stuff for two different version managers since the one I use depends
+# on my machine
+
+# RVM:
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+# Load RVM into a shell session *as a function*
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+# rbenv:
+[[ -f ~/.rbenv/bin/rbenv ]] && eval "$(~/.rbenv/bin/rbenv init -)"
+
+################################### Ruby END## #################################
+
 
 [ -f "~/.ghcup/env" ] && source "~/.ghcup/env" # ghcup-env
 
@@ -70,8 +85,6 @@ export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 
 # Add SML to path
 export PATH="$PATH:/usr/local/smlnj/bin"
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # opam configuration
 test -r ~/.opam/opam-init/init.sh && . ~/.opam/opam-init/init.sh >/dev/null 2>/dev/null || true
