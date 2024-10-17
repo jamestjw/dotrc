@@ -44,11 +44,11 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Highlight when yanking (copying) text
 vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking (copying) text",
-	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-	callback = function()
-		vim.highlight.on_yank()
-	end,
+  desc = "Highlight when yanking (copying) text",
+  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
 })
 
 -- Quit :terminal mode using <Esc>
@@ -67,8 +67,8 @@ vim.keymap.set("n", "<C-.>", "<C-w>>")
 -- Shortcut for tab navigation
 -- Usage: <leader>1 to switch to tab 1 and so on
 for i = 1, 9 do
-	local key = string.format("<leader>%d", i)
-	local command = string.format(":tabn %d<CR>", i)
-	local desc = string.format("Navigate to tab %d", i)
-	vim.keymap.set("n", key, command, { silent = true, noremap = true, desc = desc })
+  local key = string.format("<leader>%d", i)
+  local command = string.format(":tabn %d<CR>", i)
+  local desc = string.format("Navigate to tab %d", i)
+  vim.keymap.set("n", key, command, { silent = true, noremap = true, desc = desc })
 end
