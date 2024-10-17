@@ -83,16 +83,17 @@ return {
   {
     "nvim-tree/nvim-tree.lua",
     version = "*",
-    lazy = true,
-    cmd = { "NvimTreeToggle" },
+    keys = {
+      {
+        "tr",
+        ":NvimTreeToggle<CR>",
+        desc = "Toggle [tr]ee",
+      },
+    },
     dependencies = {
       "nvim-tree/nvim-web-devicons",
     },
     opts = {},
-    init = function()
-      -- Toggle file tree
-      map("n", "tr", ":NvimTreeToggle<CR>")
-    end,
   },
 
   { "junegunn/fzf", build = "./install --bin" },
