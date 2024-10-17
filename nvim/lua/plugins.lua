@@ -6,9 +6,6 @@ local map = vim.keymap.set
 -- global
 vim.opt_global.completeopt = { "menuone", "noinsert", "noselect" }
 
--- Toggle file tree
-map("n", "tr", ":NvimTreeToggle<CR>")
-
 ----------------------------------
 -- PLUGINS -----------------------
 ----------------------------------
@@ -86,12 +83,15 @@ return {
 	{
 		"nvim-tree/nvim-tree.lua",
 		version = "*",
-		lazy = false,
+		lazy = true,
+		cmd = { "NvimTreeToggle" },
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 		},
-		config = function()
-			require("nvim-tree").setup({})
+		opts = {},
+		init = function()
+			-- Toggle file tree
+			map("n", "tr", ":NvimTreeToggle<CR>")
 		end,
 	},
 
@@ -101,18 +101,8 @@ return {
 		"ibhagwan/fzf-lua",
 		-- optional for icon support
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		config = function()
-			local actions = require("fzf-lua.actions")
-			-- calling `setup` is optional for customization
-			require("fzf-lua").setup({
-				"fzf-vim",
-				grep = {
-					actions = {
-						["ctrl-r"] = { actions.toggle_ignore },
-					},
-				},
-			})
-
+		cmd = { "Files", "RG", "Buffers", "Helptags" },
+		init = function()
 			-- Search for file
 			-- ctrl+g disables `.gitignore`
 			map("n", "ff", ":Files<CR>")
@@ -127,6 +117,18 @@ return {
 
 			-- Search helptags
 			map("n", "fh", ":Helptags<CR>")
+		end,
+		opts = function()
+			local actions = require("fzf-lua.actions")
+			-- calling `setup` is optional for customization
+			return {
+				"fzf-vim",
+				grep = {
+					actions = {
+						["ctrl-r"] = { actions.toggle_ignore },
+					},
+				},
+			}
 		end,
 	},
 
@@ -143,8 +145,7 @@ return {
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
-		config = true,
-		opts = function()
+		config = function()
 			require("config.autopairs").setup()
 		end,
 	},
@@ -155,7 +156,7 @@ return {
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 		},
-		opts = function()
+		config = function()
 			require("config.cmp")
 		end,
 	},
@@ -219,9 +220,9 @@ return {
 	-- Display Git blame
 	{
 		"FabijanZulj/blame.nvim",
-		config = function()
-			require("blame").setup()
-
+		cmd = { "BlameToggle" },
+		opts = {},
+		init = function()
 			map("n", "<leader>bw", ":BlameToggle window<CR>")
 			map("n", "<leader>bv", ":BlameToggle virtual<CR>")
 		end,
@@ -230,9 +231,7 @@ return {
 	-- Soft and hard wrapping
 	{
 		"andrewferrier/wrapping.nvim",
-		config = function()
-			require("wrapping").setup({})
-		end,
+		opts = {},
 	},
 
 	{

@@ -1,11 +1,13 @@
 return {
 	"stevearc/oil.nvim",
+	cmd = { "Oil" },
+	---@module 'oil'
+	---@type oil.SetupOpts
 	opts = {},
 	-- Optional dependencies
 	-- dependencies = { { "echasnovski/mini.icons", opts = {} } },
 	dependencies = { "nvim-tree/nvim-web-devicons" },
-	config = function()
-		require("oil").setup()
+	init = function()
 		vim.keymap.set("n", "<leader>o", ":Oil<cr>")
 	end,
 }
