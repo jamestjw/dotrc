@@ -1,3 +1,8 @@
+-- Remap leader keys
+vim.keymap.set("n", "<Space>", "<Nop>", { silent = true })
+
+vim.g.mapleader = " "
+
 -- disable netrw since we are using nvim-tree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1

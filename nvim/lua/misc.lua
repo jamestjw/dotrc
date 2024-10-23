@@ -1,9 +1,5 @@
 local cmd = vim.cmd
 
--- Remap leader keys
--- vim.g.mapleader = " "
--- vim.g.maplocalleader = " "
-
 -- Relative line number
 vim.wo.relativenumber = true
 
