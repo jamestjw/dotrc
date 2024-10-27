@@ -60,7 +60,7 @@ local lsp_flags = {
 }
 
 local lspconfig = require("lspconfig")
-local configs = require("lspconfig.configs")
+-- local configs = require("lspconfig.configs")
 
 lspconfig.util.default_config.on_attach = on_attach
 lspconfig.util.default_config.flags = lsp_flags
@@ -196,5 +196,9 @@ lspconfig.lexical.setup({}) ]]
 lspconfig.elixirls.setup({
   cmd = { "/Users/jamestjw/Documents/source/elixir-stuff/elixir-ls/release/language_server.sh" },
 })
+
+lspconfig.gopls.setup({})
+
+lspconfig.harper_ls.setup({})
 
 -- LSP config END
