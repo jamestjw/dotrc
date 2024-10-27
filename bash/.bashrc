@@ -61,24 +61,11 @@ export GOPATH=~/Documents/go
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOPATH/bin
 
-# OPENSSL
+# OpenSSL
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 
-export PATH="$HOME/.cargo/bin:$PATH"
-
-# Circle CI Git approval tool
-export CI_CONFIG_PATH=~/.ci_config
-
-# Add path to Rust binaries (executables from my projects)
-export PATH=$PATH:$HOME/rust/binaries
-
-# MacPorts Installer addition on 2020-11-19_at_22:22:11: adding an appropriate PATH variable for use with MacPorts.
-export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-# Finished adapting your PATH environment variable for use with MacPorts.
-
-# MacPorts Installer addition on 2020-11-19_at_22:22:11: adding an appropriate MANPATH variable for use with MacPorts.
-[[ -d /opt/local/share/man ]] && export MANPATH="/opt/local/share/man:$MANPATH"
-# Finished adapting your MANPATH environment variable for use with MacPorts.
+# Rust
+[ -s "$HOME/.cargo/env" ] && \. "$HOME/.cargo/env"
 
 # Add postgres to path
 [[ -d /Applications/Postgres.app ]] && export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
