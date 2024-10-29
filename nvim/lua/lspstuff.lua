@@ -199,6 +199,14 @@ lspconfig.elixirls.setup({
 
 lspconfig.gopls.setup({})
 
-lspconfig.harper_ls.setup({})
+lspconfig.harper_ls.setup({
+  settings = {
+    ["harper-ls"] = {
+      codeActions = {
+        forceStable = true,
+      },
+    },
+  },
+})
 
 -- LSP config END
