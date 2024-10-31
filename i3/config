@@ -218,8 +218,8 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 bindsym XF86MonBrightnessUp exec --no-startup-id "$HOME/scripts/bright +"
 bindsym XF86MonBrightnessDown exec --no-startup-id "$HOME/scripts/bright -"
 
-# Set compose key to left windows key
-exec_always --no-startup-id "setxkbmap -option compose:lwin"
+# Set compose key to right alt key
+exec_always --no-startup-id "setxkbmap -option compose:ralt"
 
 # Move the current workspace to the next output
 # (effectively toggles when you only have two outputs)
