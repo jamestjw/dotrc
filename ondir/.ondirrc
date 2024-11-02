@@ -5,4 +5,4 @@ enter ~/Documents/sollum/([^/]+)/([^/]+)
   # export $(grep -v '^#' .local_env | xargs)
 
 leave ~/Documents/sollum/([^/]+)/([^/]+)
-  [[ -d $OLDPWD/venv ]] && deactivate
+  [[ -d $OLDPWD/venv ]] && [ ! -z ${VIRTUAL_ENV} ] && deactivate
