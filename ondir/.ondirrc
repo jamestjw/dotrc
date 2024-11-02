@@ -1,8 +1,9 @@
 enter ~/Documents/sollum/([^/]+)/([^/]+)
   echo "Entering sollum project dir"
   [[ -d venv ]] && echo "Loading venv" && source venv/bin/activate
-  [[ -f $PWD/.local_env ]] && echo "Loading local env file" && set -a; source .local_env; set +a
+  set -a; [[ -f $PWD/.local_env ]] && echo "Loading local env file" && source .local_env; set +a
   # export $(grep -v '^#' .local_env | xargs)
 
 leave ~/Documents/sollum/([^/]+)/([^/]+)
   [[ -d $OLDPWD/venv ]] && [ ! -z ${VIRTUAL_ENV} ] && deactivate
+  [[ -f $OLDPWD/.local_env ]] && unset `sed '/^#/d' $OLDPWD/.local_env | sed 's/=.*//'`
