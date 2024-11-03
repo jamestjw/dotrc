@@ -122,8 +122,13 @@ return {
       },
       {
         "fh",
-        ":HelptagsCR>",
+        ":Helptags<CR>",
         desc = "[F]ind [h]elptags",
+      },
+      {
+        "ft",
+        ":BTags<CR>",
+        desc = "[F]ind [t]ags",
       },
     },
     opts = function()
