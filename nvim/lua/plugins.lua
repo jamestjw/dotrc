@@ -100,25 +100,32 @@ return {
 
   {
     "ibhagwan/fzf-lua",
-    -- optional for icon support
+    -- Optional for icon support
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    cmd = { "Files", "RG", "Buffers", "Helptags" },
-    init = function()
-      -- Search for file
-      -- ctrl+g disables `.gitignore`
-      map("n", "ff", ":Files<CR>")
-      -- map("n", "ff", ":Files<CR><C-g>")
-
-      -- Search for word
-      -- ctrl+g enables fuzzy search
-      map("n", "fw", ":RG<CR><C-g>")
-
-      -- Search for buffer
-      map("n", "fb", ":Buffers<CR>")
-
-      -- Search helptags
-      map("n", "fh", ":Helptags<CR>")
-    end,
+    keys = {
+      {
+        "ff",
+        -- <C-g> disables `.gitignore`
+        ":Files<CR>",
+        -- ":Files<CR><C-g>"
+        desc = "[F]ind [F]iles",
+      },
+      {
+        "fw",
+        ":RG<CR><C-g>",
+        desc = "[F]ind [w]ord",
+      },
+      {
+        "fb",
+        ":Buffers<CR>",
+        desc = "[F]ind [b]uffers",
+      },
+      {
+        "fh",
+        ":HelptagsCR>",
+        desc = "[F]ind [h]elptags",
+      },
+    },
     opts = function()
       local actions = require("fzf-lua.actions")
       -- calling `setup` is optional for customization
@@ -223,10 +230,18 @@ return {
     "FabijanZulj/blame.nvim",
     cmd = { "BlameToggle" },
     opts = {},
-    init = function()
-      map("n", "<leader>bw", ":BlameToggle window<CR>")
-      map("n", "<leader>bv", ":BlameToggle virtual<CR>")
-    end,
+    keys = {
+      {
+        "<leader>bw",
+        ":BlameToggle window<CR>",
+        desc = "[b]lame [w]iles",
+      },
+      {
+        "<leader>bv",
+        ":BlameToggle virtual<CR>",
+        desc = "[b]lame [v]irtual",
+      },
+    },
   },
 
   -- Soft and hard wrapping
@@ -237,8 +252,9 @@ return {
 
   {
     "lervag/vimtex",
-    ft = "tex", -- only load on lua files
-    -- tag = "v2.15", -- uncomment to pin to a specific release
+    ft = "tex", -- Only load on lua files
+    -- uncomment to pin to a specific release
+    -- tag = "v2.15",
     init = function()
       -- VimTeX configuration goes here, e.g.
       vim.g.vimtex_view_method = "zathura"
@@ -252,33 +268,15 @@ return {
     dependencies = {
       "neovim/nvim-lspconfig",
       "nvim-lua/plenary.nvim",
-      -- you also will likely want nvim-cmp or some completion engine
+      -- You also will likely want nvim-cmp or some completion engine
     },
 
-    -- see details below for full configuration options
+    -- See details below for full configuration options
     opts = {
       lsp = {
         -- Use an on_attach function to only map the following keys
         -- after the language server attaches to the current buffer
-        on_attach = function(_, buffer)
-          -- Mappings.
-          -- See `:help vim.lsp.*` for documentation on any of the below functions
-          local bufopts = { noremap = true, silent = true, buffer = buffer }
-          vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
-          vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-          vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-          vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
-          vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
-          vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
-          vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
-          vim.keymap.set("n", "<space>wl", function()
-            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-          end, bufopts)
-          vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
-          vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
-          vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
-          vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-        end,
+        on_attach = require("lspconfig").util.default_config.on_attach,
       },
       mappings = true,
     },
