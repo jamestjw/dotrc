@@ -2,6 +2,7 @@ JS
 Vue
 lua
 BQN
+num
 Init
 args
 ctrl
@@ -10,8 +11,10 @@ Agda
 emacs
 Idris
 FIXME
+Hacky
 neovim
 VimTeX
+SIGINT
 Harbour
 Miryoku
 keymaps
