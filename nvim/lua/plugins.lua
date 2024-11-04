@@ -168,6 +168,7 @@ return {
     event = { "InsertEnter" },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
     },
     config = function()
       require("config.cmp")
@@ -233,7 +234,6 @@ return {
   -- Display Git blame
   {
     "FabijanZulj/blame.nvim",
-    cmd = { "BlameToggle" },
     opts = {},
     keys = {
       {
