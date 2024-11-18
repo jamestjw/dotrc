@@ -3,6 +3,7 @@ Vue
 lua
 BQN
 num
+Esc
 Init
 args
 ctrl
