@@ -1,5 +1,3 @@
-local map = vim.keymap.set
-
 ----------------------------------
 -- OPTIONS -----------------------
 ----------------------------------
@@ -215,18 +213,18 @@ return {
   },
 
   -- Agda mode
-  {
-    "isovector/cornelis",
-    ft = { "agda" },
-    build = "stack build",
-    dependencies = {
-      "kana/vim-textobj-user",
-      "neovimhaskell/nvim-hs.vim",
-    },
-    init = function()
-      require("config.cornelis")
-    end,
-  },
+  --{
+  --  "isovector/cornelis",
+  --  ft = { "agda" },
+  --  build = "stack build",
+  --  dependencies = {
+  --    "kana/vim-textobj-user",
+  --    "neovimhaskell/nvim-hs.vim",
+  --  },
+  --  init = function()
+  --    require("config.cornelis")
+  --  end,
+  --},
 
   -- Surround
   "tpope/vim-surround",
@@ -277,13 +275,22 @@ return {
     },
 
     -- See details below for full configuration options
-    opts = {
-      lsp = {
-        -- Use an on_attach function to only map the following keys
-        -- after the language server attaches to the current buffer
-        on_attach = require("lspconfig").util.default_config.on_attach,
-      },
-      mappings = true,
-    },
+    opts = function()
+      local default_opts = {
+        mappings = true,
+      }
+      local status, lspconfig = pcall(require, "lspconfig")
+      if not status then
+        print("Failed to import lspconfig!")
+      else
+        default_opts.lsp = {
+          -- Use an on_attach function to only map the following keys
+          -- after the language server attaches to the current buffer
+          on_attach = lspconfig.util.default_config.on_attach,
+        }
+      end
+
+      return default_opts
+    end,
   },
 }
