@@ -23,12 +23,12 @@ export PATH="$PATH:$HOME/.rvm/bin"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # rbenv:
-[[ -f ~/.rbenv/bin/rbenv ]] && eval "$(~/.rbenv/bin/rbenv init -)"
+[[ -f $HOME/.rbenv/bin/rbenv ]] && eval "$($HOME/.rbenv/bin/rbenv init -)"
 
 ################################### Ruby END## #################################
 
 
-[ -f "~/.ghcup/env" ] && source "~/.ghcup/env" # ghcup-env
+[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
 
 # Added by Toolbox App
 [[ -d "$HOME/.local/share/JetBrains/Toolbox/scripts" ]] && export PATH="$PATH:$HOME/.local/share/JetBrains/Toolbox/scripts"
