@@ -8,7 +8,7 @@ alias cdd="cd ~/Documents"
 alias cdmp="cd ~/Documents/myprojects"
 alias cdp='cd `pbpaste`'
 alias cds="cd ~/Documents/sollum"
-alias cr='git st | awk '\''{for (i=0; i<=NF; i++) {if ($i == "branch") { printf $(i+1);exit}}}'\'' | pbcopy && echo `pbpaste`'
+alias cr='git st | awk '\''{for (i=0; i<=NF; i++) {if ($i == "branch") { printf $(i+1);exit}}}'\'''
 # alias pwd='pwd | perl -ple "s/[\r\n]//g" | pbcopy && echo `pbpaste`'
 
 # Git aliases
@@ -26,60 +26,40 @@ alias gitaa='git add -u && git commit --amend'
 
 # Functions
 mkcdir() {
-	mkdir -p -- "$1" && cd -P -- "$1"
-}
-
-gm() {
-	branch=$(git st | awk '''{for (i=0; i<=NF; i++) {if ($i == "branch") { printf $(i+1);exit}}}''')
-	git co $1
-	git pull origin $1
-	git merge $branch --no-edit
-	git push
+  mkdir -p -- "$1" && cd -P -- "$1"
 }
 
 function pkill() {
-	local pid
-	pid=$(ps ax | grep $1 | grep -v grep | awk '{ print $1 }')
-	kill -9 $pid
-	echo -n "Killed $1 (process $pid)"
+  local pid
+  pid=$(ps ax | grep $1 | grep -v grep | awk '{ print $1 }')
+  kill -9 $pid
+  echo -n "Killed $1 (process $pid)"
 }
 
 sourceenv() {
-	source $1/bin/activate
+  source $1/bin/activate
 }
-
-# CCLS
-alias cpccls='cp /Users/jamestjw/.default_ccls .ccls'
-
-# Run ada CI
-# alias cia='echo "Sleeping 5secs..." && sleep 5 && ci_manager approve $(cr)'
-
-# CD google drive
-alias cdg='cd "/Users/jamestjw/Library/CloudStorage/GoogleDrive-youknowjamest@gmail.com/Mon Drive"'
 
 avg_time_alt() {
-	local -i n=$1
-	local foo real sys user
-	shift
-	(($# > 0)) || return
-	{
-		read foo real
-		read foo user
-		read foo sys
-	} < <(
-		{ time -p for (( ; n--; )); do "$@" &>/dev/null; done; } 2>&1
-	)
-	printf "real: %.5f\nuser: %.5f\nsys : %.5f\n" $(
-		bc -l <<<"$real/$n;$user/$n;$sys/$n;"
-	)
+  local -i n=$1
+  local foo real sys user
+  shift
+  (($# > 0)) || return
+  {
+    read foo real
+    read foo user
+    read foo sys
+  } < <(
+    { time -p for (( ; n--; )); do "$@" &>/dev/null; done; } 2>&1
+  )
+  printf "real: %.5f\nuser: %.5f\nsys : %.5f\n" $(
+    bc -l <<<"$real/$n;$user/$n;$sys/$n;"
+  )
 }
-
-alias cdcs="open \"/Volumes/GoogleDrive/Mon Drive/Books/Computer Science\""
 
 # nvim
 alias nv="nvim"
-alias vi="vim"
-alias vim="nv"
+alias vim="nvim"
 alias nvconf="nvim ~/.config/nvim"
 
 # Emacs
