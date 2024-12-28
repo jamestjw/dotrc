@@ -178,7 +178,7 @@ esac
 
 # <<< juliaup initialize <<<
 
-[ -x "$(which oh-my-posh)" ] && eval "$(oh-my-posh init bash)"
+[ -x "$(which oh-my-posh)" ] && eval "$(oh-my-posh init bash --config ~/dotrc/oh-my-posh/themes/montys.omp.json)"
 
 # Erlang version manager
 export KERL_BUILD_BACKEND="git"
