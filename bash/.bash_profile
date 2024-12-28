@@ -17,3 +17,18 @@ export PATH="$PATH:/home/james/.local/bin"
 [[ -s "$HOME/.bashrc" ]] && source "$HOME/.bashrc"
 
 [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+
+case ":$PATH:" in
+    *:/home/jamestjw/.juliaup/bin:*)
+        ;;
+
+    *)
+        export PATH=/home/jamestjw/.juliaup/bin${PATH:+:${PATH}}
+        ;;
+esac
+
+# <<< juliaup initialize <<<

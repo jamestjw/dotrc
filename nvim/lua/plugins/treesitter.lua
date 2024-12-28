@@ -45,6 +45,7 @@ return {
         -- Elixir and its templating language
         "elixir",
         "heex",
+        "gleam",
       },
       endwise = {
         enable = true,

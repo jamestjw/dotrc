@@ -14,6 +14,8 @@ vim.opt.shiftwidth = 2
 -- Display diagnostics (Don't need this since I'm using `trouble` now)
 -- vim.keymap.set('n', "<leader>dd", vim.diagnostic.open_float, bufopts)
 
+vim.o.formatoptions = "tcqjr"
+
 cmd([[syntax on]])
 cmd([[filetype on]])
 cmd([[filetype plugin indent on]])

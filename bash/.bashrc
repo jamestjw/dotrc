@@ -47,7 +47,7 @@ export NVM_DIR="$HOME/.nvm"
 export LC_ALL=en_US.UTF-8
 
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
-export PS1='\[\033[0;32m\]\[\033[0m\033[0;32m\]\u\[\033[0;36m\]@\W\[\033[1;35m\][$(git branch 2>/dev/null | grep "^*" | colrm 1 2)\[\033[0;35m\]]\[\033[0m\033[0;32m\] ✔\[\033[0m\033[0;32m\]\[\033[0m\] '
+# export PS1='\[\033[0;32m\]\[\033[0m\033[0;32m\]\u\[\033[0;36m\]@\W\[\033[1;35m\][$(git branch 2>/dev/null | grep "^*" | colrm 1 2)\[\033[0;35m\]]\[\033[0m\033[0;32m\] ✔\[\033[0m\033[0;32m\]\[\033[0m\] '
 
 export NVM_DIR="$HOME/.nvm"
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
@@ -162,3 +162,28 @@ fi
 zi() {
   __zoxide_zi "$@"
 }
+
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+
+case ":$PATH:" in
+    *:/home/jamestjw/.juliaup/bin:*)
+        ;;
+
+    *)
+        export PATH=/home/jamestjw/.juliaup/bin${PATH:+:${PATH}}
+        ;;
+esac
+
+# <<< juliaup initialize <<<
+
+[ -x "$(which oh-my-posh)" ] && eval "$(oh-my-posh init bash)"
+
+# Erlang version manager
+export KERL_BUILD_BACKEND="git"
+export KERL_CONFIGURE_OPTIONS="--without-javac \
+                               --with-dynamic-trace=systemtap"
+
+# Rebar (Erlang build tool)
+export PATH=/home/jamestjw/.cache/rebar3/bin:$PATH

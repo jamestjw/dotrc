@@ -128,6 +128,23 @@ return {
         ":BTags<CR>",
         desc = "[F]ind [t]ags",
       },
+      {
+        "fl",
+        ":FzfLua grep_last<CR>",
+        desc = "[F]ind [l]ast",
+      },
+      {
+        "fu",
+        ":FzfLua grep_cword<CR>",
+        mode = { "n" },
+        desc = "[F]ind [u]nder",
+      },
+      {
+        "fu",
+        ":FzfLua grep_visual<CR>",
+        mode = { "v" },
+        desc = "[F]ind [u]nder",
+      },
     },
     opts = function()
       local actions = require("fzf-lua.actions")

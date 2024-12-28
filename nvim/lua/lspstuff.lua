@@ -50,7 +50,7 @@ local on_attach = function(_, buffer)
   end, bufopts)
   map("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
   map("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
-  map("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
+  map("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
   map("n", "gr", vim.lsp.buf.references, bufopts)
 end
 
