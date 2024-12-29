@@ -17,12 +17,20 @@ vim.opt.shiftwidth = 2
 vim.o.formatoptions = "tcqjr"
 
 cmd([[syntax on]])
-cmd([[filetype on]])
 cmd([[filetype plugin indent on]])
 
 -- BQN stuff
 cmd([[au! BufRead,BufNewFile *.bqn setf bqn]])
 cmd([[au! BufRead,BufNewFile * if getline(1) =~ '^#!.*bqn$' | setf bqn | endif]])
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  group = vim.api.nvim_create_augroup("detect_vial_config", { clear = true }),
+  desc = "Set filetype for Vial config files",
+  pattern = { "*.vil" },
+  callback = function()
+    vim.cmd("set filetype=json")
+  end,
+})
 
 -- Ocaml indent
 -- TODO: Does this actually work?
