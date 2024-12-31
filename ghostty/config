@@ -1,0 +1,19 @@
+theme = zenbones_dark
+mouse-hide-while-typing = true
+mouse-scroll-multiplier = 0.5
+window-padding-x = 4
+window-padding-y = 0
+window-height = 36
+window-width = 120
+
+# Creating splits
+# keybind = ctrl+shift+h=new_split:left
+# keybind = ctrl+shift+j=new_split:down
+# keybind = ctrl+shift+k=new_split:up
+# keybind = ctrl+shift+l=new_split:right
+
+# Navigating splits
+keybind = ctrl+shift+h=goto_split:left
+keybind = ctrl+shift+j=goto_split:bottom
+keybind = ctrl+shift+k=goto_split:top
+keybind = ctrl+shift+l=goto_split:right
