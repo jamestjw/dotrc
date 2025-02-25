@@ -267,7 +267,9 @@ return {
   -- Soft and hard wrapping
   {
     "andrewferrier/wrapping.nvim",
-    opts = {},
+    opts = {
+      notify_on_switch = false,
+    },
   },
 
   {
