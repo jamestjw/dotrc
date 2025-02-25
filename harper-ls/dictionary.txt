@@ -16,12 +16,16 @@ Hacky
 neovim
 VimTeX
 SIGINT
+pylint
 Harbour
 Miryoku
 keymaps
+upserts
 Montréal
 jamestjw
 uncomment
+upserting
 Javascript
 treesitter
 repositions
+Dereference
