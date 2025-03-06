@@ -10,7 +10,7 @@ return {
     },
     {
       "fw",
-      ":Telescope live_grep<CR>",
+      ":Telescope grep_string<CR>",
       desc = "[F]ind [w]ord",
     },
     {
@@ -34,4 +34,7 @@ return {
       desc = "[F]ind [q]uickfix",
     },
   },
+  config = function()
+    require("telescope").load_extension("fzf")
+  end,
 }
