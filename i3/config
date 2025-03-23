@@ -205,7 +205,7 @@ client.urgent           $u-bgcolor      $u-bgcolor      $text           $u-bgcol
 #     background #000000
 #     statusline #FFFFFF
 #     separator  #666666
-#
+# 
 #     focused_workspace  #83CAFA #51A2DA #FFFFFF
 #     active_workspace   #3C6EB4 #294172 #FFFFFF
 #     inactive_workspace #8C8C8C #4C4C4C #888888
@@ -216,7 +216,7 @@ client.urgent           $u-bgcolor      $u-bgcolor      $text           $u-bgcol
 # }
 
 # Use polybar instead
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id $HOME/.config/i3/polybar/launch.sh
 
 # Set screen brightness
 bindsym XF86MonBrightnessUp exec --no-startup-id "$HOME/scripts/bright +"
