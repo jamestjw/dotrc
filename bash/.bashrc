@@ -98,6 +98,7 @@ eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
 
 export PATH="~/.local/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 
 ## PYTHON END
 
@@ -127,9 +128,6 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 
 # Created by `pipx` on 2024-09-17 00:45:40
 export PATH="$PATH:$HOME/.local/bin"
-
-# Initiate zoxide (better `cd`)
-eval "$(zoxide init bash --no-cmd)"
 
 eval "$(fzf --bash)"
 
@@ -187,3 +185,6 @@ export KERL_CONFIGURE_OPTIONS="--without-javac \
 
 # Rebar (Erlang build tool)
 export PATH=/home/jamestjw/.cache/rebar3/bin:$PATH
+
+# Initiate zoxide (better `cd`)
+eval "$(zoxide init bash --no-cmd)"
