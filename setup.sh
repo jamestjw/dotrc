@@ -22,3 +22,6 @@ sudo dnf copr enable atim/lazygit -y
 sudo dnf install lazygit -y
 
 sudo dnf install xclip -y # Clipboard
+
+# Formatters
+curl -sS https://webi.sh/shfmt | sh # shell formatter
