@@ -20,3 +20,5 @@ sudo dnf install xclip
 # Lazygit
 sudo dnf copr enable atim/lazygit -y
 sudo dnf install lazygit -y
+
+sudo dnf install xclip -y # Clipboard

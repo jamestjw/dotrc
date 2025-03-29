@@ -28,6 +28,11 @@ export PATH="$PATH:$HOME/.rvm/bin"
 ################################### Ruby END## #################################
 
 
+# ASDF plugin manager
+export ASDF_DATA_DIR=$HOME/.asdf
+export PATH=$ASDF_DATA_DIR/shims/:$PATH
+
+
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
 
 # Added by Toolbox App
