@@ -29,3 +29,7 @@ Javascript
 treesitter
 repositions
 Dereference
+DLI
+EOD
+photoperiod
+Smoothen
