@@ -21,3 +21,5 @@ keybind = ctrl+shift+l=goto_split:right
 
 # Either closes a window, tab, or split
 keybind = ctrl+shift+w=close_surface
+
+font-family = "JetBrainsMono Nerd Font"
