@@ -21,7 +21,7 @@ next_background() {
   if [ ! -e "$BGFILE" ]; then
     return 1
   else
-    feh "$@" "$BGFILE"
+    feh --bg-fill "$@" "$BGFILE"
     return "$?"
   fi
 }

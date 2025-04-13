@@ -242,4 +242,4 @@ bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection c
 
 ## Random wallpapers
 # exec --no-startup-id watch -n 900 feh --randomize --bg-fill ~/Pictures/wallpapers/* 2>&1 > /dev/null &
-exec --no-startup-id watch -n 300 $HOME/scripts/feh-random-background --bg-fill &
+exec --no-startup-id watch -n 300 $HOME/scripts/feh-random-background &
