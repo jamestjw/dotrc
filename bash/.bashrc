@@ -5,7 +5,7 @@ if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi
 
-export EDITOR='vim'
+export EDITOR='nvim'
 
 # Spark path
 export PATH=$PATH:/usr/local/spark/bin
