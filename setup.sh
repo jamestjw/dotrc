@@ -28,3 +28,12 @@ curl -sS https://webi.sh/shfmt | sh # shell formatter
 
 # Fancy cat
 sudo dnf install bat -y
+
+# Fonts
+
+## These four are used by polybar, i.e. look at polybar/config.ini
+sudo dnf install fontawesome-6-free-fonts -y
+sudo dnf install fontawesome-6-brands-fonts -y
+sudo dnf install google-roboto-condensed-fonts -y
+sudo dnf config-manager --add-repo https://terra.fyralabs.com/terra.repo -y
+sudo dnf install jetbrainsmono-nerd-fonts -y
