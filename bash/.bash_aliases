@@ -9,20 +9,13 @@ alias cdmp="cd ~/Documents/myprojects"
 alias cdp='cd `pbpaste`'
 alias cds="cd ~/Documents/sollum"
 alias cr='git st | awk '\''{for (i=0; i<=NF; i++) {if ($i == "branch") { printf $(i+1);exit}}}'\'''
-# alias pwd='pwd | perl -ple "s/[\r\n]//g" | pbcopy && echo `pbpaste`'
+# Copy `pwd` output to clipboard without newline and echo it from the clipboard
+alias pwd='builtin pwd | xclip -selection clipboard -rmlastnl && xclip -selection clipboard'
 
 # Git aliases
 alias gitm='git checkout main'
 alias gdh='git diff HEAD'
-alias gitpsetup='git push --set-upstream origin $(git branch --show-current)'
 alias gitaa='git add -u && git commit --amend'
-
-# Rails Aliases
-# alias be='bundle exec'
-# alias railsc='cd ~/Documents/Kaodim/ada && bundle exec rails c'
-# alias srspec='bundle exec spring rspec'
-# alias rspecst="srspec `git status | ggrep -Pio '(?<=modified:)\s+(spec/)(?!factories).*' | tr '\n' ' '` "
-# alias rspecall="srspec `git diff master...HEAD | ggrep -Po '(?<=\+\+\+ b/)(spec/)(?!factories).*' | tr '\n' ' '`"
 
 # Functions
 mkcdir() {
@@ -64,6 +57,10 @@ alias nvconf="nvim ~/.config/nvim"
 
 # Emacs
 alias dr="doom run"
+
+# Mount google drive using rclone, set up config first with `google-drive` as
+# the name
+alias mnt_gdrive="rclone mount google-drive: ~/drive/"
 
 function y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
