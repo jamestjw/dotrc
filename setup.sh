@@ -25,3 +25,6 @@ sudo dnf install xclip -y # Clipboard
 
 # Formatters
 curl -sS https://webi.sh/shfmt | sh # shell formatter
+
+# Fancy cat
+sudo dnf install bat -y
