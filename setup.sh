@@ -29,6 +29,9 @@ curl -sS https://webi.sh/shfmt | sh # shell formatter
 # Fancy cat
 sudo dnf install bat -y
 
+# Terminal file manager
+sudo snap install yazi --classic
+
 # Fonts
 
 ## These four are used by polybar, i.e. look at polybar/config.ini
