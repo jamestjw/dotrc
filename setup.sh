@@ -1,8 +1,6 @@
 # TODO: Setup symlinks
 # symlink git, bash, nvim, i3 stuff
 
-sudo dnf install xclip
-
 # TODO: neovim
 
 # TODO: Setup python
@@ -40,3 +38,6 @@ sudo dnf install fontawesome-6-brands-fonts -y
 sudo dnf install google-roboto-condensed-fonts -y
 sudo dnf config-manager --add-repo https://terra.fyralabs.com/terra.repo -y
 sudo dnf install jetbrainsmono-nerd-fonts -y
+
+# Install mise package manager
+sudo dnf install mise -y

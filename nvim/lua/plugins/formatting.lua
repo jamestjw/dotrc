@@ -19,7 +19,7 @@ return {
       sh = { "shfmt" },
       sql = { "sqlfluff", "sqlfmt", stop_after_first = true },
       json = { "jq" },
-      yaml = { "yamlfix" }
+      yaml = { "yamlfmt" }
     },
   },
   init = function()

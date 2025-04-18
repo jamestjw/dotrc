@@ -1,0 +1,5 @@
+[tools]
+fd = "latest"
+harper-ls = "latest"
+stylua = "latest"
+yamlfmt = "latest"
