@@ -8,9 +8,10 @@ alias cdd="cd ~/Documents"
 alias cdmp="cd ~/Documents/myprojects"
 alias cdp='cd `pbpaste`'
 alias cds="cd ~/Documents/sollum"
-alias cr='git st | awk '\''{for (i=0; i<=NF; i++) {if ($i == "branch") { printf $(i+1);exit}}}'\'''
+alias cpecho='xclip -selection clipboard -rmlastnl && xclip -selection clipboard'
+alias cr='git st | awk '\''{for (i=0; i<=NF; i++) {if ($i == "branch") { printf $(i+1);exit}}}'\'' | cpecho'
 # Copy `pwd` output to clipboard without newline and echo it from the clipboard
-alias pwd='builtin pwd | xclip -selection clipboard -rmlastnl && xclip -selection clipboard'
+alias pwd='builtin pwd | cpecho'
 
 # Git aliases
 alias gitm='git checkout main'
