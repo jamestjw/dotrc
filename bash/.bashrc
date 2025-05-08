@@ -140,6 +140,9 @@ eval "$(fzf --bash)"
 . "$HOME/.atuin/bin/env"
 eval "$(atuin init bash --disable-up-arrow)"
 
+# Activate mise environment
+[ -x "$(which mise)" ] && eval "$(mise activate bash)"
+
 # Setup `ondir` hooks
 if command -v ondir 2>&1 >/dev/null; then
   cd() {
@@ -197,5 +200,4 @@ eval "$(zoxide init bash --no-cmd)"
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
-# Activate mise environment
-[ -x "$(which mise)" ] && eval "$(mise activate bash)"
+
