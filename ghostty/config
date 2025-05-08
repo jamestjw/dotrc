@@ -23,3 +23,6 @@ keybind = ctrl+shift+l=goto_split:right
 keybind = ctrl+shift+w=close_surface
 
 font-family = "JetBrainsMono Nerd Font"
+
+clipboard-paste-protection = false
+
