@@ -32,10 +32,6 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   end,
 })
 
--- Ocaml indent
--- TODO: Does this actually work?
-vim.opt.rtp:append("/Users/jamestjw/.opam/default/share/ocp-indent/vim")
-
 -- Shifting using '<' and '>' maintains visual mode selection
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
