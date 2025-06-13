@@ -19,7 +19,8 @@ return {
       sh = { "shfmt" },
       sql = { "sqlfluff", "sqlfmt", stop_after_first = true },
       json = { "jq" },
-      yaml = { "yamlfmt" }
+      yaml = { "yamlfmt" },
+      clojure = { "cljfmt" },
     },
   },
   init = function()

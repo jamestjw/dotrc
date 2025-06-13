@@ -202,6 +202,9 @@ lspconfig.gopls.setup({})
 lspconfig.harper_ls.setup({
   settings = {
     ["harper-ls"] = {
+      linters = {
+        ToDoHyphen = false,
+      },
       codeActions = {
         ForceStable = true,
       },
