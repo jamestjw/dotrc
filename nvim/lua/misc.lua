@@ -83,3 +83,8 @@ api.nvim_create_autocmd("TermOpen", { pattern = "*", command = "startinsert" })
 api.nvim_create_autocmd("TermOpen", { pattern = "*", command = "setlocal nonumber norelativenumber" })
 -- no sign column
 api.nvim_create_autocmd("TermEnter", { pattern = "*", command = "setlocal signcolumn=no" })
+
+-- Start a terminal in a split screen
+vim.keymap.set("n", "<leader>ct", function()
+  api.nvim_command("below split | resize 10 | term")
+end)
