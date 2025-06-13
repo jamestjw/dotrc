@@ -1,4 +1,5 @@
 local cmd = vim.cmd
+local api = vim.api
 
 -- Relative line number
 vim.wo.relativenumber = true
@@ -74,3 +75,11 @@ for i = 1, 9 do
   local desc = string.format("Navigate to tab %d", i)
   vim.keymap.set("n", key, command, { silent = true, noremap = true, desc = desc })
 end
+
+-- Terminal mode configuration
+-- start in insert mode
+api.nvim_create_autocmd("TermOpen", { pattern = "*", command = "startinsert" })
+-- remove line numbers
+api.nvim_create_autocmd("TermOpen", { pattern = "*", command = "setlocal nonumber norelativenumber" })
+-- no sign column
+api.nvim_create_autocmd("TermEnter", { pattern = "*", command = "setlocal signcolumn=no" })
