@@ -2,15 +2,13 @@ local cmd = vim.cmd
 local api = vim.api
 
 -- Relative line number
-vim.wo.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Tab widths
 vim.opt.autoindent = true
 vim.opt.expandtab = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
--- cmd([[autocmd FileType scheme setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2]])
--- cmd([[autocmd FileType ocaml setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2]])
 
 -- Display diagnostics (Don't need this since I'm using `trouble` now)
 -- vim.keymap.set('n', "<leader>dd", vim.diagnostic.open_float, bufopts)
@@ -92,3 +90,11 @@ vim.keymap.set("n", "<leader>ct", function()
   vim.api.nvim_win_set_height(0, 10)
   -- Alternatively: api.nvim_command("below split | resize 10 | term")
 end)
+
+-- Make it easier to source stuff
+-- source the entire file we have open
+vim.keymap.set("n", "<space><space>s", "<cmd>source %<CR>")
+-- source current line
+vim.keymap.set("n", "<space>s", ":.lua<CR>")
+-- source visual selection
+vim.keymap.set("v", "<space>s", ":lua<CR>")
