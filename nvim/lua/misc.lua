@@ -86,5 +86,9 @@ api.nvim_create_autocmd("TermEnter", { pattern = "*", command = "setlocal signco
 
 -- Start a terminal in a split screen
 vim.keymap.set("n", "<leader>ct", function()
-  api.nvim_command("below split | resize 10 | term")
+  vim.cmd.vnew()
+  vim.cmd.wincmd("J")
+  vim.cmd.term()
+  vim.api.nvim_win_set_height(0, 10)
+  -- Alternatively: api.nvim_command("below split | resize 10 | term")
 end)
