@@ -6,9 +6,8 @@ return {
     {
       "ff",
       -- <C-g> disables `.gitignore`
-      ":Files<CR>",
-      -- ":Files<CR><C-g>"
-      desc = "[F]ind [F]iles",
+      ":FzfLua files cwd<CR>",
+      desc = "[F]ind [f]iles",
     },
     {
       "fw",
@@ -18,17 +17,17 @@ return {
     },
     {
       "fb",
-      ":Buffers<CR>",
+      ":FzfLua buffers<CR>",
       desc = "[F]ind [b]uffers",
     },
     {
       "fh",
-      ":Helptags<CR>",
+      ":FzfLua help_tags query<CR>",
       desc = "[F]ind [h]elptags",
     },
     {
       "ft",
-      ":BTags<CR>",
+      ":FzfLua btags query<CR>",
       desc = "[F]ind [t]ags",
     },
     {
@@ -53,15 +52,24 @@ return {
       mode = { "v" },
       desc = "[F]ind [u]nder",
     },
+    {
+      "fq",
+      ":FzfLua quickfix<CR>",
+      mode = { "n" },
+      desc = "[F]ind [q]uickfix",
+    },
   },
   opts = function()
     local actions = require("fzf-lua.actions")
     -- calling `setup` is optional for customization
     return {
-      "fzf-vim",
+      -- "fzf-vim",
+      "hide",
       grep = {
         actions = {
+          ["ctrl-g"] = { actions.grep_lgrep },
           ["ctrl-r"] = { actions.toggle_ignore },
+          ["ctrl-q"] = { fn = actions.file_sel_to_qf, prefix = "select-all" },
         },
       },
     }
