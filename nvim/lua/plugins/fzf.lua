@@ -63,6 +63,18 @@ return {
       mode = { "n" },
       desc = "[F]ind [c]urrent buffer",
     },
+    {
+      "fgc",
+      ":FzfLua git_commits<CR>",
+      mode = { "n" },
+      desc = "[F]ind [g]it [c]ommits",
+    },
+    {
+      "fgb",
+      ":FzfLua git_branches<CR>",
+      mode = { "n" },
+      desc = "[F]ind [g]it [b]ranches",
+    },
   },
   opts = function()
     local actions = require("fzf-lua.actions")
