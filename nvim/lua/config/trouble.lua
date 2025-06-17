@@ -17,11 +17,6 @@ opts.keys = {
     desc = "Symbols (Trouble)",
   },
   {
-    "<leader>cl",
-    "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-    desc = "LSP Definitions / references / ... (Trouble)",
-  },
-  {
     "<leader>xL",
     "<cmd>Trouble loclist toggle<cr>",
     desc = "Location List (Trouble)",
@@ -31,12 +26,6 @@ opts.keys = {
     "<cmd>Trouble qflist toggle<cr>",
     desc = "Quickfix List (Trouble)",
   },
-  -- NOTE: `gr` already does the job
-  -- {
-  -- "gR",
-  -- "<cmd>Trouble lsp<cr>",
-  -- desc = "List references of symbol",
-  -- }
 }
 
 return opts

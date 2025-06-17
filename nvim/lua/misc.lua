@@ -1,6 +1,8 @@
 local cmd = vim.cmd
 local api = vim.api
 
+--------------- LAYOUT ---------------
+
 -- Relative line number
 vim.opt.relativenumber = true
 
@@ -10,30 +12,10 @@ vim.opt.expandtab = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 
--- Display diagnostics (Don't need this since I'm using `trouble` now)
--- vim.keymap.set('n', "<leader>dd", vim.diagnostic.open_float, bufopts)
-
 vim.o.formatoptions = "tcqjr"
 
 cmd([[syntax on]])
 cmd([[filetype plugin indent on]])
-
--- BQN stuff
-cmd([[au! BufRead,BufNewFile *.bqn setf bqn]])
-cmd([[au! BufRead,BufNewFile * if getline(1) =~ '^#!.*bqn$' | setf bqn | endif]])
-
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  group = vim.api.nvim_create_augroup("detect_vial_config", { clear = true }),
-  desc = "Set filetype for Vial config files",
-  pattern = { "*.vil" },
-  callback = function()
-    vim.cmd("set filetype=json")
-  end,
-})
-
--- Shifting using '<' and '>' maintains visual mode selection
-vim.keymap.set("v", "<", "<gv")
-vim.keymap.set("v", ">", ">gv")
 
 -- Sets how neovim will display certain whitespace characters in the editor.
 vim.opt.list = true
@@ -52,8 +34,54 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
+--------------- Filetype detection ---------------
+-- TODO: see if I can move this to a ftplugin file
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  group = vim.api.nvim_create_augroup("detect_vial_config", { clear = true }),
+  desc = "Set filetype for Vial config files",
+  pattern = { "*.vil" },
+  callback = function()
+    vim.cmd("set filetype=json")
+  end,
+})
+
+--------------- WINDOWS AND TABS ---------------
+
+-- Terminal mode configuration
+-- start in insert mode
+api.nvim_create_autocmd("TermOpen", { pattern = "*", command = "startinsert" })
+-- remove line numbers
+api.nvim_create_autocmd("TermOpen", { pattern = "*", command = "setlocal nonumber norelativenumber" })
+-- no sign column
+api.nvim_create_autocmd("TermEnter", { pattern = "*", command = "setlocal signcolumn=no" })
+
+-- Start a terminal in a split screen
+vim.keymap.set("n", "<leader>ct", function()
+  vim.cmd.vnew()
+  vim.cmd.wincmd("J")
+  vim.cmd.term()
+  vim.api.nvim_win_set_height(0, 10)
+  -- Alternatively: api.nvim_command("below split | resize 10 | term")
+end)
+
 -- Quit :terminal mode using <Esc>
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
+
+vim.keymap.set("n", "<leader>ch", function()
+  vim.api.nvim_command("vsplit")
+end, { desc = "Split current buffer to the left" })
+
+vim.keymap.set("n", "<leader>cl", function()
+  vim.api.nvim_command("bo vsplit")
+end, { desc = "Split current buffer to the right" })
+
+vim.keymap.set("n", "<leader>cj", function()
+  vim.api.nvim_command("below split")
+end, { desc = "Split current buffer to the bottom" })
+
+vim.keymap.set("n", "<leader>ck", function()
+  vim.api.nvim_command("split")
+end, { desc = "Split current buffer to the bottom" })
 
 -- Window resizing:
 -- Make the window taller
@@ -74,22 +102,7 @@ for i = 1, 9 do
   vim.keymap.set("n", key, command, { silent = true, noremap = true, desc = desc })
 end
 
--- Terminal mode configuration
--- start in insert mode
-api.nvim_create_autocmd("TermOpen", { pattern = "*", command = "startinsert" })
--- remove line numbers
-api.nvim_create_autocmd("TermOpen", { pattern = "*", command = "setlocal nonumber norelativenumber" })
--- no sign column
-api.nvim_create_autocmd("TermEnter", { pattern = "*", command = "setlocal signcolumn=no" })
-
--- Start a terminal in a split screen
-vim.keymap.set("n", "<leader>ct", function()
-  vim.cmd.vnew()
-  vim.cmd.wincmd("J")
-  vim.cmd.term()
-  vim.api.nvim_win_set_height(0, 10)
-  -- Alternatively: api.nvim_command("below split | resize 10 | term")
-end)
+--------------- CONVENIENCE ---------------
 
 -- Make it easier to source stuff
 -- source the entire file we have open
@@ -98,3 +111,7 @@ vim.keymap.set("n", "<space><space>s", "<cmd>source %<CR>")
 vim.keymap.set("n", "<space>s", ":.lua<CR>")
 -- source visual selection
 vim.keymap.set("v", "<space>s", ":lua<CR>")
+
+-- Shifting using '<' and '>' maintains visual mode selection
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
