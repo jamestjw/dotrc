@@ -132,20 +132,6 @@ return {
     opts = {}, -- for default options, refer to the configuration section for custom setup.
   },
 
-  -- Comments
-  {
-    "numToStr/Comment.nvim",
-    opts = {
-      -- add any options here
-    },
-  },
-
-  -- Use treesitter to tell which kind of code we dealing with under the cursor
-  -- Useful in filetypes like `vue` where there is HTML and JS
-  {
-    "JoosepAlviste/nvim-ts-context-commentstring",
-  },
-
   -- Idris
   {
     "idris-hackers/idris-vim",
