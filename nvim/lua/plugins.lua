@@ -46,37 +46,6 @@ return {
 
   { "folke/neoconf.nvim", cmd = "Neoconf" },
 
-  {
-    "scalameta/nvim-metals",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    ft = { "scala", "sbt", "java" },
-    opts = function()
-      local metals_config = require("metals").bare_config()
-      metals_config.settings = {
-        showImplicitArguments = true,
-        excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
-      }
-      metals_config.on_attach = function(client, bufnr)
-        -- your on_attach function
-      end
-      metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-      return metals_config
-    end,
-    config = function(self, metals_config)
-      local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = self.ft,
-        callback = function()
-          require("metals").initialize_or_attach(metals_config)
-        end,
-        group = nvim_metals_group,
-      })
-    end,
-  },
-
   -- File tree
   {
     "nvim-tree/nvim-tree.lua",
@@ -138,33 +107,6 @@ return {
     ft = { "idris" },
   },
 
-  -- BQN stuff
-  {
-    "mlochbaum/BQN",
-    ft = { "bqn" },
-    config = function(plugin)
-      vim.opt.rtp:append(plugin.dir .. "/editors/vim")
-    end,
-  },
-  {
-    "https://git.sr.ht/~detegr/nvim-bqn",
-    ft = { "bqn" },
-  },
-
-  -- Agda mode
-  --{
-  --  "isovector/cornelis",
-  --  ft = { "agda" },
-  --  build = "stack build",
-  --  dependencies = {
-  --    "kana/vim-textobj-user",
-  --    "neovimhaskell/nvim-hs.vim",
-  --  },
-  --  init = function()
-  --    require("config.cornelis")
-  --  end,
-  --},
-
   -- Surround
   "tpope/vim-surround",
 
@@ -176,7 +118,7 @@ return {
       {
         "<leader>bw",
         ":BlameToggle window<CR>",
-        desc = "[b]lame [w]iles",
+        desc = "[b]lame [w]indow",
       },
       {
         "<leader>bv",
@@ -192,46 +134,5 @@ return {
     opts = {
       notify_on_switch = false,
     },
-  },
-
-  {
-    "lervag/vimtex",
-    ft = "tex", -- Only load on lua files
-    -- uncomment to pin to a specific release
-    -- tag = "v2.15",
-    init = function()
-      -- VimTeX configuration goes here, e.g.
-      vim.g.vimtex_view_method = "zathura"
-    end,
-  },
-
-  {
-    "Julian/lean.nvim",
-    event = { "BufReadPre *.lean", "BufNewFile *.lean" },
-
-    dependencies = {
-      "neovim/nvim-lspconfig",
-      "nvim-lua/plenary.nvim",
-      -- You also will likely want nvim-cmp or some completion engine
-    },
-
-    -- See details below for full configuration options
-    opts = function()
-      local default_opts = {
-        mappings = true,
-      }
-      local status, lspconfig = pcall(require, "lspconfig")
-      if not status then
-        print("Failed to import lspconfig!")
-      else
-        default_opts.lsp = {
-          -- Use an on_attach function to only map the following keys
-          -- after the language server attaches to the current buffer
-          on_attach = lspconfig.util.default_config.on_attach,
-        }
-      end
-
-      return default_opts
-    end,
   },
 }
