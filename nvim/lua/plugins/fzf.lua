@@ -11,7 +11,6 @@ return {
     },
     {
       "fw",
-      -- ":RG<CR><C-g>",
       ":FzfLua live_grep_native<CR><C-g>",
       desc = "[F]ind [w]ord",
     },
@@ -57,6 +56,12 @@ return {
       ":FzfLua quickfix<CR>",
       mode = { "n" },
       desc = "[F]ind [q]uickfix",
+    },
+    {
+      "fc",
+      ":FzfLua grep_curbuf<CR>",
+      mode = { "n" },
+      desc = "[F]ind [c]urrent buffer",
     },
   },
   opts = function()
