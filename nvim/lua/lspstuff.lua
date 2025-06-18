@@ -208,6 +208,8 @@ lspconfig.harper_ls.setup({
       codeActions = {
         ForceStable = true,
       },
+      dialect = "British",
+      isolateEnglish = true,
     },
   },
 })
