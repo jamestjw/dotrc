@@ -27,6 +27,8 @@ curl -sS https://webi.sh/shfmt | sh # shell formatter
 # Fancy cat
 sudo dnf install bat -y
 
+sudo dnf install fswatch -y
+
 # Terminal file manager
 sudo snap install yazi --classic
 
