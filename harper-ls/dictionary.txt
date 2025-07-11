@@ -3,16 +3,19 @@ BQN
 DDL
 DLI
 DLIs
+Datadog
 Dereference
 EOD
 Esc
 FIXME
+GCS
 Hacky
 Harbour
 Idris
 Init
 JS
 Javascript
+Mimir
 Miryoku
 Montréal
 Nvim
@@ -29,6 +32,7 @@ datapoints
 emacs
 jamestjw
 keymaps
+lifecycle
 lua
 neovim
 num
