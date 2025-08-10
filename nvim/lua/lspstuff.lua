@@ -194,7 +194,7 @@ lspconfig.lexical.setup({}) ]]
 
 -- elixir-ls
 lspconfig.elixirls.setup({
-  cmd = { "/Users/jamestjw/Documents/source/elixir-stuff/elixir-ls/release/language_server.sh" },
+  cmd = { "/usr/bin/elixir-ls/language_server.sh" },
 })
 
 lspconfig.gopls.setup({})
