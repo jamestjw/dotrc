@@ -3,12 +3,12 @@ return {
   -- Optional for icon support
   dependencies = { "nvim-tree/nvim-web-devicons" },
   keys = {
-    {
-      "ff",
-      -- <C-g> disables `.gitignore`
-      ":FzfLua files cwd<CR>",
-      desc = "[F]ind [f]iles",
-    },
+    -- {
+    --   "ff",
+    --   -- <C-g> disables `.gitignore`
+    --   ":FzfLua files cwd<CR>",
+    --   desc = "[F]ind [f]iles",
+    -- },
     {
       "fw",
       ":FzfLua live_grep_native<CR><C-g>",
