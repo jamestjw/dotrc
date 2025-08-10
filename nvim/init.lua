@@ -2,6 +2,7 @@
 vim.keymap.set("n", "<Space>", "<Nop>", { silent = true })
 
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- Disable netrw since we are using nvim-tree
 vim.g.loaded_netrw = 1

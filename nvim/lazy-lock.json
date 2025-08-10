@@ -8,6 +8,7 @@
   "fff.nvim": { "branch": "main", "commit": "a614094de9180a599dd6858ee5ff3903de909581" },
   "fzf": { "branch": "master", "commit": "0c00b203e61bffbadbc499cbf68af6f89a5a3e29" },
   "fzf-lua": { "branch": "main", "commit": "f21fecf43eeae285583042fb8cf462cf7cb8d05e" },
+  "grug-far.nvim": { "branch": "main", "commit": "385d1949dc21d0c39e7a74b4f4a25da18817bc86" },
   "idris-vim": { "branch": "master", "commit": "091ed6b267749927777423160eeab520109dd9c1" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
   "lazydev.nvim": { "branch": "main", "commit": "2367a6c0a01eb9edb0464731cc0fb61ed9ab9d2c" },
