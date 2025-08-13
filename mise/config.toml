@@ -8,6 +8,7 @@ lazygit = "0.52.0"
 shfmt = "latest"
 stylua = "latest"
 yamlfmt = "latest"
+yq = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
