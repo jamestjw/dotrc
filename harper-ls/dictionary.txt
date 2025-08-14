@@ -27,6 +27,7 @@ TODO
 VimTeX
 Vue
 args
+blackbox
 ctrl
 datapoints
 emacs
