@@ -9,8 +9,10 @@ EOD
 Esc
 FIXME
 GCS
+Github
 Hacky
 Harbour
+IOW
 Idris
 Init
 JS
