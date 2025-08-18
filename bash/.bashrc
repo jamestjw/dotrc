@@ -67,6 +67,7 @@ export GOOGLE_APPLICATION_CREDENTIALS=~/.gcloud/keyfile.json
 export GOPATH=~/Documents/go
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:/usr/local/go/bin
 
 # OpenSSL
 export PATH="/usr/local/opt/openssl/bin:$PATH"
