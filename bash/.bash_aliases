@@ -6,10 +6,10 @@ alias ....='cd ../../../'
 alias ggp="git reflog | ggrep -Pio '(?<=moving from ).+(?= to)' | uniq | head -n10"
 alias cdd="cd ~/Documents"
 alias cdmp="cd ~/Documents/myprojects"
-alias cdp='cd `pbpaste`'
+alias cdp='cd `xclip -selection clipboard`'
 alias cds="cd ~/Documents/sollum"
 alias cpecho='xclip -selection clipboard -rmlastnl && xclip -selection clipboard'
-alias cr='git st | awk '\''{for (i=0; i<=NF; i++) {if ($i == "branch") { printf $(i+1);exit}}}'\'' | cpecho'
+alias cr='git branch --show-current | cpecho'
 # Copy `pwd` output to clipboard without newline and echo it from the clipboard
 alias pwd='builtin pwd | cpecho'
 
