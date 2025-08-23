@@ -204,6 +204,8 @@ lspconfig.harper_ls.setup({
     ["harper-ls"] = {
       linters = {
         ToDoHyphen = false,
+        LongSentences = false,
+        SentenceCapitalization = false,
       },
       codeActions = {
         ForceStable = true,
