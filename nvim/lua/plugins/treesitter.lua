@@ -36,6 +36,8 @@ return {
         "regex",
         "python",
         "vue",
+        "clojure",
+        "zig",
         -- Elixir and its templating language
         "elixir",
         "heex",
