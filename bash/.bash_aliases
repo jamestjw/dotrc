@@ -3,12 +3,13 @@ alias ll='ls -ahlF'
 alias ..='cd ..'
 alias ...='cd ../../'
 alias ....='cd ../../../'
-alias ggp="git reflog | ggrep -Pio '(?<=moving from ).+(?= to)' | uniq | head -n10"
+alias ggp="git reflog | grep -Pio '(?<=moving from ).+(?= to)' | uniq | head -n10"
 alias cdd="cd ~/Documents"
 alias cdmp="cd ~/Documents/myprojects"
 alias cdp='cd `xclip -selection clipboard`'
 alias cds="cd ~/Documents/sollum"
 alias cpecho='xclip -selection clipboard -rmlastnl && xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard'
 alias cr='git branch --show-current | cpecho'
 # Copy `pwd` output to clipboard without newline and echo it from the clipboard
 alias pwd='builtin pwd | cpecho'
