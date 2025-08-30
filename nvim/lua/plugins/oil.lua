@@ -12,7 +12,9 @@ return {
   },
   ---@module 'oil'
   ---@type oil.SetupOpts
-  opts = {},
+  opts = {
+    silence_scp_warning = true,
+  },
   -- Optional dependencies
   -- dependencies = { { "echasnovski/mini.icons", opts = {} } },
   dependencies = { "nvim-tree/nvim-web-devicons" },
