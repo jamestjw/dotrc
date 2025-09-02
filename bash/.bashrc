@@ -202,3 +202,7 @@ eval "$(zoxide init bash --no-cmd)"
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
 
+export PATH=$HOME/bin:$PATH
+
+# Oracle CLI autocompletion
+[[ -e "$HOME/lib/oracle-cli/lib/python3.12/site-packages/oci_cli/bin/oci_autocomplete.sh" ]] && source "$HOME/lib/oracle-cli/lib/python3.12/site-packages/oci_cli/bin/oci_autocomplete.sh"
