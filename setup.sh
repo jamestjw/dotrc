@@ -43,3 +43,6 @@ sudo dnf install jetbrainsmono-nerd-fonts -y
 
 # Install mise package manager
 sudo dnf install mise -y
+
+# Image editing app (kolourpaint is also pretty decent)
+sudo snap install pinta
