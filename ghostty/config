@@ -29,6 +29,7 @@ clipboard-paste-protection = false
 # Cursor stuff
 
 cursor-color = 61a4e3
+cursor-opacity = 0.5
 
 ## Shaders, moving the cursor leaves a trail
 custom-shader = shaders/cursor_smear.glsl
