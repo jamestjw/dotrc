@@ -81,7 +81,7 @@ end, { desc = "Split current buffer to the bottom" })
 
 vim.keymap.set("n", "<leader>ck", function()
   vim.api.nvim_command("split")
-end, { desc = "Split current buffer to the bottom" })
+end, { desc = "Split current buffer to the top" })
 
 -- Window resizing:
 -- Make the window taller
