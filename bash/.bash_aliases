@@ -13,11 +13,13 @@ alias pbpaste='xclip -selection clipboard'
 alias cr='git branch --show-current | cpecho'
 # Copy `pwd` output to clipboard without newline and echo it from the clipboard
 alias pwd='builtin pwd | cpecho'
+alias lg='lazygit'
 
 # Git aliases
 alias gitm='git checkout main'
 alias gdh='git diff HEAD'
 alias gitaa='git add -u && git commit --amend'
+alias gprush='git pull --rebase origin main && git push'
 
 # Functions
 mkcdir() {
