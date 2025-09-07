@@ -95,5 +95,8 @@ sudo dnf install jetbrainsmono-nerd-fonts -y
 # Image editing app (kolourpaint is also pretty decent)
 sudo snap install pinta
 
+# Document viewer (e.g. PDF)
+sudo dnf install evince -y
+
 # Friendlier version of `man`
 cargo install tealdeer
