@@ -244,4 +244,6 @@ lspconfig.zls.setup({
   },
 })
 
+vim.lsp.enable("marksman")
+
 -- LSP config END
