@@ -32,8 +32,6 @@ end)
 
 -- Lsp config
 
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
 local on_attach = function(_, buffer)
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -54,35 +52,33 @@ local on_attach = function(_, buffer)
   map("n", "gr", vim.lsp.buf.references, bufopts)
 end
 
-local lsp_flags = {
-  -- This is the default in Nvim 0.7+
-  debounce_text_changes = 150,
-}
-
-local lspconfig = require("lspconfig")
--- local configs = require("lspconfig.configs")
-
-lspconfig.util.default_config.on_attach = on_attach
-lspconfig.util.default_config.flags = lsp_flags
-
-lspconfig.pyright.setup({})
-
-lspconfig.racket_langserver.setup({
-  filetypes = { ".rkt", ".scm" },
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+  callback = function(args)
+    on_attach(nil, args.buf)
+  end,
 })
 
-lspconfig.ocamllsp.setup({})
+vim.lsp.enable("pyright")
 
-lspconfig.clojure_lsp.setup({})
+vim.lsp.config("racket_langserver", {
+  filetypes = { ".rkt", ".scm" },
+})
+vim.lsp.enable("racket_langserver")
 
-lspconfig.hls.setup({
+vim.lsp.enable("ocamllsp")
+
+vim.lsp.enable("clojure_lsp")
+
+vim.lsp.config("hls", {
   filetypes = { "haskell", "lhaskell", "cabal" },
   cmd = { "haskell-language-server-wrapper", "--lsp" },
 })
+vim.lsp.enable("hls")
 
-lspconfig.clangd.setup({})
+vim.lsp.enable("clangd")
 
-lspconfig.lua_ls.setup({
+vim.lsp.config("lua_ls", {
   on_init = function(client)
     local path = client.workspace_folders[1].name
     if vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc") then
@@ -113,19 +109,20 @@ lspconfig.lua_ls.setup({
     Lua = {},
   },
 })
+vim.lsp.enable("lua_ls")
 
-lspconfig.rust_analyzer.setup({})
+vim.lsp.enable("rust_analyzer")
 
-lspconfig.gleam.setup({})
+vim.lsp.enable("gleam")
 
-lspconfig.rescriptls.setup({})
+vim.lsp.enable("rescriptls")
 
-lspconfig.csharp_ls.setup({})
+vim.lsp.enable("csharp_ls")
 
 -- Javascript, Vue
 local node_modules_dir = vim.system({ "npm", "root", "-g" }):wait().stdout or ""
 
-require("lspconfig").ts_ls.setup({
+vim.lsp.config("ts_ls", {
   init_options = {
     plugins = {
       {
@@ -141,6 +138,7 @@ require("lspconfig").ts_ls.setup({
     "vue",
   },
 })
+vim.lsp.enable("ts_ls")
 
 local function get_typescript_server_path(root_dir)
   local util = require("lspconfig.util")
@@ -161,11 +159,13 @@ local function get_typescript_server_path(root_dir)
   end
 end
 
-lspconfig.volar.setup({
+vim.lsp.config("vue_ls", {
+  -- cmd = { "./node_modules/@vue/language-server/bin/vue-language-server.js", "--stdio" }
   on_new_config = function(new_config, new_root_dir)
     new_config.init_options.typescript.tsdk = get_typescript_server_path(new_root_dir)
   end,
 })
+vim.lsp.enable("vue_ls")
 
 -- Elixir LSP config
 
@@ -193,13 +193,14 @@ end
 lspconfig.lexical.setup({}) ]]
 
 -- elixir-ls
-lspconfig.elixirls.setup({
+vim.lsp.config("elixirls", {
   cmd = { "/usr/bin/elixir-ls/language_server.sh" },
 })
+vim.lsp.enable("elixirls")
 
-lspconfig.gopls.setup({})
+vim.lsp.enable("gopls")
 
-lspconfig.harper_ls.setup({
+vim.lsp.config("harper_ls", {
   settings = {
     ["harper-ls"] = {
       linters = {
@@ -215,8 +216,9 @@ lspconfig.harper_ls.setup({
     },
   },
 })
+vim.lsp.enable("harper_ls")
 
-lspconfig.zls.setup({
+vim.lsp.config("zls", {
   -- Server-specific settings. See `:help lspconfig-setup`
 
   -- omit the following line if `zls` is in your PATH
@@ -243,6 +245,7 @@ lspconfig.zls.setup({
     },
   },
 })
+vim.lsp.enable({ "zls" })
 
 vim.lsp.enable("marksman")
 
