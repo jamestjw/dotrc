@@ -33,4 +33,7 @@ cursor-opacity = 0.5
 cursor-style = underline
 
 ## Shaders, moving the cursor leaves a trail
-custom-shader = shaders/cursor_smear.glsl
+# custom-shader = shaders/cursor_smear.glsl
+# custom-shader = shaders/manga_slash.glsl
+# custom-shader = shaders/cursor_blaze.glsl
+custom-shader = shaders/cursor_frozen.glsl
