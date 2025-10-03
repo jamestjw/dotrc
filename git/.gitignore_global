@@ -107,7 +107,6 @@ tmp/
 .metals
 
 # Ocaml
-.ocamlformat
 _build
 *.native
 
