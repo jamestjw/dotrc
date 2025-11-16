@@ -122,3 +122,6 @@ pyrightconfig.json
 
 # Tests
 .coverage
+
+# Haskell
+dist-newstyle
