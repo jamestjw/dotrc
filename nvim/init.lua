@@ -32,6 +32,7 @@ require("lazy").setup({
   install = { colorscheme = { "kanagawa" } },
   -- Automatically check for plugin updates
   checker = { enabled = false },
+  git = { timeout = 99999 },
 })
 
 require("lspstuff") -- lua/lspstuff.lua
