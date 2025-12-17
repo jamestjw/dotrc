@@ -74,3 +74,6 @@ function y() {
   fi
   rm -f -- "$tmp"
 }
+
+touch2() { mkdir -p "$(dirname "$1")" && touch "$1" ; }
+
