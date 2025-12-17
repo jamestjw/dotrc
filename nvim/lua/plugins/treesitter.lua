@@ -28,6 +28,7 @@ return {
         "yaml",
         "html",
         "javascript",
+        "typescript",
         "lua",
         "vim",
         "vimdoc",
