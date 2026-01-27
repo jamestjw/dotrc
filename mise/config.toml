@@ -9,6 +9,7 @@ shfmt = "latest"
 stylua = "latest"
 yamlfmt = "latest"
 yq = "latest"
+clangd = "21.1.8"
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
