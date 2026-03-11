@@ -76,6 +76,9 @@ vim.lsp.config("hls", {
 })
 vim.lsp.enable("hls")
 
+vim.lsp.config.clangd = {
+  cmd = { "clangd", "--compile-commands-dir=build" },
+}
 vim.lsp.enable("clangd")
 
 vim.lsp.config("lua_ls", {
@@ -195,6 +198,12 @@ lspconfig.lexical.setup({}) ]]
 -- elixir-ls
 vim.lsp.config("elixirls", {
   cmd = { "/usr/bin/elixir-ls/language_server.sh" },
+  settings = {
+    elixirLS = {
+      dialyzerEnabled = true,
+      dialyzerFormat = "dialyzer",
+    },
+  },
 })
 vim.lsp.enable("elixirls")
 
