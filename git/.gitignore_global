@@ -128,3 +128,7 @@ pyrightconfig.json
 
 # Haskell
 dist-newstyle
+
+# MCPs/AI
+.serena
+.cocoindex_code/
