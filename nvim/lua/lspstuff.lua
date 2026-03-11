@@ -50,6 +50,7 @@ local on_attach = function(_, buffer)
   map("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
   map("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
   map("n", "gr", vim.lsp.buf.references, bufopts)
+  map("n", "<leader>lr", vim.cmd.LspRestart, bufopts)
 end
 
 vim.api.nvim_create_autocmd("LspAttach", {
