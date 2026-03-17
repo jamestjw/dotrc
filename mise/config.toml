@@ -1,6 +1,6 @@
 [tools]
 babashka = "latest"
-black = "latest"
+black = "26.1.*"
 fd = "latest"
 harper-ls = "latest"
 helm = "latest"

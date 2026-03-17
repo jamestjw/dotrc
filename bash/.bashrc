@@ -209,3 +209,5 @@ export PATH=$HOME/bin:$PATH
 
 # opencode
 export PATH=/home/jamestjw/.opencode/bin:$PATH
+
+complete -C /var/lib/snapd/snap/terraform/849/terraform terraform
