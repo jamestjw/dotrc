@@ -43,6 +43,8 @@ return {
         "elixir",
         "heex",
         "gleam",
+        "cpp",
+        "terraform",
       },
       endwise = {
         enable = true,
