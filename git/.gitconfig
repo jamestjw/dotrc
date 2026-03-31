@@ -2,6 +2,7 @@
 [user]
   name = James Tan
   email = james_tan97@outlook.com
+	signingkey = C20EBFFB502C9F49
 
 [alias]
   co = checkout
@@ -54,3 +55,7 @@
 
 [include]
   path = .gitconfig-local
+[commit]
+	gpgsign = true
+[tag]
+	gpgSign = true
