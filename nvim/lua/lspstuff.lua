@@ -259,4 +259,7 @@ vim.lsp.enable({ "zls" })
 
 vim.lsp.enable("marksman")
 
+vim.lsp.enable("terraformls")
+
+
 -- LSP config END
