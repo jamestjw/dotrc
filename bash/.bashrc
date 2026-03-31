@@ -211,3 +211,12 @@ export PATH=$HOME/bin:$PATH
 export PATH=/home/jamestjw/.opencode/bin:$PATH
 
 complete -C /var/lib/snapd/snap/terraform/849/terraform terraform
+
+# pnpm
+export PNPM_HOME="/home/jamestjw/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
