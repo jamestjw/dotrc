@@ -115,3 +115,7 @@ vim.keymap.set("v", "<space>s", ":lua<CR>")
 -- Shifting using '<' and '>' maintains visual mode selection
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
+
+-- Yank to system clipboard
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]])
