@@ -132,3 +132,4 @@ dist-newstyle
 # AI
 .serena
 .cocoindex_code/
+codedb*
