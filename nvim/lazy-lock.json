@@ -5,7 +5,7 @@
   "cmp-buffer": { "branch": "main", "commit": "b74fab3656eea9de20a9b8116afa3cfc4ec09657" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "cbc7b02bb99fae35cb42f514762b89b5126651ef" },
   "conform.nvim": { "branch": "master", "commit": "086a40dc7ed8242c03be9f47fbcee68699cc2395" },
-  "fff.nvim": { "branch": "main", "commit": "e83b137be5d9a2947f59e1b68e0b8c4ab3eac2f3" },
+  "fff.nvim": { "branch": "main", "commit": "1c2c0633cdb933a9b4111d9e6dfa4a476a35ff9f" },
   "flash.nvim": { "branch": "main", "commit": "fcea7ff883235d9024dc41e638f164a450c14ca2" },
   "fzf": { "branch": "master", "commit": "cc16a97a40a16efecbed5bd7fb322010c033e503" },
   "fzf-lua": { "branch": "main", "commit": "c9e7b7bfbd01f949164988ee1684035468e1995c" },
