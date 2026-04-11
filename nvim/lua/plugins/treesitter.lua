@@ -1,7 +1,7 @@
 -- Treesitter
 return {
   "nvim-treesitter/nvim-treesitter",
-  branch = 'master',
+  branch = "master",
   lazy = false,
   dependencies = {
     "nvim-treesitter/nvim-treesitter-textobjects",
@@ -46,6 +46,7 @@ return {
         "gleam",
         "cpp",
         "terraform",
+        "rust",
       },
       endwise = {
         enable = true,
