@@ -1,10 +1,14 @@
 return {
   "dmtrKovalenko/fff.nvim",
-  build = "cargo build --release",
-  -- or if you are using nixos
-  -- build = "nix run .#release",
+  build = function()
+    require("fff.download").download_or_build_binary()
+  end,
   opts = {
     -- pass here all the options
+    debug = {
+      enabled = false, -- we expect your collaboration at least during the beta
+      show_scores = true, -- to help us optimize the scoring system, feel free to share your scores!
+    },
   },
   keys = {
     {
@@ -13,6 +17,17 @@ return {
         require("fff").find_files() -- or find_in_git_root() if you only want git files
       end,
       desc = "Open file picker",
+    },
+    {
+      "fz",
+      function()
+        require("fff").live_grep({
+          grep = {
+            modes = { "fuzzy", "plain" },
+          },
+        })
+      end,
+      desc = "Live fffuzy grep",
     },
   },
 }
