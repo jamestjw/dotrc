@@ -45,6 +45,29 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   end,
 })
 
+-------------- Automatically resume where you left off --------------------
+
+vim.api.nvim_create_autocmd("BufReadPost", {
+  desc = "Jump to the last place you’ve visited in a file before exiting",
+  callback = function()
+    local row, col = unpack(vim.api.nvim_buf_get_mark(0, '"'))
+    local lcount = vim.api.nvim_buf_line_count(0)
+    if row > 0 and row <= lcount then
+      -- Get the length of the line at 'row'
+      -- nvim_buf_get_lines returns a table; [1] is the string of the line
+      local line_data = vim.api.nvim_buf_get_lines(0, row - 1, row, false)[1]
+      local line_len = #line_data
+
+      -- If the saved column is now out of bounds, snap to 0 or line_len
+      if col > line_len then
+        col = 0 -- Move to start of line if previous spot is gone
+      end
+
+      pcall(vim.api.nvim_win_set_cursor, 0, { row, col })
+    end
+  end,
+})
+
 --------------- WINDOWS AND TABS ---------------
 
 -- Terminal mode configuration
