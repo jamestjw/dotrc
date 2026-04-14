@@ -17,6 +17,7 @@ config_dirs=(
     "oh-my-posh"
     "harper-ls"
     "mise"
+    "pantry"
 )
 
 for dir in "${config_dirs[@]}"; do

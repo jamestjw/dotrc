@@ -1,0 +1,67 @@
+[[recipe]]
+name = "sync current branch"
+tags = ["git", "sync"]
+description = "Fetch and rebase current branch onto origin/{branch}."
+command = "git fetch origin && git rebase origin/{branch}"
+safety = "confirm"
+presets = ["branch=main", "branch=master"]
+
+[[recipe]]
+name = "sollum cloud database"
+tags = ["sql"]
+description = "Install psql and connect to cloud database"
+safety = "confirm"
+command = """
+apt update
+apt install postgresql-client -y
+apk add postgresql16-client
+PGPASSWORD=$POSTGRES_PASSWORD psql -U $POSTGRES_USER -h $POSTGRES_HOST -d smdatawarehouse_db
+"""
+
+[[recipe]]
+name = "insecure sollum ssh"
+tags = ["ssh"]
+description = "SSH with legacy crypto algorithm"
+safety = "confirm"
+command = "ssh -o HostKeyAlgorithms=ssh-ed25519,rsa-sha2-512,rsa-sha2-256 edgyboy@"
+
+[[recipe]]
+name = "cloud mqtt"
+tags = ["mqtt"]
+description = "Install MQTT client and listen to all topics"
+safety = "confirm"
+command = """
+apt install wget
+wget https://www.emqx.com/zh/downloads/MQTTX/v1.8.0/mqttx-cli-linux-x64
+install ./mqttx-cli-linux-x64 /usr/local/bin/mqttx
+mqttx sub -t '#' -p $MQTT_PORT -h $MQTT_HOST -u $MQTT_USERNAME --password $MQTT_PASSWORD
+"""
+
+[[recipe]]
+name = "evil timesheet"
+tags = ["timesheet"]
+description = "Some JS black magic to fill in time shit"
+safety = "confirm"
+command = """
+const startNum = {start};
+const boxes = Array.from({ length: 5 }, (_, i) => `#__box${startNum + i}-inner`); 
+boxes.forEach((e) => {
+   const inputField = document.querySelector(e);
+   inputField.value = "08:00"
+   setTimeout(inputField.dispatchEvent(new Event('input', { bubbles: true })), 100); 
+})
+"""
+
+[[recipe]]
+name = "sunaas reverse proxy"
+tags = ["proxy", "sunaas"]
+description = "Run reverse proxy to SUNaas backend"
+safety = "confirm"
+command = """
+cd $HOME/Documents/sollum/sollummicroservicearchitecture/proxy
+BACKEND_PORT={backend_port} FRONTEND_PORT={frontend_port} SERVICE={service} ./proxy.sh {env}
+"""
+presets = [
+  "backend_port=8190 frontend_port=5180 service=smclientportal env=dev",
+  "backend_port=8190 frontend_port=5180 service=smclientportal env=prod",
+]
