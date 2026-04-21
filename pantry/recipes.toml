@@ -1,5 +1,6 @@
 [[recipe]]
 name = "sync current branch"
+interactive = false
 tags = ["git", "sync"]
 description = "Fetch and rebase current branch onto origin/{branch}."
 command = "git fetch origin && git rebase origin/{branch}"
@@ -8,7 +9,7 @@ presets = ["branch=main", "branch=master"]
 
 [[recipe]]
 name = "sollum cloud database"
-tags = ["sql"]
+tags = ["sql", "sollum"]
 description = "Install psql and connect to cloud database"
 safety = "confirm"
 command = """
@@ -20,14 +21,14 @@ PGPASSWORD=$POSTGRES_PASSWORD psql -U $POSTGRES_USER -h $POSTGRES_HOST -d smdata
 
 [[recipe]]
 name = "insecure sollum ssh"
-tags = ["ssh"]
+tags = ["ssh", "sollum"]
 description = "SSH with legacy crypto algorithm"
 safety = "confirm"
 command = "ssh -o HostKeyAlgorithms=ssh-ed25519,rsa-sha2-512,rsa-sha2-256 edgyboy@"
 
 [[recipe]]
 name = "cloud mqtt"
-tags = ["mqtt"]
+tags = ["mqtt", "sollum"]
 description = "Install MQTT client and listen to all topics"
 safety = "confirm"
 command = """
@@ -39,7 +40,7 @@ mqttx sub -t '#' -p $MQTT_PORT -h $MQTT_HOST -u $MQTT_USERNAME --password $MQTT_
 
 [[recipe]]
 name = "evil timesheet"
-tags = ["timesheet"]
+tags = ["timesheet", "sollum"]
 description = "Some JS black magic to fill in time shit"
 safety = "confirm"
 command = """
@@ -54,7 +55,7 @@ boxes.forEach((e) => {
 
 [[recipe]]
 name = "sunaas reverse proxy"
-tags = ["proxy", "sunaas"]
+tags = ["proxy", "sollum"]
 description = "Run reverse proxy to SUNaas backend"
 safety = "confirm"
 command = """
@@ -65,3 +66,22 @@ presets = [
   "backend_port=8190 frontend_port=5180 service=smclientportal env=dev",
   "backend_port=8190 frontend_port=5180 service=smclientportal env=prod",
 ]
+choices = { service = ["smclientportal", "smgreenhousemanager"], env = ["dev", "staging", "prod"] }
+
+[[recipe]]
+name = "force kill k8s pod"
+tags = ["k8s", "kubectl"]
+description = "Forcefully kill a k8s pod"
+safety = "confirm"
+command = """
+kubectl delete pod {pod} --grace-period=0 --force
+"""
+
+[[recipe]]
+name = "compress videos"
+tags = ["ffmpeg"]
+description = "use ffmpeg to compress videos while maintaining as much quality as possible"
+safety = "confirm"
+command = '''
+mkdir -p "compressed_480p" && LC_ALL=C printf '%s\0' ./*.mkv | sort -z | while IFS= read -r -d '' f; do bn="${f#./}"; out="compressed_480p/$bn"; if [ -f "$out" ]; then printf '%s SKIP %s\n' "$(date '+%F %T')" "$bn" >> "compressed_480p/convert.log"; continue; fi; if ffmpeg -nostdin -hide_banner -loglevel error -stats -i "$bn" -vf "scale=-2:480" -c:v libx265 -x265-params log-level=error -crf 28 -preset slow -c:a aac -b:a 64k -map 0:v:0 -map 0:a? -sn -dn -n "$out"; then printf '%s DONE %s\n' "$(date '+%F %T')" "$bn" >> "compressed_480p/convert.log"; else printf '%s FAIL %s\n' "$(date '+%F %T')" "$bn" >> "compressed_480p/convert.log"; fi; done
+'''
