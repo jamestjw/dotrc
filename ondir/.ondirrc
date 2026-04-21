@@ -9,3 +9,6 @@ leave ~/Documents/sollum/([^/]+)/([^/]+)
   [[ -d $OLDPWD/venv ]] && [ ! -z ${VIRTUAL_ENV} ] && deactivate
   [[ -d $OLDPWD/.venv ]] && [ ! -z ${VIRTUAL_ENV} ] && deactivate
   [[ -f $OLDPWD/.local_env ]] && unset `sed '/^#/d' $OLDPWD/.local_env | sed 's/=.*//'`
+
+enter ~/Documents/myprojects/cluster-gitops
+  export KUBECONFIG=/home/jamestjw/.kube/oracle-oke-free.yaml
