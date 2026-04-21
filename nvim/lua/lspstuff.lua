@@ -259,7 +259,11 @@ vim.lsp.enable({ "zls" })
 
 vim.lsp.enable("marksman")
 
+vim.lsp.config("terraformls", {
+  init_options = {
+    ignoreSingleFileWarning = true,
+  },
+})
 vim.lsp.enable("terraformls")
-
 
 -- LSP config END
