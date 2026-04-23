@@ -35,6 +35,9 @@ ln -sf "$DOTFILES_DIR/bash/.bashrc" "$HOME/.bashrc"
 ln -sf "$DOTFILES_DIR/bash/.bash_profile" "$HOME/.bash_profile"
 ln -sf "$DOTFILES_DIR/bash/.bash_aliases" "$HOME/.bash_aliases"
 
+mkdir -p "$HOME/.claude"
+ln -sf "$DOTFILES_DIR/claude/settings.json" "$HOME/.claude/settings.json"
+
 source $HOME/.bashrc
 
 sudo dnf update -y
