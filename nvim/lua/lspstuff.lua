@@ -60,6 +60,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "c", "cpp", "objc", "objcpp" },
+  callback = function(args)
+    vim.keymap.set("n", "gH", "<cmd>LspClangdSwitchSourceHeader<CR>", {
+      buffer = args.buf,
+      desc = "Switch header/source",
+      silent = true,
+    })
+  end,
+})
+
 vim.lsp.enable("pyright")
 
 vim.lsp.config("racket_langserver", {
@@ -77,9 +88,9 @@ vim.lsp.config("hls", {
 })
 vim.lsp.enable("hls")
 
-vim.lsp.config.clangd = {
+vim.lsp.config("clangd", {
   cmd = { "clangd", "--compile-commands-dir=build" },
-}
+})
 vim.lsp.enable("clangd")
 
 vim.lsp.config("lua_ls", {
