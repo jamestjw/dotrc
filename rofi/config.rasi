@@ -151,6 +151,10 @@ configuration {
 
 @theme "/dev/null/"
 * {
+    foreground:                  #f2f2f2;
+    background:                  #4e4743;
+    color:                       #f2f2f2;
+
     text-color:                  #f2f2f2;
     background-color:            #4e4743;
     lightbg:                     #534c48;
@@ -184,8 +188,6 @@ configuration {
 }
 window {
     border:     0;
-    text-color: #FFFFFFff;
-    background-color: @blue;
     border-color: @orange;
     border-radius: 14px;
     padding:    5;
@@ -210,7 +212,7 @@ message {
     padding:    2px 0px 0px ;
 }
 textbox {
-    text-color: @color;
+    text-color: @foreground;
 }
 
 prompt {

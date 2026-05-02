@@ -64,6 +64,8 @@ bindsym $mod+Shift+d exec "rofi -combi-modi drun,run,window -show combi -show-ic
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
+bindsym $mod+Tab exec rofi -show window
+
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
