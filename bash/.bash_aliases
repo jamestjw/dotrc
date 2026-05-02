@@ -77,3 +77,4 @@ function y() {
 
 touch2() { mkdir -p "$(dirname "$1")" && touch "$1" ; }
 
+alias oc="opencode"

@@ -134,3 +134,5 @@ dist-newstyle
 .cocoindex_code/
 codedb*
 .claude
+
+.env
