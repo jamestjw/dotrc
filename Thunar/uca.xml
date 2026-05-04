@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Open Terminal Here</name>
+	<submenu></submenu>
+	<unique-id>1742737319171060-1</unique-id>
+	<command>exo-open --working-directory %f --launch TerminalEmulator</command>
+	<description>Example for a custom action</description>
+	<range></range>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+<action>
+	<icon>edit-copy</icon>
+	<name>Copy file path</name>
+	<submenu></submenu>
+	<unique-id>1744163830395841-1</unique-id>
+	<command>echo -n %f | xclip -selection clipboard</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<directories/>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+<action>
+	<icon></icon>
+	<name>Unzip here</name>
+	<submenu></submenu>
+	<unique-id>1776993302471272-1</unique-id>
+	<command>bn=`basename -s .zip %n`;mkdir &quot;$bn&quot;&amp;&amp;unzip -d&quot;$bn&quot; -qqnXK %f &amp;&amp; notify-send &quot;Extraction Complete&quot; &quot;Finished extracting %n&quot;
+</command>
+	<description>extract in a new directory named as the zip file without extension</description>
+	<range>*</range>
+	<patterns>*.zip</patterns>
+	<other-files/>
+</action>
+<action>
+	<icon>com.mitchellh.ghostty</icon>
+	<name>Open Ghostty here</name>
+	<submenu></submenu>
+	<unique-id>1777748381618866-1</unique-id>
+	<command>ghostty --working-directory=%f</command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon>com.mitchellh.ghostty</icon>
+	<name>Open Ghostty in Parent Dir</name>
+	<submenu></submenu>
+	<unique-id>1777748505204258-2</unique-id>
+	<command>ghostty --working-directory=&quot;%d&quot;</command>
+	<description>Open Ghostty in the folder containing this file</description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+</actions>
