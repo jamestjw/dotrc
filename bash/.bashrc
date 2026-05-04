@@ -159,6 +159,7 @@ if command -v ondir 2>&1 >/dev/null; then
   popd() {
     builtin popd "$@" && eval "`ondir \"$OLDPWD\" \"$PWD\"`"
   }
+  eval "`ondir /`"
 else
   # Define zoxide command (we skipped the creation of this with `--no-cmd`)
   z() {
