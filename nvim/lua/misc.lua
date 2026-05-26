@@ -142,3 +142,15 @@ vim.keymap.set("v", ">", ">gv")
 -- Yank to system clipboard
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set("n", "<leader>yp", "<cmd>CopyFilename<CR>", { desc = "Copy current file path" })
+
+vim.api.nvim_create_user_command("CopyFilename", function()
+  local filename = vim.fn.expand("%:p")
+  if filename == "" then
+    vim.notify("Current buffer has no filename", vim.log.levels.WARN)
+    return
+  end
+
+  vim.fn.setreg("+", filename)
+  vim.notify("Copied file path: " .. filename)
+end, { desc = "Copy current buffer file path to system clipboard" })
