@@ -1,5 +1,18 @@
 local cmp = require("cmp")
 
+-- Preview completions while tabbing unless there is suffix text that an LSP
+-- replacement range could clobber, e.g. Rust lifetimes/generics after cursor.
+local function select_behavior_for_cursor()
+  local cursor_col = vim.api.nvim_win_get_cursor(0)[2]
+  local text_after_cursor = vim.api.nvim_get_current_line():sub(cursor_col + 1)
+
+  if text_after_cursor:match("%S") then
+    return cmp.SelectBehavior.Select
+  end
+
+  return cmp.SelectBehavior.Insert
+end
+
 cmp.setup({
   sources = cmp.config.sources({
     { name = "nvim_lsp" },
@@ -27,16 +40,13 @@ cmp.setup({
     -- is no vim docs, but you can't have select = true here _unless_ you are
     -- also using the snippet stuff. So keep in mind that if you remove
     -- snippets you need to remove this select
-    ["<CR>"] = cmp.mapping.confirm({
-      behavior = cmp.ConfirmBehavior.Insert,
-      select = false,
-    }),
+    -- ["<CR>"] = cmp.mapping.confirm({ select = true }),
 
     -- I use tabs... some say you should stick to ins-completion but this is
     -- just here as an example
     ["<Tab>"] = function(fallback)
       if cmp.visible() then
-        cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+        cmp.select_next_item({ behavior = select_behavior_for_cursor() })
       else
         fallback()
       end
@@ -44,7 +54,7 @@ cmp.setup({
 
     ["<S-Tab>"] = function(fallback)
       if cmp.visible() then
-        cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+        cmp.select_prev_item({ behavior = select_behavior_for_cursor() })
       else
         fallback()
       end
