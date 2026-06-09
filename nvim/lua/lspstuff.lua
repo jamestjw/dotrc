@@ -222,6 +222,15 @@ vim.lsp.enable("elixirls")
 vim.lsp.enable("gopls")
 
 vim.lsp.config("harper_ls", {
+  filetypes = {
+    "text",
+    "markdown",
+    "gitcommit",
+    "gitrebase",
+    "mail",
+    "rst",
+    "asciidoc",
+  },
   settings = {
     ["harper-ls"] = {
       linters = {
