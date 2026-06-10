@@ -47,6 +47,7 @@ alias ctags='/usr/local/bin/ctags'
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+nvm use --silent default >/dev/null 2>&1
 
 ## Remove vim warnings
 export LC_ALL=en_US.UTF-8
@@ -220,4 +221,3 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-
