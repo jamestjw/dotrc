@@ -25,7 +25,22 @@
     enable = true;
     windowManager.i3 = {
       enable = true;
-      extraPackages = with pkgs; [ dmenu i3lock i3status ];
+      extraPackages = with pkgs; [
+        dmenu
+        i3lock
+        i3status
+        (polybar.override { i3Support = true; pulseSupport = true; })
+        rofi
+        feh
+        maim
+        xdotool
+        xautolock
+        dex
+        networkmanagerapplet
+        xorg.xrandr
+        xorg.xset
+        xorg.setxkbmap
+      ];
     };
     xkb = {
       layout = "us";
