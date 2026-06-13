@@ -7,9 +7,9 @@
     ./hardware-configuration.nix
   ];
 
-  # Adjust if the machine boots via legacy BIOS/GRUB.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/vda";
+  boot.loader.systemd-boot.enable = false;
 
   networking.hostName = "nixos"; # change me (and the flake output name)
   networking.networkmanager.enable = true;
