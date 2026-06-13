@@ -1,11 +1,10 @@
 { config, pkgs, lib, ... }:
 
 let
-  # Live symlinks into the repo (same idea as setup.sh's `ln -snf`):
-  # edits to the dotfiles take effect without a rebuild. Requires the repo
-  # to live at this path.
-  dotrc = "${config.home.homeDirectory}/Documents/dotrc";
-  link = path: config.lib.file.mkOutOfStoreSymlink "${dotrc}/${path}";
+  # Source dotfiles relative to this flake checkout so the repo can live
+  # anywhere on the installed system.
+  dotrc = ./..;
+  link = path: "${dotrc}/${path}";
 in
 {
   home.username = "jamestjw";

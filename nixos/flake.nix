@@ -9,20 +9,25 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }: {
-    # Rename "nixos" to your hostname, then:
-    #   sudo nixos-rebuild switch --flake ~/Documents/dotrc/nixos#nixos
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+  outputs = { self, nixpkgs, home-manager, ... }:
+    let
       system = "x86_64-linux";
-      modules = [
-        ./configuration.nix
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.jamestjw = import ./home.nix;
-        }
-      ];
+      mkSystem = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [
+          ./configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.jamestjw = import ./home.nix;
+          }
+        ];
+      };
+    in {
+      # Install/rebuild with:
+      #   sudo nixos-rebuild switch --flake ~/dotrc/nixos#jamestjw
+      nixosConfigurations.jamestjw = mkSystem;
+      nixosConfigurations.nixos = mkSystem;
     };
-  };
 }
