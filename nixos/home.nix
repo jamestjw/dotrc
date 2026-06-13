@@ -66,6 +66,7 @@ in
     xautolock
     dex
     networkmanagerapplet
+    brave
     evince
     pinta         # was a snap
     xorg.xrandr   # scripts/bright, polybar/launch.sh
