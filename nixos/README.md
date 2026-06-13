@@ -14,28 +14,25 @@ symlinked dotfiles) on NixOS.
 Design choice: bash, git, and tmux are translated to native home-manager
 modules (the old `.bashrc` was full of Fedora/macOS-specific shims that don't
 apply on NixOS). Everything else (`nvim`, `i3`, `polybar`, `helix`, `ghostty`,
-`kitty`, `rofi`, `mise`, `harper-ls`, `pantry`, scripts, …) is symlinked
-straight out of this repo with `mkOutOfStoreSymlink`, exactly like `setup.sh`
-did — edit the files in the repo and the changes are live without a rebuild.
-This does mean the repo must be checked out at `~/Documents/dotrc`.
+`kitty`, `rofi`, `mise`, `harper-ls`, `pantry`, scripts, …) is sourced from
+this flake checkout. The repo can live anywhere, but config changes need a
+rebuild before they appear in `~/.config`.
 
 ## Install
 
 ```bash
 # 1. On the freshly installed NixOS machine:
-git clone <this repo> ~/Documents/dotrc
+git clone <this repo> ~/dotrc
 
 # 2. Bring over the generated hardware config:
-cp /etc/nixos/hardware-configuration.nix ~/Documents/dotrc/nixos/
+cp /etc/nixos/hardware-configuration.nix ~/dotrc/nixos/
 
-# 3. Pick a hostname: edit networking.hostName in configuration.nix and the
-#    nixosConfigurations.<name> key in flake.nix to match.
+# 3. Build (flakes only see git-tracked files — add new files first):
+cd ~/dotrc
+git add nixos/hardware-configuration.nix
+sudo nixos-rebuild switch --flake ./nixos#jamestjw
 
-# 4. Build (flakes only see git-tracked files — add new files first):
-git -C ~/Documents/dotrc add nixos
-sudo nixos-rebuild switch --flake ~/Documents/dotrc/nixos#nixos
-
-# 5. One-time, post-install:
+# 4. One-time, post-install:
 sudo tailscale up
 rustup default stable
 ```
