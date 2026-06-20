@@ -49,6 +49,7 @@ local on_attach = function(_, buffer)
   map("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
   map("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
   map("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
+  map("n", "<leader>lc", vim.lsp.codelens.run, bufopts)
   map("n", "gr", vim.lsp.buf.references, bufopts)
   map("n", "<leader>lr", vim.cmd.LspRestart, bufopts)
 end
@@ -57,6 +58,24 @@ vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
   callback = function(args)
     on_attach(nil, args.buf)
+
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_codeLens, args.buf) then
+      vim.lsp.codelens.refresh({ bufnr = args.buf })
+    end
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+  group = vim.api.nvim_create_augroup("UserLspCodeLens", {}),
+  callback = function(args)
+    local clients = vim.lsp.get_clients({ bufnr = args.buf })
+    for _, client in ipairs(clients) do
+      if client:supports_method(vim.lsp.protocol.Methods.textDocument_codeLens, args.buf) then
+        vim.lsp.codelens.refresh({ bufnr = args.buf })
+        return
+      end
+    end
   end,
 })
 
@@ -126,6 +145,24 @@ vim.lsp.config("lua_ls", {
 })
 vim.lsp.enable("lua_ls")
 
+vim.lsp.config("rust_analyzer", {
+  settings = {
+    ["rust-analyzer"] = {
+      lens = {
+        enable = true,
+        run = { enable = true },
+        updateTest = { enable = true },
+      },
+      hover = {
+        actions = {
+          enable = true,
+          run = { enable = true },
+          updateTest = { enable = true },
+        },
+      },
+    },
+  },
+})
 vim.lsp.enable("rust_analyzer")
 
 vim.lsp.enable("gleam")
