@@ -110,20 +110,20 @@ return {
   -- Surround
   "tpope/vim-surround",
 
-  -- Display Git blame
+  -- Git integration
   {
-    "FabijanZulj/blame.nvim",
-    opts = {},
+    "tpope/vim-fugitive",
+    -- In :Git blame:
+    --   o / <CR> opens the blamed commit.
+    --   - blames the selected commit's parent.
+    --   ~ re-blames the selected commit.
+    --   P re-blames the selected commit's parent in the preview window.
+    --   q closes the blame window.
     keys = {
       {
-        "<leader>bw",
-        ":BlameToggle window<CR>",
-        desc = "[b]lame [w]indow",
-      },
-      {
-        "<leader>bv",
-        ":BlameToggle virtual<CR>",
-        desc = "[b]lame [v]irtual",
+        "<leader>gb",
+        ":Git blame<CR>",
+        desc = "[g]it [b]lame",
       },
     },
   },
