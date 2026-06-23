@@ -150,6 +150,13 @@ vim.lsp.config("rust_analyzer", {
     ["rust-analyzer"] = {
       lens = {
         enable = true,
+        implementations = { enable = false },
+        references = {
+          adt = { enable = false },
+          enumVariant = { enable = false },
+          method = { enable = false },
+          trait = { enable = false },
+        },
         run = { enable = true },
         updateTest = { enable = true },
       },
