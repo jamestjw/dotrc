@@ -177,11 +177,11 @@ zi() {
 # !! Contents within this block are managed by juliaup !!
 
 case ":$PATH:" in
-    *:/home/jamestjw/.juliaup/bin:*)
+    *:$HOME/.juliaup/bin:*)
         ;;
 
     *)
-        export PATH=/home/jamestjw/.juliaup/bin${PATH:+:${PATH}}
+        export PATH=$HOME/.juliaup/bin${PATH:+:${PATH}}
         ;;
 esac
 
@@ -195,7 +195,7 @@ export KERL_CONFIGURE_OPTIONS="--without-javac \
                                --with-dynamic-trace=systemtap"
 
 # Rebar (Erlang build tool)
-export PATH=/home/jamestjw/.cache/rebar3/bin:$PATH
+export PATH=$HOME/.cache/rebar3/bin:$PATH
 
 # Initiate zoxide (better `cd`)
 eval "$(zoxide init bash --no-cmd)"
@@ -210,14 +210,17 @@ export PATH=$HOME/bin:$PATH
 [[ -e "$HOME/lib/oracle-cli/lib/python3.12/site-packages/oci_cli/bin/oci_autocomplete.sh" ]] && source "$HOME/lib/oracle-cli/lib/python3.12/site-packages/oci_cli/bin/oci_autocomplete.sh"
 
 # opencode
-export PATH=/home/jamestjw/.opencode/bin:$PATH
+export PATH=$HOME/.opencode/bin:$PATH
 
 complete -C /var/lib/snapd/snap/terraform/849/terraform terraform
 
 # pnpm
-export PNPM_HOME="/home/jamestjw/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+# tfenv
+ export PATH="$HOME/.tfenv/bin:$PATH"
