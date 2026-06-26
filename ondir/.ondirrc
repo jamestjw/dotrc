@@ -5,6 +5,16 @@ enter ~/Documents/sollum/([^/]+)/([^/]+)
   set -a; [[ -f $PWD/.local_env ]] && echo "Loading local env file" && source .local_env; set +a
   # export $(grep -v '^#' .local_env | xargs)
 
+enter ~/Documents/sollum/sunaas
+  echo "Entering sollum Sunaas terraform dir"
+  [[ -d .venv ]] && echo "Loading .venv" && source .venv/bin/activate
+  set -a; [[ -f $PWD/.local_env ]] && echo "Loading local env file" && source .local_env; set +a
+  export PROJECT_SUBDOMAIN="internal."
+  export GOOGLE_APPLICATION_CREDENTIALS=$PWD/terraform/gcloud_sa.json
+  gcloud auth activate-service-account --key-file=$PWD/terraform/gcloud_sa.json
+  export GCP_PROJECT="sunaas-${PROJECT_SUBDOMAIN%?}"
+  gcloud config set project $GCP_PROJECT
+
 leave ~/Documents/sollum/([^/]+)/([^/]+)
   [[ -d $OLDPWD/venv ]] && [ ! -z ${VIRTUAL_ENV} ] && deactivate
   [[ -d $OLDPWD/.venv ]] && [ ! -z ${VIRTUAL_ENV} ] && deactivate
