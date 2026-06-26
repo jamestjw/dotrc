@@ -327,6 +327,13 @@ vim.lsp.config("terraformls", {
   init_options = {
     ignoreSingleFileWarning = true,
   },
+  on_attach = function(_, bufnr)
+    if vim.lsp.codelens.enable then
+      vim.lsp.codelens.enable(true, { bufnr = bufnr })
+    else
+      vim.lsp.codelens.refresh({ bufnr = bufnr })
+    end
+  end,
 })
 vim.lsp.enable("terraformls")
 
