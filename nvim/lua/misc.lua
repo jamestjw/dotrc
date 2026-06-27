@@ -154,3 +154,7 @@ vim.api.nvim_create_user_command("CopyFilename", function()
   vim.fn.setreg("+", filename)
   vim.notify("Copied file path: " .. filename)
 end, { desc = "Copy current buffer file path to system clipboard" })
+
+
+-- Show inline diagnostics
+vim.diagnostic.config({ virtual_text = true })

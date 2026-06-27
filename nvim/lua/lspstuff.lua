@@ -93,7 +93,7 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.lsp.enable("pyright")
 
 vim.lsp.config("racket_langserver", {
-  filetypes = { ".rkt", ".scm" },
+  filetypes = { "racket", "scheme" },
 })
 vim.lsp.enable("racket_langserver")
 
@@ -179,14 +179,14 @@ vim.lsp.enable("rescriptls")
 vim.lsp.enable("csharp_ls")
 
 -- Javascript, Vue
-local node_modules_dir = vim.system({ "npm", "root", "-g" }):wait().stdout or ""
+local node_modules_dir = vim.trim(vim.system({ "npm", "root", "-g" }):wait().stdout or "")
 
 vim.lsp.config("ts_ls", {
   init_options = {
     plugins = {
       {
         name = "@vue/typescript-plugin",
-        location = node_modules_dir .. "@vue/typescript-plugin/",
+        location = node_modules_dir .. "/@vue/typescript-plugin/",
         languages = { "javascript", "typescript", "vue" },
       },
     },
@@ -201,7 +201,7 @@ vim.lsp.enable("ts_ls")
 
 local function get_typescript_server_path(root_dir)
   local util = require("lspconfig.util")
-  local global_ts = node_modules_dir .. "typescript/lib/"
+  local global_ts = node_modules_dir .. "/typescript/lib/"
   -- Alternative location if installed as root:
   -- local global_ts = '/usr/local/lib/node_modules/typescript/lib'
   local found_ts = ""
