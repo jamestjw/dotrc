@@ -90,6 +90,17 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- vim.lsp.config("basedpyright", {
+--   settings = {
+--     basedpyright = {
+--       analysis = {
+--         typeCheckingMode = "standard",
+--       },
+--     },
+--   },
+-- })
+-- vim.lsp.enable("basedpyright")
+
 vim.lsp.enable("pyright")
 
 vim.lsp.config("racket_langserver", {
