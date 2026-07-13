@@ -44,7 +44,7 @@ sudo dnf update -y
 sudo dnf install snapd -y
 
 # Install mise package manager
-sudo dnf install mise -y
+curl https://mise.run | sh
 mise install
 mise use --global neovim@version
 

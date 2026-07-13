@@ -142,8 +142,6 @@ eval "$(fzf --bash)"
 . "$HOME/.atuin/bin/env"
 eval "$(atuin init bash --disable-up-arrow)"
 
-# Activate mise environment
-[ -x "$(which mise)" ] && eval "$(mise activate bash)"
 
 # Setup `ondir` hooks
 if command -v ondir 2>&1 >/dev/null; then
@@ -223,4 +221,20 @@ esac
 # pnpm end
 
 # tfenv
- export PATH="$HOME/.tfenv/bin:$PATH"
+export PATH="$HOME/.tfenv/bin:$PATH"
+
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+case ":$PATH:" in
+    *:/home/jamestjw/.juliaup/bin:*)
+        ;;
+
+    *)
+        export PATH=/home/jamestjw/.juliaup/bin${PATH:+:${PATH}}
+        ;;
+esac
+# <<< juliaup initialize <<<
+
+# Activate mise environment (must run after other PATH modifications)
+[ -x "$(which mise)" ] && eval "$(mise activate bash)"
