@@ -236,5 +236,8 @@ case ":$PATH:" in
 esac
 # <<< juliaup initialize <<<
 
+# Added by Antigravity CLI installer
+export PATH="/home/jamestjw/.local/bin:$PATH"
+
 # Activate mise environment (must run after other PATH modifications)
 [ -x "$(which mise)" ] && eval "$(mise activate bash)"
