@@ -20,6 +20,7 @@ alias gitm='git checkout main'
 alias gdh='git diff HEAD'
 alias gitaa='git add -u && git commit --amend'
 alias gprush='git pull --rebase origin main && git push'
+alias ch="git rev-parse HEAD | cpecho"
 
 # Functions
 mkcdir() {
