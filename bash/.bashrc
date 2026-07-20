@@ -143,33 +143,6 @@ eval "$(fzf --bash)"
 eval "$(atuin init bash --disable-up-arrow)"
 
 
-# Setup `ondir` hooks
-if command -v ondir 2>&1 >/dev/null; then
-  cd() {
-    builtin cd "$@" && eval "`ondir \"$OLDPWD\" \"$PWD\"`"
-  }
-  # Define zoxide command (we skipped the creation of this with `--no-cmd`)
-  z() {
-    __zoxide_z "$@" && eval "`ondir \"$OLDPWD\" \"$PWD\"`"
-  }
-  pushd() {
-    builtin pushd "$@" && eval "`ondir \"$OLDPWD\" \"$PWD\"`"
-  }
-  popd() {
-    builtin popd "$@" && eval "`ondir \"$OLDPWD\" \"$PWD\"`"
-  }
-  eval "`ondir /`"
-else
-  # Define zoxide command (we skipped the creation of this with `--no-cmd`)
-  z() {
-    __zoxide_z "$@"
-  }
-fi
-
-zi() {
-  __zoxide_zi "$@"
-}
-
 # >>> juliaup initialize >>>
 
 # !! Contents within this block are managed by juliaup !!
@@ -194,9 +167,6 @@ export KERL_CONFIGURE_OPTIONS="--without-javac \
 
 # Rebar (Erlang build tool)
 export PATH=$HOME/.cache/rebar3/bin:$PATH
-
-# Initiate zoxide (better `cd`)
-eval "$(zoxide init bash --no-cmd)"
 
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
@@ -241,3 +211,33 @@ export PATH="/home/jamestjw/.local/bin:$PATH"
 
 # Activate mise environment (must run after other PATH modifications)
 [ -x "$(which mise)" ] && eval "$(mise activate bash)"
+
+# Initiate zoxide last so later shell integrations do not overwrite its hook.
+eval "$(zoxide init bash --no-cmd)"
+
+# Setup `ondir` hooks
+if command -v ondir 2>&1 >/dev/null; then
+  cd() {
+    builtin cd "$@" && eval "`ondir \"$OLDPWD\" \"$PWD\"`"
+  }
+  # Define zoxide command (we skipped the creation of this with `--no-cmd`)
+  z() {
+    __zoxide_z "$@" && eval "`ondir \"$OLDPWD\" \"$PWD\"`"
+  }
+  pushd() {
+    builtin pushd "$@" && eval "`ondir \"$OLDPWD\" \"$PWD\"`"
+  }
+  popd() {
+    builtin popd "$@" && eval "`ondir \"$OLDPWD\" \"$PWD\"`"
+  }
+  eval "`ondir /`"
+else
+  # Define zoxide command (we skipped the creation of this with `--no-cmd`)
+  z() {
+    __zoxide_z "$@"
+  }
+fi
+
+zi() {
+  __zoxide_zi "$@"
+}

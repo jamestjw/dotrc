@@ -180,8 +180,11 @@ in
       # mise (config symlinked at ~/.config/mise)
       [ -x "$(which mise)" ] && eval "$(mise activate bash)"
 
-      # ondir hooks; zoxide is initialised by home-manager with --no-cmd,
-      # so z/zi are defined here (wrapped with ondir when available).
+      # zoxide must be initialised after other shell integrations so its hook
+      # is not overwritten. z/zi are wrapped with ondir when available.
+      eval "$(zoxide init bash --no-cmd)"
+
+      # ondir hooks
       if command -v ondir 2>&1 >/dev/null; then
         cd() {
           builtin cd "$@" && eval "`ondir \"$OLDPWD\" \"$PWD\"`"
@@ -228,6 +231,7 @@ in
   programs.fzf.enable = true;
   programs.zoxide = {
     enable = true;
+    enableBashIntegration = false;
     options = [ "--no-cmd" ]; # z/zi defined in initExtra above
   };
   programs.atuin = {
