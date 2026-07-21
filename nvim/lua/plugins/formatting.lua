@@ -8,7 +8,7 @@ return {
       lua = { "stylua" },
       python = {
         -- "isort",
-        "black",
+        "ruff_format",
       },
       ocaml = { "ocamlformat" },
       -- You can customize some of the format options for the filetype (:help conform.format)
