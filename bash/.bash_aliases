@@ -39,6 +39,10 @@ sourceenv() {
   source $1/bin/activate
 }
 
+mkenv() {
+  rm -rf $1 && python -m venv $1 && source $1/bin/activate
+}
+
 avg_time_alt() {
   local -i n=$1
   local foo real sys user
