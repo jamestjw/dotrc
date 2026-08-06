@@ -8,6 +8,8 @@
   co = checkout
   oc = checkout
   ci = commit
+  ic = commit
+  puhsh = push
   st = status
   br = branch
   hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short -n15
@@ -16,9 +18,9 @@
   pfl = push --force-with-lease
   prom = pull --rebase origin main
   pro = pull --rebase origin
-  psetup = push --set-upstream origin $(git branch --show-current)
   cp = cherry-pick
   mc = merge --continue --no-edit
+  rmbranch = push origin --delete
 [core]
   excludesfile = ~/.gitignore_global
   hooksPath = ~/.githooks/
@@ -61,3 +63,7 @@
 
 [include]
   path = .gitconfig-local
+
+# Conditional overrides based on directory path
+[includeIf "gitdir:~/Documents/sollum/"]
+    path = ~/.gitconfig-work
