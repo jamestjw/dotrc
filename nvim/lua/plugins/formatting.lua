@@ -21,6 +21,7 @@ return {
       json = { "jq" },
       yaml = { "yamlfmt" },
       clojure = { "cljfmt" },
+      elm = { "elm_format" },
     },
   },
   init = function()

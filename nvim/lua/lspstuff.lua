@@ -348,4 +348,6 @@ vim.lsp.config("terraformls", {
 })
 vim.lsp.enable("terraformls")
 
+vim.lsp.enable("elmls")
+
 -- LSP config END

@@ -47,6 +47,7 @@ return {
         "cpp",
         "terraform",
         "rust",
+        "elm",
       },
       endwise = {
         enable = true,
