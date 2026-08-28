@@ -12,6 +12,11 @@ yq = "latest"
 clangd = "21.1.8"
 neovim = "0.11.7"
 ruff = "0.15.21"
+elm = "0.19.1"
+"npm:@elm-tooling/elm-language-server" = "2.8.0"
+"github:avh4/elm-format" = "0.8.8"
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
+# mise's built-in npm implementation fails on scoped packages; shell out to real npm
+npm.shell_out = true
