@@ -35,7 +35,7 @@ end)
 local on_attach = function(_, buffer)
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap = true, silent = true, buffer = buffer }
+  local bufopts = { noremap = true, silent = true, buf = buffer }
   map("n", "gD", vim.lsp.buf.declaration, bufopts)
   map("n", "gd", vim.lsp.buf.definition, bufopts)
   map("n", "K", vim.lsp.buf.hover, bufopts)
@@ -61,20 +61,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     local client = vim.lsp.get_client_by_id(args.data.client_id)
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_codeLens, args.buf) then
-      vim.lsp.codelens.refresh({ bufnr = args.buf })
-    end
-  end,
-})
-
-vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
-  group = vim.api.nvim_create_augroup("UserLspCodeLens", {}),
-  callback = function(args)
-    local clients = vim.lsp.get_clients({ bufnr = args.buf })
-    for _, client in ipairs(clients) do
-      if client:supports_method(vim.lsp.protocol.Methods.textDocument_codeLens, args.buf) then
-        vim.lsp.codelens.refresh({ bufnr = args.buf })
-        return
-      end
+      vim.lsp.codelens.enable(true, { bufnr = args.buf })
     end
   end,
 })
@@ -83,7 +70,7 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { "c", "cpp", "objc", "objcpp" },
   callback = function(args)
     vim.keymap.set("n", "gH", "<cmd>LspClangdSwitchSourceHeader<CR>", {
-      buffer = args.buf,
+      buf = args.buf,
       desc = "Switch header/source",
       silent = true,
     })
@@ -126,7 +113,7 @@ vim.lsp.enable("clangd")
 vim.lsp.config("lua_ls", {
   on_init = function(client)
     local path = client.workspace_folders[1].name
-    if vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc") then
+    if vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc") then
       return
     end
 
@@ -252,7 +239,7 @@ if not configs.lexical then
 			filetypes = lexical_config.filetypes,
 			cmd = lexical_config.cmd,
 			root_dir = function(fname)
-				return lspconfig.util.root_pattern("mix.exs", ".git")(fname) or vim.loop.os_homedir()
+				return lspconfig.util.root_pattern("mix.exs", ".git")(fname) or vim.uv.os_homedir()
 			end,
 			-- optional settings
 			settings = lexical_config.settings,
@@ -338,13 +325,6 @@ vim.lsp.config("terraformls", {
   init_options = {
     ignoreSingleFileWarning = true,
   },
-  on_attach = function(_, bufnr)
-    if vim.lsp.codelens.enable then
-      vim.lsp.codelens.enable(true, { bufnr = bufnr })
-    else
-      vim.lsp.codelens.refresh({ bufnr = bufnr })
-    end
-  end,
 })
 vim.lsp.enable("terraformls")
 

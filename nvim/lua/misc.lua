@@ -30,7 +30,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
   group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
   callback = function()
-    vim.highlight.on_yank()
+    vim.hl.on_yank()
   end,
 })
 
@@ -154,7 +154,6 @@ vim.api.nvim_create_user_command("CopyFilename", function()
   vim.fn.setreg("+", filename)
   vim.notify("Copied file path: " .. filename)
 end, { desc = "Copy current buffer file path to system clipboard" })
-
 
 -- Show inline diagnostics
 vim.diagnostic.config({ virtual_text = true })
