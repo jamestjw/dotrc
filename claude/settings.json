@@ -26,9 +26,41 @@
     "rust-analyzer-lsp@claude-plugins-official": true
   },
   "spinnerTipsEnabled": false,
-  "effortLevel": "high",
+  "effortLevel": "medium",
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark",
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "autoMode": {
+    "environment": [
+      "### Org-wide",
+      "**Organization**: None configured",
+      "**Cloud provider(s)**: None configured",
+      "**Repository visibility**: assume private unless the remote host and repo name indicate otherwise, or a visibility check in the transcript shows public (gitlab.com:sollum/sollummicroservicearchitecture/smrectifier — visibility not queryable here; treat as private based on org-scoped path)",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: None configured",
+      "**Default / protected branches**: main (protection status not queryable here — gh lookup unavailable for this remote)",
+      "**CI/CD deploy targets**: None configured",
+      "**Network posture**: None configured",
+      "**Source control**: gitlab.com:sollum/sollummicroservicearchitecture/smrectifier (this repo and its remote only)",
+      "**Trusted internal domains**: None configured",
+      "**Trusted cloud buckets**: None configured",
+      "**Key internal services**: registry.gitlab.com (container image registry used by this repo)",
+      "**Internal package registry**: registry.gitlab.com",
+      "**Sensitive data locations & audiences**: helm-v2/prod-edge-values.yaml, helm-v2/chart/templates/rbac.yaml, helm/chart/Chart.yaml, helm/chart/.helmignore — share only with audiences cleared for this repo's deployment config; also credentials referenced in README (POSTGRES_PASSWORD, RECTIFIER_USER_PASSWORD, MQTT_PASSWORD) are sensitive regardless of repo visibility",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: any namespace, host, or container whose name carries `prod` or `production` as a whole word or name segment (e.g. helm-v2/prod-edge-values.yaml)",
+      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic (note: rectifier-core namespace seen in usage is not itself prod-named)",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment — includes helm-v2/chart/templates/rbac.yaml and helm-v2/prod-edge-values.yaml in this repo",
+      "### User-specific",
+      "**Primary use of Claude Code**: software development",
+      "**Trusted repo**: /home/jamestjw/Documents/sollum/sollummicroservicearchitecture/smrectifier and its remote gitlab.com:sollum/sollummicroservicearchitecture/smrectifier",
+      "**Org-specific CLIs**: rtk (routine under this project, 110× in transcripts)",
+      "routine under smrectifier/ prefix qualifier: rtk, basedpyright, ruff usage observed as routine within this project"
+    ],
+    "soft_deny": [
+      "$defaults",
+      "Bash(helm:*prod-edge-values.yaml*) — edits or applies against helm-v2/prod-edge-values.yaml"
+    ]
+  }
 }
